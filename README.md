@@ -1,5 +1,18 @@
-# Team Project
+# Team Project - Restaurant Management System
 
-This repository has been created to store your Team Project.
+> This project is a Restaurant Management System that has been developed for Oaxaca. 
+> It aims to reduce the need for hiring/training waiting stuff whilst maximising customer satisfaction.
 
-You may edit it as you like, but please do not remove the default topics or the project members list. These need to stay as currently defined in order for your lecturer to be able to find and mark your work.
+## Table of Contents
+* [General Information](#general-information)
+* [Technologies Used](#technologies-used)
+* [Features](#features)
+* [Setup](#setup)
+
+## General Information
+
+## Technologies Used
+
+## Features
+
+## Setup

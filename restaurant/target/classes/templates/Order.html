@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <title>Home</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
     <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css"></link>
     <link th:href="@{/styles/Menu.css}" rel="stylesheet" type="text/css"></link>
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-  </head>
-  <body>
+</head>
+<body>
     <h1><img th:src="@{/images/home-logo.png}" id="hLogo">
     </h1>
     <div class="m">
-      <ul>
-        <li><a th:href="@{/home}">Home</a></li>
-        <li><a th:href="@{/Order}">Order</a></li>
-      </ul>>
+        <ul>
+            <li><a th:href="@{/home}">Home</a></li>
+            <li><a th:href="@{/Order}">Order</a></li>
+        </ul>>
     </div>
-  </body>
-</html >
+</body>
+</html>

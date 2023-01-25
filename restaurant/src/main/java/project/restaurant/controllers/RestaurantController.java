@@ -9,4 +9,9 @@ public class RestaurantController {
 	public String getHome() {
 		return "home";
 	}
+	
+   @GetMapping("/order-confirmation")
+    public String order_confirmation() {
+       return "order-confirmation";
+    }
 }

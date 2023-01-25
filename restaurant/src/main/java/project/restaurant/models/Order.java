@@ -5,9 +5,15 @@ import jakarta.persistence.*;
 @Entity
 @Table
 public class Order {
-  
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer orderNumber;
+
+  @Column(name="status", nullable = false)
   private Integer status;
+
+  @Column(name="waiterId", nullable = false)
   private Integer waiterId;
   
   public Order(Integer orderNumber, Integer status, Integer waiterId) {
@@ -39,6 +45,6 @@ public class Order {
   
   @Override
   public String toString() {
-    return "order number:" + orderNumber.toString() + " status:" + status.toString() + " waiter id:" + waiterId.toString();
+    return "Order number: " + orderNumber + ", Status: " + status + ", Waiter ID: " + waiterId;
   }
 }

@@ -1,6 +1,7 @@
 package project.restaurant.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import project.restaurant.models.Orders;
 
 public interface OrdersRepostitory extends JpaRepository<Orders, Integer> {

@@ -3,7 +3,7 @@ package project.restaurant.controllers;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import project.restaurant.models.Order;
+import project.restaurant.models.Orders;
 
 @Controller
 public class RestaurantController {
@@ -13,8 +13,8 @@ public class RestaurantController {
 	}
 	
 	@GetMapping
-	public List<Order> getOrderList() {
+	public List<Orders> getOrderList() {
 	  return List.of(
-	     (Order) new Order(1,1,1));
+	     (Orders) new Orders(1,1,1));
 	}
 }

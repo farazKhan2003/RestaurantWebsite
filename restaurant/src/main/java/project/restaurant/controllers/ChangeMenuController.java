@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import project.restaurant.models.MenuItems;
+import project.restaurant.models.Orders;
 import project.restaurant.repository.MenuItemsRepository;
+import project.restaurant.repository.OrdersRepository;
 
 @Controller
 public class ChangeMenuController {
   @Autowired
   private MenuItemsRepository miRepo;
+  @Autowired
+  private OrdersRepository oRepo;
   
   @GetMapping("/menuChange")
   public String getMenuChange() {
@@ -40,6 +44,23 @@ public class ChangeMenuController {
     model.addAttribute("MenuItems", menuItems);
     return "removeMenuChange";
   }
-  
  
+  @GetMapping("/removeItems")
+  public String getRemoveItems(@RequestParam("itemID") Integer itemID) {
+    miRepo.deleteById(itemID);
+    return "removeMenuChange";
+  }
+  
+  @GetMapping("/deleteOrder")
+  public String getDeleteOrder(@RequestParam("orderID") Integer orderID) {
+    oRepo.deleteById(orderID);
+    return "removeMenuChange";
+  }
+  
+  @GetMapping("/orders")
+  public String getOrders(Model model) {
+    List<Orders> orders = oRepo.findAll();
+    model.addAttribute("Orders",orders);
+    return "orders";
+  }
 }

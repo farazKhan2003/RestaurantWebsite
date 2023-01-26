@@ -6,16 +6,38 @@
     <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css"></link>
     <link th:href="@{/styles/Menu.css}" rel="stylesheet" type="text/css"></link>
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <h1><img th:src="@{/images/home-logo.png}" id="hLogo">
-    </h1>
-    <div class="m">
-        <ul>
-            <li><a th:href="@{/home}">Home</a></li>
-            <li><a th:href="@{/Order}">Order</a></li>
-        </ul>>
-    </div>
+<h1>
+    <img th:src="@{/images/home-logo.png}" id="hLogo">
+</h1>
+<div class="m">
+    <ul>
+        <li><a th:href="@{/home}">Home</a></li>
+        <li><a th:href="@{/order}">Order</a></li>
+    </ul>
+</div>
+<div class="orderlist">
+    <form th:action="@{/waiterinput}" method="get">
+        <input type="search" name="keyword" size="50" required />
+        <input type="submit" value="search" />
+    </form>
+    <table>
+        <thead>
+        <th th:if="${orders!=null}" scope="row">Order Number</th>
+        <th th:if="${orders!=null}" scope="row">Status</th>
+        </thead>
+        <tbody>
+        <tr th:each="order: ${orders}">
+            <td th:text="${order.orderNumber}"></td>
+            <td th:text="${order.state}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
 </body>
 </html>

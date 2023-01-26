@@ -13,7 +13,7 @@ public class Orders {
     @Column(name="state", nullable = false)
     private Integer state;
 
-    @Column(name="waiterId", nullable = false)
+    @Column(name="waiter_Id", nullable = false)
     private Integer waiterId;
 
     public Orders(Integer orderNumber, Integer state, Integer waiterId) {
@@ -33,10 +33,10 @@ public class Orders {
         this.orderNumber = orderNumber;
     }
 
-    public Integer getStatus() {
+    public Integer getState() {
         return state;
     }
-    public void setStatus(Integer state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 
@@ -49,6 +49,6 @@ public class Orders {
 
     @Override
     public String toString() {
-        return "Order number: " + orderNumber + ", State: " + state + ", Waiter ID: " + waiterId;
+        return "Order number: " + orderNumber + ", state: " + state + ", Waiter ID: " + waiterId;
     }
 }

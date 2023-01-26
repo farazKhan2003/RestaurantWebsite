@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Home</title>
+    <link th:href="@{/styles/menuStyle.css}" rel="stylesheet" type="text/css"></link>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <h1><img th:src="@{/images/home-logo.png}" id="hLogo">
+    </h1>
+    <div class = "changeMenuOptions">
+    	<form th:action = "@{/addItem}" method = "post">
+    	
+    		<label>Item name:</label>
+    		<input type ="text" name = "itemName" required />
+    		
+    		<label>Description:</label>
+    		<input type ="text" name = "description" required />
+    		
+    		<label>Price:</label>
+    		<input type = "number" step="0.01" name = "price" required />
+    		
+    		<label>Image:</label>
+    		<input type="file" name="file" accept=".jpg,.png" />
+    		
+    		<label>Stock amount:</label>
+    		<input type="number" name = "stockAmount" />
+    		
+    		<button type = "submit">Add item</button>
+    	</form>
+    	<form th:action = "@{/removeMenuChange}" method = "get"> 
+    	
+    		<button type = "submit">Remove item: </button>
+    	</form>
+    </div>
+  </body>
+</html >

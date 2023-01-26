@@ -1,12 +1,13 @@
 package project.restaurant.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+
 import project.restaurant.models.Orders;
 
 public interface OrdersRepostitory extends JpaRepository<Orders, Integer> {
-  //@Query("INSERT INTO Orders(confirmed) VALUES(true);")
-  //public Boolean confirmOrder(Boolean confirmed);
+  
+//  @Query("INSERT INTO Orders(confirmed) VALUES(true);")
+//  public String confirmOrder(Boolean confirmed);
 }
 
 //SQL code for test table:
@@ -19,3 +20,6 @@ public interface OrdersRepostitory extends JpaRepository<Orders, Integer> {
 //    `confirmed` BOOLEAN NOT NULL,
 //    PRIMARY KEY (`orderId`)
 //)
+//
+//Test Data:
+//INSERT INTO `cs2810restaurant`.`Orders`(orderId, confirmed) VALUES ("1", "false");

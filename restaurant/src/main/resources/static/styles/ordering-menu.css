@@ -1,0 +1,54 @@
+.currys {
+  padding: 2rem;
+}
+
+.currys > ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 1rem;
+}
+
+.currys > ul > li {
+    list-style-type: none;
+  border: 1px solid #000000;
+  border-radius: .5rem;
+}
+
+.currys > ul > li > figure {
+
+  overflow: hidden;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+  position: relative;
+}
+
+.currys > ul > li > figure > img {
+  width: 100%;
+}
+
+.currys > ul > li > figure > figcaption {
+    height: 60px;
+  position: absolute;
+  bottom: 0;
+  background-color: #000000;
+  width: 100%;
+}
+
+.currys > ul > li > figure > figcaption > h3 {
+    text-align: center;
+  color: white;
+  font-size: 1.25rem;
+}
+
+.currys > ul > li > p {
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 1rem .75rem;
+  color: #666666;
+}
+
+.currys > ul > li > a {
+    text-align: center;
+  padding: 1rem 1rem;
+  margin: .5rem;
+}

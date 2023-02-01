@@ -1,11 +1,16 @@
 package project.restaurant.controllers;
 
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import project.restaurant.models.MenuItems;
 
 @Controller
 public class RestaurantController {
-	@GetMapping("/home")
+	
+    private List<MenuItems> ItemList;
+  
+    @GetMapping("/home")
 	public String getHome() {
 		return "home";
 	}

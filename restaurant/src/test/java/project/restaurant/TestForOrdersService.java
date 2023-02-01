@@ -19,5 +19,23 @@ class TestForOrdersService {
     List<Orders> list = orderService.getOrders();
     System.out.println(list);
   }
-
+  
+  //Note that you need to insert corresponding order into database first
+  @Test
+  void testIfSpecificOrderExist() {
+    Integer orderNumber = 1001;
+    List<Orders> list = orderService.getOrders();
+    Boolean test = false;
+    
+    Orders[] array = new Orders[list.size()];
+    list.toArray(array);
+    
+    for(int i = 0; i<array.length ; i++) {
+      Integer number = array[i].getOrderNumber();
+      if(number.equals(orderNumber)) {
+        test = true;
+      }
+    }
+    assertTrue(test);
+  }
 }

@@ -15,7 +15,7 @@ class TestForOrdersService {
   private OrderService orderService;
   
   @Test
-  void test() {
+  void testGetOrders() {
     List<Orders> list = orderService.getOrders();
     System.out.println(list);
   }

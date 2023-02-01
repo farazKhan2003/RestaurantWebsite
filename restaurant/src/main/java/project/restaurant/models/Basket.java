@@ -5,28 +5,16 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "Basket")
 public class Basket {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<MenuItems> items = new ArrayList<>();
-
+    private List<MenuItems> items;
     private Float totalPrice;
+    private final Integer tableNumber;
 
-    public Basket() {}
-
-    public Basket(List<MenuItems> items, Float totalPrice) {
-        this.items = items;
-        this.totalPrice = totalPrice;
-    }
-
-    public Integer getId() {
-        return id;
+    public Basket(Integer tableNumber) {
+        this.items = new ArrayList<>();
+        this.totalPrice = (float) 0;
+        this.tableNumber = tableNumber;
     }
 
     public List<MenuItems> getItems() {
@@ -43,5 +31,9 @@ public class Basket {
 
     public void setTotalPrice(Float totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public int getTableNumber() {
+        return tableNumber;
     }
 }

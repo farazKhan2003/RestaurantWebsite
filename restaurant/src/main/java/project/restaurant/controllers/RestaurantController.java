@@ -15,4 +15,9 @@ public class RestaurantController {
     public String getOrderMenu() {
         return "ordering-menu";
     }
+	
+    @GetMapping("/basket")
+    public String getBasket() {
+        return "basket";
+    }
 }

@@ -53,7 +53,15 @@ header .icons a{
 }
 
 .curries {
-  padding: 2rem;
+    padding-top: 2rem;
+  padding-left: 12.5rem;
+  padding-right: 2.5rem;
+}
+
+.curries > h2 {
+    padding-left: 2rem;
+    font-size: 40px;
+    display:inline-block;
 }
 
 .curries > ul {
@@ -63,7 +71,8 @@ header .icons a{
 }
 
 .curries > ul > li {
-    list-style-type: none;
+    position: relative;
+  list-style-type: none;
   border: 1px solid #000000;
   border-radius: .5rem;
 }
@@ -81,10 +90,10 @@ header .icons a{
 }
 
 .curries > ul > li > figure > figcaption {
-    height: 60px;
+  height: 60px;
   position: absolute;
   bottom: 0;
-  background-color: #000000;
+  background-color: #000000 !important;
   width: 100%;
 }
 

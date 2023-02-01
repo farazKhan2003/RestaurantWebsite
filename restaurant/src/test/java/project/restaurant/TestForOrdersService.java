@@ -36,6 +36,6 @@ class TestForOrdersService {
         test = true;
       }
     }
-    assertTrue(test);
+    assertTrue(test,"You need to insert corresponding order into database first!");
   }
 }

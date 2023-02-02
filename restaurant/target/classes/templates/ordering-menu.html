@@ -5,6 +5,7 @@
     <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css"></link>
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script th:src="@{/scripts/table.js}"></script>
   </head>
   <body>
 
@@ -25,6 +26,11 @@
     <a href="#">Curries</a>
     <a href="#">AnotherDish</a>
     <a href="#">AnotherDish</a>
+  </div>
+
+  <!-- Table Number Pop-up -->
+  <div class="popup" id="tableNumber" >
+    <h2>Enter your table number:</h2>
   </div>
 
   <section class="curries" id="curries">

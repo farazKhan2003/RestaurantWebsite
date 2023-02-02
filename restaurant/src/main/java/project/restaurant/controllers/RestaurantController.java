@@ -1,16 +1,18 @@
 package project.restaurant.controllers;
 
-import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import project.restaurant.models.Basket;
 import project.restaurant.models.MenuItems;
 
 @Controller
 public class RestaurantController {
-	
-    private List<MenuItems> ItemList;
-  
-    @GetMapping("/home")
+
+    Basket basket = new Basket(1);
+
+	@GetMapping("/home")
 	public String getHome() {
 		return "home";
 	}
@@ -24,5 +26,12 @@ public class RestaurantController {
     @GetMapping("/basket")
     public String getBasket() {
         return "basket";
+    }
+
+    @PostMapping("add_to_basket")
+    public String addToBasket(@RequestParam("itemid") Integer itemId) {
+	    MenuItems item = new MenuItems(); // Needs to be changed once findMenuByItemId method is implemented
+        basket.addItem(item);
+        return "add_to_basket";
     }
 }

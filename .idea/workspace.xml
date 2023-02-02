@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a778246a-5c6b-4d2b-8a6a-5bddebce8ca2" name="Changes" comment="create a html file for success placing order" />
+    <list default="true" id="a778246a-5c6b-4d2b-8a6a-5bddebce8ca2" name="Changes" comment="Add buttons to return home and ordering menu when order placed successfully">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/static/scripts/addToBasket.js" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/static/scripts/addToBasket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/place_order_sucess.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/place_order_sucess.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,6 +44,10 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RunManager" selected="Application.RestaurantApplication">
     <configuration name="RestaurantApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -89,7 +97,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1675262599794</updated>
-      <workItem from="1675363571779" duration="356000" />
+      <workItem from="1675363571779" duration="4457000" />
     </task>
     <task id="LOCAL-00001" summary="create a html file for success placing order">
       <created>1675363865117</created>
@@ -98,7 +106,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675363865117</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="create a html file for fail placing order">
+      <created>1675363946877</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1675363946877</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,6 +132,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="create a html file for success placing order" />
-    <option name="LAST_COMMIT_MESSAGE" value="create a html file for success placing order" />
+    <MESSAGE value="create a html file for fail placing order" />
+    <MESSAGE value="Add buttons to return home and ordering menu when order placed successfully" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add buttons to return home and ordering menu when order placed successfully" />
   </component>
 </project>

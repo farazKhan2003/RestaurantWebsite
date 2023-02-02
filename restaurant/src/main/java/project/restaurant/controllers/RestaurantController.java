@@ -1,5 +1,6 @@
 package project.restaurant.controllers;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,8 @@ import project.restaurant.repository.ItemsordersRepository;
 public class RestaurantController {
 
     Basket basket = new Basket(1);
+    
+    private List<Integer> list;
     
     @Autowired
     private ItemsordersRepository iRepo;
@@ -43,7 +46,21 @@ public class RestaurantController {
     
     @PostMapping("/orderitem")
     public String add_item(@Param("gID") Integer gID) {
-      iRepo.save(gID);
-      return "add_item";
+      list.add(gID);
+      return "ordering_menu";
+    }
+    
+    @PostMapping("/placeorder")
+    public String placeOrder() {
+      if (placeTheOrder() == true) {
+        return "place_order_sucess";
+      }else {
+        return "place_order_fail";
+      }
+      
+    }
+    
+    private boolean placeTheOrder() {
+      return true;
     }
 }

@@ -29,17 +29,7 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/baile/OneDrive/Documents/team project/PROJECT",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
-  }
-}]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.RestaurantApplication">
     <configuration name="RestaurantApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="project.restaurant.RestaurantApplication" />
       <module name="restaurant" />
@@ -62,6 +52,13 @@
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="PROJECT" />
       <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RestaurantApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="restaurant" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="project.restaurant.RestaurantApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

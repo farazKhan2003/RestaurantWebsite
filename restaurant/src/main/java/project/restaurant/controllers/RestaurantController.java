@@ -1,17 +1,23 @@
 package project.restaurant.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import project.restaurant.models.Basket;
 import project.restaurant.models.MenuItems;
+import project.restaurant.repository.ItemsordersRepository;
 
 @Controller
 public class RestaurantController {
 
     Basket basket = new Basket(1);
-
+    
+    @Autowired
+    private ItemsordersRepository iRepo;
+    
 	@GetMapping("/home")
 	public String getHome() {
 		return "home";
@@ -33,5 +39,11 @@ public class RestaurantController {
 	    MenuItems item = new MenuItems(); // Needs to be changed once findMenuByItemId method is implemented
         basket.addItem(item);
         return "add_to_basket";
+    }
+    
+    @PostMapping("/orderitem")
+    public String add_item(@Param("gID") Integer gID) {
+      iRepo.save(gID);
+      return "add_item";
     }
 }

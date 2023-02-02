@@ -25,6 +25,10 @@ public class Basket {
         this.items = items;
     }
 
+    public void addItem(MenuItems item) {
+        items.add(item);
+    }
+
     public Float getTotalPrice() {
         return totalPrice;
     }

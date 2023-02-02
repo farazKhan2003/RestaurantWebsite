@@ -17,6 +17,7 @@ public class RestaurantController {
     Basket basket = new Basket(1);
     
     private List<Integer> list;
+    Integer orderId;
     
     @Autowired
     private ItemsordersRepository iRepo;
@@ -61,6 +62,10 @@ public class RestaurantController {
     }
     
     private boolean placeTheOrder() {
+      Integer[] array = (Integer[]) list.toArray();
+      for(int i = 0; i<array.length; i++) {
+        iRepo.save(array[i],orderId);
+      }
       return true;
     }
 }

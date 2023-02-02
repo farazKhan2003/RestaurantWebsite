@@ -9,5 +9,5 @@ import project.restaurant.models.ItemsOrders;
 @Repository
 public interface ItemsordersRepository extends JpaRepository<ItemsOrders,Integer>{
   @Query("")
-  public void save(Integer gID);
+  public void save(Integer gID,Integer orderId);
 }

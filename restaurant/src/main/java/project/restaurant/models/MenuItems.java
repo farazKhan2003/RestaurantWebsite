@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -22,7 +21,7 @@ public class MenuItems {
   public MenuItems() {}
   
   //Constructor taking all parameters
-  public MenuItems(String itemName, String descriptions, Float price, byte[] img, Integer stockAmount, Waiters waiterid, String category, String ingredients, Integer calories) {
+  public MenuItems(String itemName, String descriptions, Float price, String img, Integer stockAmount, Waiters waiterid, String category, String ingredients, Integer calories) {
     this.descriptions = descriptions;
     this.img = img;
     this.itemName = itemName;
@@ -42,9 +41,8 @@ public class MenuItems {
   @Column(name = "descriptions", nullable = false)
   private String descriptions;
   
-  @Lob
   @Column(name = "img", nullable = true)
-  private byte[] img;
+  private String img;
   
   @Column(name = "itemName", nullable = false, unique = true)
   private String itemName;
@@ -95,14 +93,13 @@ public class MenuItems {
     this.price = price;
   }
 
-  public byte[] getImg() {
+  public String getImg() {
     return img;
   }
 
-  public void setImg(byte[] img) {
+  public void setImg(String img) {
     this.img = img;
   }
-
 
   public Waiters getWaiterid() {
     return waiterid;

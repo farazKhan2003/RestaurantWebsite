@@ -9,4 +9,10 @@ public class RestaurantController {
 	public String getHome() {
 		return "home";
 	}
+	
+	//TEMP MAPPING WILL BE CHANGED LATER FOR FUNCTIONALITY.
+	@GetMapping("/ordering-menu")
+    public String getOrderMenu() {
+        return "ordering-menu";
+    }
 }

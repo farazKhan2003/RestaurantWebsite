@@ -36,8 +36,8 @@ public class Orders {
   @JoinColumn(name = "userid")
   private Users userid;
 
-  @OneToMany(cascade = CascadeType.ALL)
-  private Set<Itemsorders> itemsorders;
+//  @OneToMany(cascade = CascadeType.ALL)
+//  private Set<Itemsorders> itemsorders;
 
  
   

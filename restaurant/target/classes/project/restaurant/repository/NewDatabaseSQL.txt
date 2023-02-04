@@ -14,27 +14,28 @@ create table users(
 create table waiters(
     waiterid integer not null auto_increment,
     permissions integer not null,
+    userid integer not null,
     primary key(waiterid),
     constraint waiterids
-    foreign key (waiterid)
+    foreign key (userid)
     references cs2810restaurant.users (userid)
     on delete set NULL
     on update no action
 )  engine=MyISAM; 
     
 create table menu_items (
-	itemid integer not null auto_increment,
-	descriptions varchar(255) not null,
-	img longblob,
-	item_name varchar(255) not null,
-	price float not null,
-	stock_amount integer,
+  itemid integer not null auto_increment,
+  descriptions longtext not null,
+  img longtext,
+  item_name varchar(255) not null,
+  price float not null,
+  stock_amount integer,
     category text not null,
-	waiterid integer not null,
+  waiterid integer not null,
     ingredients text not null,
     calories integer not null,
     primary key (itemid),
-	constraint waiteritem
+  constraint waiteritem
     foreign key (waiterid)
     references cs2810restaurant.waiters (waiterid)
     on delete set NULL
@@ -73,5 +74,3 @@ create table if not exists itemsorders(
   foreign key(orderid)
   references cs2810restaurant.orders(orderid)
 ) engine=MyISAM;
-
-

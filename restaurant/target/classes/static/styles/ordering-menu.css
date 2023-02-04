@@ -52,6 +52,30 @@ header .icons a{
 
 }
 
+.middle{
+    position: fixed;
+    top:100px; left:100px; right:1;
+    background: white;
+    padding:1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+#background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 0;
+}
+
+.stretch {
+    min-width:100%; min-height:100%; width:auto; height:auto;
+}
+
 .curries {
     padding-top: 2rem;
   padding-left: 12.5rem;

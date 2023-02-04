@@ -31,5 +31,41 @@
     </li>
   </div>
 
+  <section th:each="category : ${cat}" class="items" th:id="${category}">
+    <h2 th:text="${category}"></h2>
+    <ul>
+      <th:block th:each="menuItem : ${menuItems}" th:if="${menuItem.category} == ${category}">
+        <li>
+          <figure>
+            <img th:src="'data:image/jpeg;base64,'+${menuItem.img}" />
+            <figcaption>
+              <h3 th:text="${menuItem.itemName}"></h3>
+            </figcaption>
+          </figure>
+
+          <p th:text="${menuItem.descriptions}"></p>
+          <p>--------------------</p>
+          <p><strong>Price:</strong></p>
+          <p th:text="'£'+${menuItem.price}"></p>
+          <div class="center">
+            <button class="order-button">Order</button>
+          </div>
+
+          <div class="center">
+            <button class="dropbtn">Info</button>
+            <div class="dropdown-content">
+              <p><strong>Ingredients:</strong></p>
+              <p th:text="${menuItem.ingredients}"></p>
+              <p><strong>Calories:</strong></p>
+              <p th:text="${menuItem.calories}+' Kcal'"></p>
+            </div>
+          </div>
+
+        </li>
+      </th:block>
+    </ul>
+  </section>
+
 </body>
+
 </html>

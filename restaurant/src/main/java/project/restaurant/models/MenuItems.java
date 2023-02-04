@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -20,7 +19,7 @@ import jakarta.persistence.Table;
 public class MenuItems {
   //Empty Constructor
   public MenuItems() {}
-
+  
   //Constructor taking all parameters
   public MenuItems(String itemName, String descriptions, Float price, String img, Integer stockAmount, Waiters waiterid, String category, String ingredients, Integer calories) {
     this.descriptions = descriptions;
@@ -33,43 +32,43 @@ public class MenuItems {
     this.ingredients =ingredients;
     this.calories = calories;
   }
-
-
+  
+ 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer itemid;
-
+  
   @Column(name = "descriptions", nullable = false)
   private String descriptions;
-
+  
   @Column(name = "img", nullable = true)
   private String img;
-
+  
   @Column(name = "itemName", nullable = false, unique = true)
   private String itemName;
-
+  
   @Column(name = "price", nullable = false)
   private Float price;
-
+  
   @Column(name = "stockAmount", nullable = true)
   private Integer stockAmount;
 
   @Column(name = "category", nullable = false)
   private String category;
-
+  
   @Column(name = "ingredients", nullable = false)
   private String ingredients;
-
+  
   @Column(name = "calories", nullable = false)
   private Integer calories;
-
+  
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "waiterid")
   private Waiters waiterid;
-
+  
   @OneToMany(cascade = CascadeType.ALL)
   private Set<ItemsOrders> itemsorders;
-
+ 
   public String getItemName() {
     return itemName;
   }
@@ -102,7 +101,6 @@ public class MenuItems {
     this.img = img;
   }
 
-
   public Waiters getWaiterid() {
     return waiterid;
   }
@@ -112,43 +110,43 @@ public class MenuItems {
   }
 
   public Integer getItemid() {
-    return itemid;
+	return itemid;
   }
-
+	
   public void setItemid(Integer itemid) {
-    this.itemid = itemid;
+	this.itemid = itemid;
   }
-
+	
   public Integer getStockAmount() {
-    return stockAmount;
+	return stockAmount;
   }
-
+	
   public void setStockAmount(Integer stockAmount) {
-    this.stockAmount = stockAmount;
+	this.stockAmount = stockAmount;
   }
-
+	
   public String getCategory() {
-    return category;
+	return category;
   }
-
+	
   public void setCategory(String category) {
-    this.category = category;
+	this.category = category;
   }
-
+	
   public String getIngredients() {
-    return ingredients;
+	return ingredients;
   }
-
+	
   public void setIngredients(String ingredients) {
-    this.ingredients = ingredients;
+	this.ingredients = ingredients;
   }
-
+	
   public Integer getCalories() {
-    return calories;
+	return calories;
   }
-
+	
   public void setCalories(Integer calories) {
-    this.calories = calories;
+	this.calories = calories;
   }
-
+	  
 }

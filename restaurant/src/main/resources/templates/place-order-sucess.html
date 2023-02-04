@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ordering Menu</title>
+    <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css"></link>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<!-- The header -->
+<header>
+    <a href="#" class="logo">ResturantNameHere</a>
+    <nav class="navbar">
+        <a href="#">Home</a>
+        <a href="#">dishes</a>
+        <a href="#">Contact us</a>
+        <a href="#">Orders</a>
+    </nav>
+</header>
+
+<div class = "center">
+    <p>Order placed successfully</p>
+    <table>
+        <tr>
+            <td><a th:href="@{/home}"><button>Home</button></a></td>
+            <td><a th:href="@{/ordering-menu}"><button>Ordering Menu</button></a></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+
+</html>

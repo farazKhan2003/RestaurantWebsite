@@ -12,5 +12,7 @@ import project.restaurant.models.Orders;
 public interface OrdersRepository extends JpaRepository<Orders, Integer>{
 	@Query("SELECT o FROM Orders o WHERE o.state != 3")
 	public List<Orders> findByState();
-
+    
+	//@Query("SELECT o FROM Orders o WHERE o.orderId = ?1")
+	//public List<Orders> findByOrderId(Integer orderId);
 }

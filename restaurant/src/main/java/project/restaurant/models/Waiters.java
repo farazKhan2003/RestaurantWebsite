@@ -36,8 +36,9 @@ public class Waiters {
     
     public Waiters() {}
     
-    public Waiters(Integer permissions) {
-        this.permissions = permissions;
+    public Waiters(Integer permissions, Users user) {
+      this.permissions = permissions;
+      this.userid = user;
     }
 
     public Integer getWaiterid() {

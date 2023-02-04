@@ -38,9 +38,20 @@
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dui ex, finibus a nibh eget, aliquet porttitor nunc. Curabitur non ultrices tortor. Quisque gravida ornare placerat. Praesent non mi sit amet felis cursus venenatis. 
         </p>
-        <div class="center">
-          <button class="order-button">Order</button>
+        
+        <div class="displayblock">
+          <form th:action = "@{/orderitem}" th:method="post">
+            <input type = "hidden" name="gID" th:value="10001"/>
+            <button type = "submit">Order</button>
+          </form>
         </div>
+        
+        <div class="displayblock">
+          <form th:action = "@{/placeorder}" th:method="post">
+            <button type = "submit">PlaceOrder</button>
+          </form>
+        </div>
+        
       </li>
       <li>
         <figure>

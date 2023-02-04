@@ -40,9 +40,15 @@
         </p>
         
         <div class="displayblock">
-          <form th:action = "@{/oderitem}" th:method="get">
+          <form th:action = "@{/orderitem}" th:method="post">
             <input type = "hidden" name="gID" th:value="10001"/>
             <button type = "submit">Order</button>
+          </form>
+        </div>
+        
+        <div class="displayblock">
+          <form th:action = "@{/placeorder}" th:method="post">
+            <button type = "submit">PlaceOrder</button>
           </form>
         </div>
         

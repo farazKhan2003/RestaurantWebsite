@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <title>Insert</title>
+    <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css">
+    </link>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  </head>
+  
+  <body>
+    <div>
+      <form th:action = "@{/addItem2}" method = "post" enctype="multipart/form-data">
+        
+        <label>Image:</label> 
+        <input type="file" name="file" accept=".jpg,.png" /> 
+     
+        <button type = "submit">Add item</button>
+        
+      </form>
+    </div>
+  </body>
+  
+</html>

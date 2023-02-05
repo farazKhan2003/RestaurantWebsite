@@ -72,11 +72,14 @@ public class RestaurantController {
         list = new ArrayList<Integer>();
       }
       list.add(gID);
-      return "ordering-menu";
+      return "orderingmenu";
     }
     
     @PostMapping("/placeorder")
     public String placeOrder() {
+      if (list == null || list.size() == 0) {
+        return "havent-add-anyitem";
+      }
       if (placeTheOrder() == true) {
         return "place-order-sucess";
       }else {
@@ -85,59 +88,16 @@ public class RestaurantController {
       
     }
     
-    //private boolean placeTheOrder() {
-      //Integer[] array = (Integer[]) list.toArray();
-      //for(int i = 0; i<array.length; i++) {
-        //ItemsOrders order = new ItemsOrders();
-        //List<MenuItems> item = mRepo.findByItemId(array[i]);//need to have a fake item have 1001 as its itemid
-        //order.setItemid(item.get(0));
-        //List<Orders> orderObject = oRepo.findByOrderId(orderId);
-        //order.setOrderid(orderObject.get(0));
-        //iRepo.save(order);
-      //}
-      //return true;
-    //}
-    
-    //a fake placeTheOrder
-    //private boolean placeTheOrder() {
-      //Object[] array = list.toArray();
-      
-      //for(int i=0;i<array.length;i++) {
-        //System.out.println(array[i]);
-      //}
-      
-      //byte[] file = new byte[2];
-      //Users u = new Users("qwe1","qwe2","qwe3","qwe4");
-      //u.setUserid(1001);
-      //uRepo.save(u);
-      
-      //Waiters waiter = new Waiters(1, u);
-      //waiter.setItemid(1001);
-      //wRepo.save(waiter);
-      
-      //Float f = new Float(1.25);
-      //MenuItems m = new MenuItems("ItemName1", "this is a description", f, file, 1, waiter, "curry", "Paprika, Curry Sauce", 450);
-      //m.setItemid(1001);
-      //mRepo.save(m);
-      
-      //Orders orders = new Orders("cooking", waiter, u);
-      //orders.setOrderId(1001);
-      
-      //ItemsOrders itemorder = new ItemsOrders(m,orders);
-      //itemorder.setItemordersid(1001);
-      //iRepo.save(itemorder);
-      
-      //return true;
-    //}
-    
-      //another fake placeTheOrder
      private boolean placeTheOrder() {
        Object[] array = list.toArray();
        
        for(int i=0;i<array.length;i++) {
+         System.out.println("******************************************************");
          System.out.println(array[i]);
        }
        
        return true;
      }
+     
+     
 }

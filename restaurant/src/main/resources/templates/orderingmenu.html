@@ -9,6 +9,7 @@
 <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
 <script type="text/javascript"
 	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script th:src="@{/scripts/addToBasket.js}"></script>
 </head>
 
 <body>
@@ -54,10 +55,16 @@
 						<form th:action="@{/orderitem2}" th:method="post">
 							<input type="hidden" name="aMenuItem"
 								th:value="${menuItem.itemid}" />
-							<button class="order-button" type="submit">Order</button>
+							<button class="order-button" type="submit" onclick="added()">Order</button>
 						</form>
 					</div>
 
+					<div class="popup" id="popup" style="display: none">
+						<img src="/images/wicker-basket.png">
+						<h2>Added!</h2>
+						<p>Item has been added to basket.</p>
+						<button onclick="closePopup()">Close</button>
+					</div>
 
 					<div class="center">
 						<button class="dropbtn">Info</button>

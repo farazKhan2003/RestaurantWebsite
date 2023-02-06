@@ -1,3 +1,7 @@
-document.getElementById("orderButton").addEventListener("click", function(){
-    fetch('/add_to_basket', {method: 'POST'})
-})
+function added() {
+    document.getElementById("popup").style.display = "block";
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}

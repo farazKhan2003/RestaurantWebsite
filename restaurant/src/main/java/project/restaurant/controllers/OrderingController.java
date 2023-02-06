@@ -52,7 +52,7 @@ public class OrderingController {
       List<String> cat = mRepo.findAllDistinctCat();
       model.addAttribute("cat", cat);
       try {
-          TimeUnit.SECONDS.sleep(1);
+          TimeUnit.SECONDS.sleep(2);
       } catch (InterruptedException e) {
           e.printStackTrace();
       }

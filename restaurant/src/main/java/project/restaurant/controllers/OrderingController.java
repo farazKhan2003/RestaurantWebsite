@@ -2,6 +2,8 @@ package project.restaurant.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,8 +50,12 @@ public class OrderingController {
       List<MenuItems> menuItems = mRepo.findAll();
       model.addAttribute("menuItems", menuItems);
       List<String> cat = mRepo.findAllDistinctCat();
-      model.addAttribute("cat", cat); 
-      
+      model.addAttribute("cat", cat);
+      try {
+          TimeUnit.SECONDS.sleep(1);
+      } catch (InterruptedException e) {
+          e.printStackTrace();
+      }
       return "orderingmenu";
     }
     

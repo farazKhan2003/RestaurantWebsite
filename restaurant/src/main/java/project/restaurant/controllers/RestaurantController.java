@@ -22,24 +22,6 @@ import project.restaurant.repository.WaitersRepository;
 
 @Controller
 public class RestaurantController {
-
-    //Basket basket = new Basket(1);
-    
-    private List<Integer> list;
-    Integer orderId = 2001; //fake order id
-    
-    @Autowired
-    private ItemsordersRepository iRepo;
-    
-    @Autowired
-    private MenuItemsRepository mRepo;
-    
-    @Autowired
-    private OrdersRepository oRepo;
-    
-    @Autowired
-    private WaitersRepository wRepo;
-    
     @Autowired
     private UsersRepository uRepo;
     
@@ -58,46 +40,4 @@ public class RestaurantController {
     public String getBasket() {
         return "basket";
     }
-
-    //@PostMapping("add_to_basket")
-    //public String addToBasket(@RequestParam("itemid") Integer itemId) {
-	    //MenuItems item = new MenuItems(); // Needs to be changed once findMenuByItemId method is implemented
-        //basket.addItem(item);
-        //return "add_to_basket";
-    //}
-    
-    @PostMapping("/orderitem")
-    public String add_item(@Param("gID") Integer gID) {
-      if(list == null) {
-        list = new ArrayList<Integer>();
-      }
-      list.add(gID);
-      return "orderingmenu";
-    }
-    
-    @PostMapping("/placeorder")
-    public String placeOrder() {
-      if (list == null || list.size() == 0) {
-        return "havent-add-anyitem";
-      }
-      if (placeTheOrder() == true) {
-        return "place-order-sucess";
-      }else {
-        return "place-order-fail";
-      }
-      
-    }
-    
-     private boolean placeTheOrder() {
-       Object[] array = list.toArray();
-       
-       for(int i=0;i<array.length;i++) {
-         System.out.println("******************************************************");
-         System.out.println(array[i]);
-       }
-       
-       return true;
-     }
-     
-     
 }

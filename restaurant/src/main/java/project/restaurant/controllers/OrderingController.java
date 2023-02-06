@@ -25,10 +25,10 @@ public class OrderingController {
     
     @Autowired
     private MenuItemsRepository mRepo;
-
+    
     @Autowired
     private UsersRepository uRepo;
-
+    
     @Autowired
     private WaitersRepository wRepo;
     

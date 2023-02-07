@@ -37,7 +37,7 @@ public class BasketController {
   @Autowired
   private OrdersRepository oRepo;
   
-  @GetMapping("/basket")
+  @GetMapping("/place-order-sucess")
   public String getItem(Model model) {
     System.out.println("******************************************");
     Optional<Users> user = uRepo.findById(4);

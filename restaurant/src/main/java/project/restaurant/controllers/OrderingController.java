@@ -1,12 +1,18 @@
 package project.restaurant.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import project.restaurant.models.ItemsOrders;
@@ -78,5 +84,52 @@ public class OrderingController {
       }
       mList.clear();
       return "place-order-sucess";
+    }
+    
+    @GetMapping("/basket")
+    public String getItem2(Model model) {
+      
+      Set<Integer> set = new TreeSet<Integer>(mList);
+      
+      Integer[] array = new Integer[set.size()];
+      
+      Iterator<Integer> iterator = set.iterator();
+      
+      int j = 0;
+      while(iterator.hasNext()){
+        array[j] = iterator.next();
+        j++;
+      }
+      
+      Map<Integer,Integer> map = new HashMap<>();
+      
+      for(int i = 0;i<mList.size();i++) {
+        if(map.containsKey(mList.get(i)) == false) {
+          map.put(mList.get(i), 1);
+        } else {
+          map.put(mList.get(i), map.get(mList.get(i))+1);
+        }
+      }
+      
+      List<String> menuItemName = new ArrayList<String>();
+      List<Integer> menuItemAmount = new ArrayList<Integer>();
+      List<Float> menuItemPrice = new ArrayList<Float>();
+      
+      for(int i = 0;i<array.length;i++) {
+        List<MenuItems> menuItem = mRepo.findByIntegerId(array[i]);
+        String name = menuItem.get(0).getItemName();
+        Float price = menuItem.get(0).getPrice();
+        menuItemName.add(name);
+        menuItemAmount.add(map.get(array[i]));
+        menuItemPrice.add(price*menuItemAmount.get(i));
+      }
+      
+      System.out.println(menuItemName.size());
+      model.addAttribute("itemsName", menuItemName);
+      model.addAttribute("itemsSumAmount", menuItemAmount);
+      model.addAttribute("itemsSumPrice",  menuItemPrice);
+      
+      System.out.println("******************************************");
+      return "basket";
     }
 }

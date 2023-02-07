@@ -85,6 +85,12 @@
 	</div>
 
 	<script>
+		toastr.options = {
+			"positionClass": "toast-bottom-right",
+			"showMethod": "fadeIn",
+			"hideMethod": "fadeOut"
+		}
+
 		function added() {
 			toastr.success("Item added to basket!");
 		}

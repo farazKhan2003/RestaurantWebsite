@@ -36,8 +36,4 @@ public class RestaurantController {
         return "ordering-menu";
     }
 	
-    @GetMapping("/basket")
-    public String getBasket() {
-        return "basket";
-    }
 }

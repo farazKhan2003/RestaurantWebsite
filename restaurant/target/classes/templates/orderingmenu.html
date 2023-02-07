@@ -2,13 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<title>Ordering Menu</title>
-<link th:href="@{/styles/ordering-menu.css}" rel="stylesheet"
-	type="text/css">
-</link>
-<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-<script type="text/javascript"
+	<title>Ordering Menu</title>
+	<link th:href="@{/styles/ordering-menu.css}" rel="stylesheet"
+	type="text/css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+	<script type="text/javascript"
 	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 
 <body>
@@ -54,10 +56,9 @@
 						<form th:action="@{/orderitem2}" th:method="post">
 							<input type="hidden" name="aMenuItem"
 								th:value="${menuItem.itemid}" />
-							<button class="order-button" type="submit">Order</button>
+							<button class="order-button" type="submit" onclick="added()">Order</button>
 						</form>
 					</div>
-
 
 					<div class="center">
 						<button class="dropbtn">Info</button>
@@ -82,6 +83,18 @@
 			<button class="order-button" type="submit">PlaceOrder</button>
 		</form>
 	</div>
+
+	<script>
+		toastr.options = {
+			"positionClass": "toast-bottom-right",
+			"showMethod": "fadeIn",
+			"hideMethod": "fadeOut"
+		}
+
+		function added() {
+			toastr.success("Item added to basket!");
+		}
+	</script>
 </body>
 
 </html>

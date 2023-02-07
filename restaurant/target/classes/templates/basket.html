@@ -7,19 +7,44 @@
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <section id="Basket">
+    <!-- The header -->
+    <header>
+        <a href="#" class="logo">ResturantNameHere</a>
+        <nav class="navbar">
+            <a href="#">Home</a> <a href="#">dishes</a> <a href="#">Contact
+            us</a> <a href="#">Orders</a>
+        </nav>
+    </header>
+
+    <div class="basket">
         <h2>Basket</h2>
-        <table>
+        <table class="basket-table">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
+                    <th align="left">PRODUCT</th>
+                    <th align="left">QTY</th>
+                    <th align="right">PRICE</th>
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>Chicken Curry</td>
+                    <td class="qty">1</td>
+                    <td>£25</td>
+                </tr>
+                <tr>
+                    <td>Cake</td>
+                    <td class="qty">1</td>
+                    <td>£25</td>
+                </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2", align="right">Total</td>
+                    <td>£50</td>
+                </tr>
+            </tfoot>
         </table>
-    </section>
+    </div>
 </body>
 </html>

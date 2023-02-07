@@ -1,10 +1,12 @@
 package project.restaurant.repository;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import project.restaurant.models.ItemsOrders;
 import project.restaurant.models.MenuItems;
 
 @Repository
@@ -32,5 +34,16 @@ public interface MenuItemsRepository extends JpaRepository<MenuItems, Integer>{
   public Float findSumPriceById(MenuItems itemid);
    //@Query("SELECT o FROM MenuItems o WHERE o.itemId = ?1")
    //public List<MenuItems> findByItemId(Integer itemId);
-   
+  
+  @Query("SELECT o FROM MenuItems o WHERE o.itemid = ?1")
+  public List<MenuItems> findByMenuItemsId(Optional<MenuItems> menuItem);
+  
+  //@Query("SELECT o FROM MenuItems o WHERE o.itemid = ?1")
+  //public List<MenuItems> findNameByIdOptional(MenuItems menuItems);
+  
+  //@Query("SELECT o FROM MenuItems o WHERE o.itemid = ?1")
+  //public List<MenuItems> findPriceById(Optional<MenuItems> menuItem);
+  
+  @Query("SELECT o FROM MenuItems o WHERE o.itemid = ?1")
+  public List<MenuItems> findByIntegerId(Integer integer);
 }

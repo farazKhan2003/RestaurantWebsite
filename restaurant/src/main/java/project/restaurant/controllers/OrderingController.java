@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
@@ -62,7 +63,7 @@ public class OrderingController {
     }
     
     @PostMapping("/placeorder2")
-    public String placeOrder2() {
+    public String placeOrder2(Model model) {
       if (mList.size() == 0) {
         return "havent-add-anyitem";
       }
@@ -79,7 +80,40 @@ public class OrderingController {
         iRepo.save(new ItemsOrders(i,order));
       }
       mList.clear();
-      return "place-order-sucess";
+      
+      System.out.println("******************************************");
+      Optional<Users> user = uRepo.findById(u.getUserid());
+      List<Orders> orders = oRepo.findByUID(user);
+      List<ItemsOrders> items = iRepo.findAllItemOrders(orders.get(0));
+      
+      List<String> itemsName = new ArrayList<String>();
+      for(int i = 0;i<items.size();i++) {
+        String mitems2 = mRepo.findNameById(items.get(i).getItemid());
+        itemsName.add(mitems2);
+      }
+      
+      List<Integer> itemsSumAmount = new ArrayList<Integer>();
+      for(int i = 0;i<items.size();i++) {
+        Integer mitems3 = mRepo.findSumAmountById(items.get(i).getItemid());
+        itemsSumAmount.add(mitems3);
+      }
+      
+      List<Float> itemsSumPrice = new ArrayList<Float>();
+      for(int i = 0;i<items.size();i++) {
+        Float mitems4 = mRepo.findSumPriceById(items.get(i).getItemid());
+        itemsSumPrice.add(mitems4);
+      }
+      
+      System.out.println("******************************************");
+      System.out.println(itemsName.size());
+      System.out.println("******************************************");
+      model.addAttribute("itemsName", itemsName);
+      model.addAttribute("itemsSumAmount", itemsSumAmount);
+      model.addAttribute("itemsSumPrice", itemsSumPrice);
+      
+      System.out.println("******************************************");
+      
+      return "placeordersucess";
     }
     
     @GetMapping("/basket")

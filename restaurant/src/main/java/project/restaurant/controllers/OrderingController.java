@@ -105,18 +105,18 @@ public class OrderingController {
       }
 
         List<BasketItem> basketOrder = new ArrayList<>();
-
+        Float basketTotal = (float)0;
         for (int i = 0; i< itemsName.size(); i++) {
             String name = itemsName.get(i);
             Float price = itemsSumPrice.get(i);
             Integer quantity = itemsSumAmount.get(i);
-
+            basketTotal += (price * quantity);
             BasketItem basketItem = new BasketItem(name, quantity, price*quantity);
             basketOrder.add(basketItem);
         }
 
       model.addAttribute("basketOrder", basketOrder);
-      
+      model.addAttribute("basketTotal","basketTotal");
       return "place-order-sucess";
     }
     

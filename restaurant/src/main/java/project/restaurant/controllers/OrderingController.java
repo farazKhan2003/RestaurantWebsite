@@ -103,6 +103,17 @@ public class OrderingController {
         Float mitems4 = mRepo.findSumPriceById(items.get(i).getItemid());
         itemsSumPrice.add(mitems4);
       }
+
+        List<BasketItem> basketOrder = new ArrayList<>();
+
+        for (int i = 0; i< itemsName.size(); i++) {
+            String name = itemsName.get(i);
+            Float price = itemsSumPrice.get(i);
+            Integer quantity = itemsSumAmount.get(i);
+
+            BasketItem basketItem = new BasketItem(name, quantity, price*quantity);
+            basketOrder.add(basketItem);
+        }
       
       System.out.println("******************************************");
       System.out.println(itemsName.size());
@@ -110,7 +121,7 @@ public class OrderingController {
       model.addAttribute("itemsName", itemsName);
       model.addAttribute("itemsSumAmount", itemsSumAmount);
       model.addAttribute("itemsSumPrice", itemsSumPrice);
-      
+      model.addAttribute("basketOrder", basketOrder);
       System.out.println("******************************************");
       
       return "place-order-sucess";
@@ -143,7 +154,7 @@ public class OrderingController {
 
       List<BasketItem> basketItems = new ArrayList<>();
       
-      for(int i = 0;i<array.length;i++) {
+      for (int i = 0; i < array.length; i++) {
         List<MenuItems> menuItem = mRepo.findByIntegerId(array[i]);
         String name = menuItem.get(0).getItemName();
         Float price = menuItem.get(0).getPrice();

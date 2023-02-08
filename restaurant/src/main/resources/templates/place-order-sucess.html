@@ -19,6 +19,33 @@
     </nav>
 </header>
 
+<div class="basketlist">
+    <h2>Basket</h2>
+    <table>
+        <thead>
+        <th th:if="${itemsName!=null}" scope="row">PRODUCT</th>
+        <th th:if="${itemsSumAmount!=null}" scope="row">QTY</th>
+        <th th:if="${itemsSumPrice!=null}" scope="row">PRICE</th>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Chicken Curry</td>
+            <td class="qty">1</td>
+            <td>£25</td>
+        </tr>
+        <tr th:each="item: ${itemsName}">
+            <td th:text="${item}"></td>
+        </tr>
+        <tr th:each="itemSumAmount: ${itemsSumAmount}">
+            <td th:text="${itemSumAmount}"></td>
+        </tr>
+        <tr th:each="itemSumPrice:${itemsSumPrice}">
+            <td th:text="${itemSumPrice}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 <div class = "centerBox">
     <p>Order placed successfully</p>
     <table>

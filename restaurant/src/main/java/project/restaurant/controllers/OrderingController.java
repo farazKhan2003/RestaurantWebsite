@@ -116,7 +116,7 @@ public class OrderingController {
         }
 
       model.addAttribute("basketOrder", basketOrder);
-      model.addAttribute("basketTotal","basketTotal");
+      model.addAttribute("basketTotal",basketTotal);
       return "place-order-sucess";
     }
     

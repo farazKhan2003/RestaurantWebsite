@@ -61,13 +61,15 @@ public class BasketController {
       Float mitems4 = mRepo.findSumPriceById(items.get(i).getItemid());
       itemsSumPrice.add(mitems4);
     }
-    
+    System.out.println("******************************************");
+    System.out.println(itemsName.size());
+    System.out.println("******************************************");
     model.addAttribute("itemsName", itemsName);
     model.addAttribute("itemsSumAmount", itemsSumAmount);
     model.addAttribute("itemsSumPrice", itemsSumPrice);
     
     System.out.println("******************************************");
-    return "basket";
+    return "place-order-sucess";
   }
 
 }

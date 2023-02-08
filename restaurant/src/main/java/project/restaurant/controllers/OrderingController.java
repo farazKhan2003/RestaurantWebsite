@@ -114,15 +114,8 @@ public class OrderingController {
             BasketItem basketItem = new BasketItem(name, quantity, price*quantity);
             basketOrder.add(basketItem);
         }
-      
-      System.out.println("******************************************");
-      System.out.println(itemsName.size());
-      System.out.println("******************************************");
-      model.addAttribute("itemsName", itemsName);
-      model.addAttribute("itemsSumAmount", itemsSumAmount);
-      model.addAttribute("itemsSumPrice", itemsSumPrice);
+
       model.addAttribute("basketOrder", basketOrder);
-      System.out.println("******************************************");
       
       return "place-order-sucess";
     }

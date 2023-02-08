@@ -19,32 +19,30 @@
     </nav>
 </header>
 
-<div class="basketlist">
-    <h2>Basket</h2>
-    <table>
+<section class="table">
+    <table class="basket-table">
         <thead>
-        <th th:if="${itemsName!=null}" scope="row">PRODUCT</th>
-        <th th:if="${itemsSumAmount!=null}" scope="row">QTY</th>
-        <th th:if="${itemsSumPrice!=null}" scope="row">PRICE</th>
+        <tr>
+            <th align="left">PRODUCT</th>
+            <th align="left">QTY</th>
+            <th align="left">PRICE</th>
+        </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Chicken Curry</td>
-            <td class="qty">1</td>
-            <td>£25</td>
-        </tr>
-        <tr th:each="item: ${itemsName}">
-            <td th:text="${item}"></td>
-        </tr>
-        <tr th:each="itemSumAmount: ${itemsSumAmount}">
-            <td th:text="${itemSumAmount}"></td>
-        </tr>
-        <tr th:each="itemSumPrice:${itemsSumPrice}">
-            <td th:text="${itemSumPrice}"></td>
+        <tr th:each="item: ${basketOrder}">
+            <td class="qty" th:text="${item.name}"></td>
+            <td th:text="${item.quantity}"></td>
+            <td th:text="'£'+${item.priceSum}"></td>
         </tr>
         </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2", align="right">Total</td>
+            <td th:text="'£'+${basketTotal}"></td>
+        </tr>
+        </tfoot>
     </table>
-</div>
+</section>
 
 <div class = "centerBox">
     <p>Order placed successfully</p>

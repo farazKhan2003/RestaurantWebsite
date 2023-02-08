@@ -113,7 +113,7 @@ public class OrderingController {
       
       System.out.println("******************************************");
       
-      return "placeordersucess";
+      return "place-order-sucess";
     }
     
     @GetMapping("/basket")

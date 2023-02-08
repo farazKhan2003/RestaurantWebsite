@@ -16,31 +16,7 @@
         </nav>
     </header>
 
-    <div class="basketlist">
-        <h2>Basket</h2>
-        <table>
-          <thead>
-            <th th:if="${itemsName!=null}" scope="row">PRODUCT</th>
-            <th th:if="${itemsSumAmount!=null}" scope="row">QTY</th>
-            <th th:if="${itemsSumPrice!=null}" scope="row">PRICE</th>
-          </thead>
-          <tbody>
-            <tr th:each="item: ${itemsName}">
-                <td th:text="${item}"></td>
-            </tr>
-            <tr th:each="itemSumAmount: ${itemsSumAmount}">
-                <td th:text="${itemSumAmount}"></td>
-            </tr>
-            <tr th:each="itemSumPrice:${itemsSumPrice}">
-                <td th:text="${itemSumPrice}"></td>
-            </tr>
-          </tbody>
-        </table>
-        
-        
-        <!-- <table class="basket-table" >
-            
-            
+        <table class="basket-table">
             <thead>
                 <tr>
                     <th align="left">PRODUCT</th>
@@ -49,15 +25,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Chicken Curry</td>
-                    <td class="qty">1</td>
-                    <td>£25</td>
-                </tr>
-                <tr>
-                    <td>Cake</td>
-                    <td class="qty">1</td>
-                    <td>£25</td>
+                <tr th:each="item: ${basketItems}">
+                    <td class="qty" th:text="${item.name}"></td>
+                    <td th:text="${item.quantity}"></td>
+                    <td th:text="${item.priceSum}"></td>
                 </tr>
             </tbody>
             <tfoot>
@@ -66,7 +37,7 @@
                     <td>£50</td>
                 </tr>
             </tfoot>
-        </table>-->
+        </table>
     </div>
 </body>
 </html>

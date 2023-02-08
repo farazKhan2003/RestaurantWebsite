@@ -16,6 +16,7 @@
         </nav>
     </header>
 
+    <section class="table">
         <table class="basket-table">
             <thead>
                 <tr>
@@ -28,16 +29,16 @@
                 <tr th:each="item: ${basketItems}">
                     <td class="qty" th:text="${item.name}"></td>
                     <td th:text="${item.quantity}"></td>
-                    <td th:text="${item.priceSum}"></td>
+                    <td th:text="'£'+${item.priceSum}"></td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
                     <td colspan="2", align="right">Total</td>
-                    <td>£50</td>
+                    <td th:text="'£'+${basketTotal}"></td>
                 </tr>
             </tfoot>
         </table>
-    </div>
+    </section>
 </body>
 </html>

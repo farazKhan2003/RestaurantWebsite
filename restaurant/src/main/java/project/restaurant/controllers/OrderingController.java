@@ -153,6 +153,7 @@ public class OrderingController {
       }
 
       List<BasketItem> basketItems = new ArrayList<>();
+      Float basketTotal = (float) 0;
       
       for (int i = 0; i < array.length; i++) {
         List<MenuItems> menuItem = mRepo.findByIntegerId(array[i]);
@@ -161,10 +162,12 @@ public class OrderingController {
         Integer quantity = map.get(array[i]);
 
         BasketItem item = new BasketItem(name, quantity, price*quantity);
+        basketTotal += (price * quantity);
         basketItems.add(item);
       }
 
       model.addAttribute("basketItems", basketItems);
+      model.addAttribute("basketTotal", basketTotal);
       
       System.out.println("******************************************");
       return "basket";

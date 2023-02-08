@@ -15,11 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import project.restaurant.models.ItemsOrders;
-import project.restaurant.models.MenuItems;
-import project.restaurant.models.Orders;
-import project.restaurant.models.Users;
-import project.restaurant.models.Waiters;
+import project.restaurant.models.*;
 import project.restaurant.repository.ItemsordersRepository;
 import project.restaurant.repository.MenuItemsRepository;
 import project.restaurant.repository.OrdersRepository;
@@ -110,24 +106,20 @@ public class OrderingController {
           map.put(mList.get(i), map.get(mList.get(i))+1);
         }
       }
-      
-      List<String> menuItemName = new ArrayList<String>();
-      List<Integer> menuItemAmount = new ArrayList<Integer>();
-      List<Float> menuItemPrice = new ArrayList<Float>();
+
+      List<BasketItem> basketItems = new ArrayList<>();
       
       for(int i = 0;i<array.length;i++) {
         List<MenuItems> menuItem = mRepo.findByIntegerId(array[i]);
         String name = menuItem.get(0).getItemName();
         Float price = menuItem.get(0).getPrice();
-        menuItemName.add(name);
-        menuItemAmount.add(map.get(array[i]));
-        menuItemPrice.add(price*menuItemAmount.get(i));
+        Integer quantity = map.get(array[i]);
+
+        BasketItem item = new BasketItem(name, quantity, price*quantity);
+        basketItems.add(item);
       }
-      
-      System.out.println(menuItemName.size());
-      model.addAttribute("itemsName", menuItemName);
-      model.addAttribute("itemsSumAmount", menuItemAmount);
-      model.addAttribute("itemsSumPrice",  menuItemPrice);
+
+      model.addAttribute("basketItems", basketItems);
       
       System.out.println("******************************************");
       return "basket";

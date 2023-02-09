@@ -5,6 +5,8 @@
     <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css"></link>
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 <body>
     <!-- The header -->
@@ -24,7 +26,7 @@
                     <th align="left">QTY</th>
                     <th align="left">PRICE</th>
                     <th align="left">ADD</th>
-                    <th alighn="right">REMOVE</th>
+                    <th align="right">REMOVE</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,8 +50,8 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="2", align="right">Total</td>
-                    <td th:text="'£'+${basketTotal}"></td>
+                    <td colspan="2" align="right">Total</td>
+                    <td th:text="'£'+${basketTotal}" align="center"></td>
                 </tr>
             </tfoot>
         </table>

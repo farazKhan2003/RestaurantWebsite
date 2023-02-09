@@ -1,7 +1,5 @@
 package project.restaurant.controllers;
 
-
-
 import java.io.IOException;
 import java.util.List;
 import org.apache.tomcat.util.codec.binary.Base64;

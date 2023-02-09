@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a778246a-5c6b-4d2b-8a6a-5bddebce8ca2" name="Changes" comment="" />
+    <list default="true" id="a778246a-5c6b-4d2b-8a6a-5bddebce8ca2" name="Changes" comment="Add buttons to return order page when order failed to be placed">
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/place_order_fail.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/place_order_fail.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -29,17 +38,16 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/baile/OneDrive/Documents/team project/PROJECT",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
-  }
-}]]></component>
-  <component name="RunManager">
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager" selected="Application.RestaurantApplication">
     <configuration name="RestaurantApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="project.restaurant.RestaurantApplication" />
       <module name="restaurant" />
@@ -66,6 +74,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RestaurantApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="restaurant" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="project.restaurant.RestaurantApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.RestaurantApplication" />
@@ -80,7 +95,66 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1675262599794</updated>
+      <workItem from="1675363571779" duration="5880000" />
+      <workItem from="1675382630526" duration="182000" />
     </task>
+    <task id="LOCAL-00001" summary="create a html file for success placing order">
+      <created>1675363865117</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1675363865117</updated>
+    </task>
+    <task id="LOCAL-00002" summary="create a html file for fail placing order">
+      <created>1675363946877</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1675363946877</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add buttons to return home and ordering menu when order placed successfully">
+      <created>1675381148227</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1675381148227</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add buttons to return order page when order failed to be placed">
+      <created>1675381859529</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1675381859529</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Add buttons to return order page when order failed to be placed">
+      <created>1675382280633</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1675382280633</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="create a html file for success placing order" />
+    <MESSAGE value="create a html file for fail placing order" />
+    <MESSAGE value="Add buttons to return home and ordering menu when order placed successfully" />
+    <MESSAGE value="Add buttons to return order page when order failed to be placed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add buttons to return order page when order failed to be placed" />
   </component>
 </project>

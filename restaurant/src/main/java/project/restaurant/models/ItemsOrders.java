@@ -15,7 +15,7 @@ public class ItemsOrders {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer itemordersid;
+    private Integer itemsordersid;
       
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "itemid")
@@ -33,11 +33,11 @@ public class ItemsOrders {
     }
 
     public Integer getItemordersid() {
-        return itemordersid;
+        return itemsordersid;
     }
 
     public void setItemordersid(Integer itemordersid) {
-        this.itemordersid = itemordersid;
+        this.itemsordersid = itemordersid;
     }
 
     public MenuItems getItemid() {

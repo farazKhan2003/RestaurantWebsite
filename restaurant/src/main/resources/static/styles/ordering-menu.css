@@ -9,7 +9,7 @@
 }
 
 body {
-  background-color: #D3D3D3;	
+  background-color: #D3D3D3;  
 }
 
 header{
@@ -70,15 +70,15 @@ header .icons a{
 }
 
 .items > ul {
-	
+  
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 390px));
   grid-gap: 1rem;
 }
 
 .items > ul > li {
-	width: 380px;
-	background: white;
+  width: 380px;
+  background: white;
   position: relative;
   list-style-type: none;
   border: 1px solid #000000;
@@ -140,7 +140,7 @@ header .icons a{
 }
 
 .order-button:hover {
-	display: inline-block;
+  display: inline-block;
   margin-right: 20px;
   color: #fff;
   background: orangered;
@@ -220,8 +220,58 @@ div.content {
 }
 
 .center:hover .dropdown-content {
-	display: block;
+  display: block;
 }
 
 .center:hover .dropbtn {    color: #fff;
     background: orangered;}
+
+
+/*Place the button in the center of the page ( absolutely )*/
+.centerBox{
+    width: 180px;
+    height: 120px;
+    background: #eee;
+    border: 1px solid #ccc;
+    position: absolute;
+    left: 46%;top: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+}
+
+/* The following CSS code for the basket table was inspired by a YouTube video by 'FollowAndrew' */
+.basket-table {
+    border-collapse: collapse;
+    width: 30em;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 10px 30px 5px rgba(0,0,0,0.15);
+    margin: 25px auto;
+    margin-top: 100px;
+}
+
+.basket-table thead tr {
+    border-bottom: 1px dashed grey;
+}
+
+.basket-table tfoot tr {
+    border-top: 1px dashed grey;
+}
+
+.basket-table tfoot tr td {
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: green;
+    padding: 8px;
+}
+
+.basket-table tbody tr td {
+    padding: 8px;
+}
+
+.basket-table thead tr td:nth-last-child(1),
+.basket-table tbody tr td:nth-last-child(1),
+.basket-table tfoot tr td:nth-last-child(1) {
+    text-align: right;
+}
+

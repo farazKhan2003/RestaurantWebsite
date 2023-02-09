@@ -2,99 +2,99 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Ordering Menu</title>
-	<link th:href="@{/styles/ordering-menu.css}" rel="stylesheet"
-	type="text/css"/>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
-	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-	<script type="text/javascript"
-	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <title>Ordering Menu</title>
+  <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet"
+  type="text/css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+  <script type="text/javascript"
+  src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 
 <body>
 
-	<!-- The header -->
-	<header>
-		<a href="#" class="logo">ResturantNameHere</a>
-		<nav class="navbar">
-			<a href="#">Home</a> <a href="#">dishes</a> <a href="#">Contact
-				us</a> <a href="#">Orders</a> <a href="basket">basket</a>
-		</nav>
-	</header>
+  <!-- The header -->
+  <header>
+    <a href="#" class="logo">ResturantNameHere</a>
+    <nav class="navbar">
+      <a href="#">Home</a> <a href="#">dishes</a> <a href="#">Contact
+        us</a> <a href="#">Orders</a> <a href="basket">basket</a>
+    </nav>
+  </header>
 
-	<!-- The sidebar -->
-	<div class="sidebar">
-		<a class="active">Our Dishes</a>
-		<li th:each="cats : ${cat}"><input type="hidden"
-			th:value="${cats}"></input> <a
-			th:href="@{orderingmenu} + ${'#' + {cats}}" th:text="${cats}"></a></li>
-	</div>
+  <!-- The sidebar -->
+  <div class="sidebar">
+    <a class="active">Our Dishes</a>
+    <li th:each="cats : ${cat}"><input type="hidden"
+      th:value="${cats}"></input> <a
+      th:href="@{orderingmenu} + ${'#' + {cats}}" th:text="${cats}"></a></li>
+  </div>
 
-	<section th:each="category : ${cat}" class="items" th:id="${category}">
-		<h2 th:text="${category}"></h2>
-		<ul>
-			<th:block th:each="menuItem : ${menuItems}"
-				th:if="${menuItem.category} == ${category}">
-				<li>
-					<figure>
-						<img th:src="'data:image/jpeg;base64,'+${menuItem.img}" />
-						<figcaption>
-							<h3 th:text="${menuItem.itemName}"></h3>
-						</figcaption>
-					</figure>
+  <section th:each="category : ${cat}" class="items" th:id="${category}">
+    <h2 th:text="${category}"></h2>
+    <ul>
+      <th:block th:each="menuItem : ${menuItems}"
+        th:if="${menuItem.category} == ${category}">
+        <li>
+          <figure>
+            <img th:src="'data:image/jpeg;base64,'+${menuItem.img}" />
+            <figcaption>
+              <h3 th:text="${menuItem.itemName}"></h3>
+            </figcaption>
+          </figure>
 
-					<p th:text="${menuItem.descriptions}"></p>
-					<p>--------------------</p>
-					<p>
-						<strong>Price:</strong>
-					</p>
-					<p th:text="'£'+${menuItem.price}"></p>
+          <p th:text="${menuItem.descriptions}"></p>
+          <p>--------------------</p>
+          <p>
+            <strong>Price:</strong>
+          </p>
+          <p th:text="'£'+${menuItem.price}"></p>
 
-					<div class="center">
-						<form th:action="@{/orderitem2}" th:method="post">
-							<input type="hidden" name="aMenuItem"
-								th:value="${menuItem.itemid}" />
-							<button class="order-button" type="submit" onclick="added()">Order</button>
-						</form>
-					</div>
+          <div class="center">
+            <form th:action="@{/orderitem2}" th:method="post">
+              <input type="hidden" name="aMenuItem"
+                th:value="${menuItem.itemid}" />
+              <button class="order-button" type="submit" onclick="added()">Order</button>
+            </form>
+          </div>
 
-					<div class="center">
-						<button class="dropbtn">Info</button>
-						<div class="dropdown-content">
-							<p>
-								<strong>Ingredients:</strong>
-							</p>
-							<p th:text="${menuItem.ingredients}"></p>
-							<p>
-								<strong>Calories:</strong>
-							</p>
-							<p th:text="${menuItem.calories}+' Kcal'"></p>
-						</div>
-					</div>
+          <div class="center">
+            <button class="dropbtn">Info</button>
+            <div class="dropdown-content">
+              <p>
+                <strong>Ingredients:</strong>
+              </p>
+              <p th:text="${menuItem.ingredients}"></p>
+              <p>
+                <strong>Calories:</strong>
+              </p>
+              <p th:text="${menuItem.calories}+' Kcal'"></p>
+            </div>
+          </div>
 
-				</li>
-			</th:block>
-		</ul>
-	</section>
-	<div class="center">
-		<form th:action="@{/placeorder2}" th:method="post">
-			<button class="order-button" type="submit">PlaceOrder</button>
-		</form>
-	</div>
+        </li>
+      </th:block>
+    </ul>
+  </section>
+  <div class="center">
+    <form th:action="@{/placeorder2}" th:method="post">
+      <button class="order-button" type="submit">PlaceOrder</button>
+    </form>
+  </div>
 
-	<script>
-		toastr.options = {
-			"positionClass": "toast-bottom-right",
-			"showMethod": "fadeIn",
-			"hideMethod": "fadeOut"
-		}
+  <script>
+    toastr.options = {
+      "positionClass": "toast-bottom-right",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
 
-		function added() {
-			toastr.success("Item added to basket!");
-		}
-	</script>
+    function added() {
+      toastr.success("Item added to basket!");
+    }
+  </script>
 </body>
 
 </html>

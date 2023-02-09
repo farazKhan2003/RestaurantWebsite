@@ -179,6 +179,11 @@ public class OrderingController {
     }
     @GetMapping("/deleteRowItem")
     public String deleteRowItem(@Param("input") Integer input,Model model) {
+        
+        System.out.println("******************************************");
+        System.out.println(input);
+        System.out.println("******************************************");
+        
         for(int i = 0; i < mList.size(); i++) {
             if(mList.get(i).equals(input)) {
                 mList.remove(i);

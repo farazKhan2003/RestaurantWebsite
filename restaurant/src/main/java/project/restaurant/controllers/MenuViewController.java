@@ -58,4 +58,3 @@ public class MenuViewController {
     return "insert";
   }
 }
-

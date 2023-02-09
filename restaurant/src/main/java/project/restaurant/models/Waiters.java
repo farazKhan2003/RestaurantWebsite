@@ -66,5 +66,4 @@ public class Waiters {
     public void setUserid(Users userid) {
         this.userid = userid;
     }
-
 }

@@ -37,39 +37,4 @@ public class BasketController {
   @Autowired
   private OrdersRepository oRepo;
   
-  @GetMapping("/place-order-sucess")
-  public String getItem(Model model) {
-    System.out.println("******************************************");
-    Optional<Users> user = uRepo.findById(4);
-    List<Orders> orders = oRepo.findByUID(user);
-    List<ItemsOrders> items = iRepo.findAllItemOrders(orders.get(0));
-    
-    List<String> itemsName = new ArrayList<String>();
-    for(int i = 0;i<items.size();i++) {
-      String mitems2 = mRepo.findNameById(items.get(i).getItemid());
-      itemsName.add(mitems2);
-    }
-    
-    List<Integer> itemsSumAmount = new ArrayList<Integer>();
-    for(int i = 0;i<items.size();i++) {
-      Integer mitems3 = mRepo.findSumAmountById(items.get(i).getItemid());
-      itemsSumAmount.add(mitems3);
-    }
-    
-    List<Float> itemsSumPrice = new ArrayList<Float>();
-    for(int i = 0;i<items.size();i++) {
-      Float mitems4 = mRepo.findSumPriceById(items.get(i).getItemid());
-      itemsSumPrice.add(mitems4);
-    }
-    System.out.println("******************************************");
-    System.out.println(itemsName.size());
-    System.out.println("******************************************");
-    model.addAttribute("itemsName", itemsName);
-    model.addAttribute("itemsSumAmount", itemsSumAmount);
-    model.addAttribute("itemsSumPrice", itemsSumPrice);
-    
-    System.out.println("******************************************");
-    return "place-order-sucess";
-  }
-
 }

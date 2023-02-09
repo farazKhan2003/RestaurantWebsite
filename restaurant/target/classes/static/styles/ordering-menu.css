@@ -242,11 +242,12 @@ div.content {
 /* The following CSS code for the basket table was inspired by a YouTube video by 'FollowAndrew' */
 .basket-table {
     border-collapse: collapse;
-    width: 50em;
+    width: 30em;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0px 10px 30px 5px rgba(0,0,0,0.15);
     margin: 25px auto;
+    margin-top: 100px;
 }
 
 .basket-table thead tr {

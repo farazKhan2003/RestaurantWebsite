@@ -3,6 +3,7 @@
 <head>
     <title>Basket</title>
     <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css"></link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -36,13 +37,13 @@
                     <td th:text="'£'+${item.priceSum}"></td>
                     <td>
                         <form th:action="@{/addRowItem}" th:method="get">
-                          <button type="submit">Add</button>
+                          <button type="submit" onclick="added()">Add</button>
                           <input type="hidden" name ="input" th:value="${item.id}"/>
                         </form>
                     </td>
                     <td>
                         <form th:action="@{/deleteRowItem}" th:method="get">
-                        <button type="submit">Remove</button>
+                        <button type="submit" onclick="removed()">Remove</button>
                         <input type="hidden" name ="input" th:value="${item.id}"/>
                     </form>
                     </td>
@@ -56,5 +57,21 @@
             </tfoot>
         </table>
     </section>
+
+    <script>
+		toastr.options = {
+			"positionClass": "toast-bottom-right",
+			"showMethod": "fadeIn",
+			"hideMethod": "fadeOut"
+		}
+
+		function added() {
+			toastr.success("Item added to basket!");
+		}
+
+		function removed() {
+		    toastr.success("Item removed from basket!");
+		}
+	</script>
 </body>
 </html>

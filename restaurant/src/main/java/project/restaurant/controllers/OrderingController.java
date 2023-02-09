@@ -1,5 +1,6 @@
 package project.restaurant.controllers;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -11,6 +12,7 @@ import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import project.restaurant.models.*;
 import project.restaurant.repository.ItemsordersRepository;
+import project.restaurant.repository.ItemsordersRepository.BasketTypeInterface;
 import project.restaurant.repository.MenuItemsRepository;
 import project.restaurant.repository.OrdersRepository;
 import project.restaurant.repository.UsersRepository;
@@ -67,7 +70,11 @@ public class OrderingController {
       if (mList.size() == 0) {
         return "havent-add-anyitem";
       }
-      List<MenuItems> item = mRepo.findAllById(mList);
+      
+      List<MenuItems> item = new ArrayList<MenuItems>();
+      for(int i = 0;i<mList.size();i++) {
+        item.add(mRepo.findByIntegerId(mList.get(i)).get(0));
+      }
       
       Users u = new Users("qwe1","qwe2","qwe3","qwe4");
       uRepo.save(u);
@@ -79,6 +86,7 @@ public class OrderingController {
       for(MenuItems i:item) {
         iRepo.save(new ItemsOrders(i,order));
       }
+
       mList.clear();
       
       System.out.println("******************************************");
@@ -86,35 +94,25 @@ public class OrderingController {
       List<Orders> orders = oRepo.findByUID(user);
       List<ItemsOrders> items = iRepo.findAllItemOrders(orders.get(0));
       
-      List<String> itemsName = new ArrayList<String>();
-      for(int i = 0;i<items.size();i++) {
-        String mitems2 = mRepo.findNameById(items.get(i).getItemid());
-        itemsName.add(mitems2);
+      List<BasketTypeInterface> returnItems = iRepo.findSumAmountById(items.get(0).getOrderid().getOrderId());
+      
+      System.out.println("******************************************");
+      System.out.println(returnItems.size());
+      System.out.println("******************************************");
+      
+      List<BasketItem> basketOrder = new ArrayList<BasketItem>();
+
+      Float basketTotal = (float)0;
+      for(int i = 0;i<returnItems.size();i++) {
+        Integer itemId = returnItems.get(i).getItemId();
+        Integer itemQuantity = returnItems.get(i).getQuantity();
+        Float itemSumPrice = itemQuantity*returnItems.get(i).getPrice();
+        
+        String itemName = mRepo.findByIntegerId(itemId).get(0).getItemName();
+        basketTotal+=itemSumPrice;
+        basketOrder.add(new BasketItem(itemName,itemQuantity,itemSumPrice));
       }
       
-      List<Integer> itemsSumAmount = new ArrayList<Integer>();
-      for(int i = 0;i<items.size();i++) {
-        Integer mitems3 = mRepo.findSumAmountById(items.get(i).getItemid());
-        itemsSumAmount.add(mitems3);
-      }
-      
-      List<Float> itemsSumPrice = new ArrayList<Float>();
-      for(int i = 0;i<items.size();i++) {
-        Float mitems4 = mRepo.findSumPriceById(items.get(i).getItemid());
-        itemsSumPrice.add(mitems4);
-      }
-
-        List<BasketItem> basketOrder = new ArrayList<>();
-        Float basketTotal = (float)0;
-        for (int i = 0; i< itemsName.size(); i++) {
-            String name = itemsName.get(i);
-            Float price = itemsSumPrice.get(i);
-            Integer quantity = itemsSumAmount.get(i);
-            basketTotal += (price * quantity);
-            BasketItem basketItem = new BasketItem(name, quantity, price*quantity);
-            basketOrder.add(basketItem);
-        }
-
       model.addAttribute("basketOrder", basketOrder);
       model.addAttribute("basketTotal",basketTotal);
       return "place-order-sucess";
@@ -122,7 +120,7 @@ public class OrderingController {
     
     @GetMapping("/basket")
     public String getItem2(Model model) {
-      
+
       Set<Integer> set = new TreeSet<Integer>(mList);
       
       Integer[] array = new Integer[set.size()];
@@ -145,16 +143,19 @@ public class OrderingController {
         }
       }
 
-      List<BasketItem> basketItems = new ArrayList<>();
+      List<BasketItemWithId> basketItems = new ArrayList<>();
       Float basketTotal = (float) 0;
       
       for (int i = 0; i < array.length; i++) {
         List<MenuItems> menuItem = mRepo.findByIntegerId(array[i]);
+        
+        Integer menuItemId = menuItem.get(0).getItemid();
+        System.out.println(menuItemId);
         String name = menuItem.get(0).getItemName();
         Float price = menuItem.get(0).getPrice();
         Integer quantity = map.get(array[i]);
-
-        BasketItem item = new BasketItem(name, quantity, price*quantity);
+        
+        BasketItemWithId item = new BasketItemWithId(name, quantity, price*quantity,menuItemId);
         basketTotal += (price * quantity);
         basketItems.add(item);
       }
@@ -162,7 +163,7 @@ public class OrderingController {
       model.addAttribute("basketItems", basketItems);
       model.addAttribute("basketTotal", basketTotal);
       
-      System.out.println("******************************************");
       return "basket";
     }
+    
 }

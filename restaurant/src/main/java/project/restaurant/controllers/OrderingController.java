@@ -58,7 +58,7 @@ public class OrderingController {
       List<String> cat = mRepo.findAllDistinctCat();
       model.addAttribute("cat", cat);
       try {
-          TimeUnit.SECONDS.sleep(2);
+          TimeUnit.SECONDS.sleep(1);
       } catch (InterruptedException e) {
           e.printStackTrace();
       }
@@ -170,6 +170,11 @@ public class OrderingController {
     public String addRowItem(@Param("input") Integer input,Model model) {
       mList.add(input);
       getItem2(model);
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
       return "basket";
     }
     @GetMapping("/deleteRowItem")
@@ -181,6 +186,11 @@ public class OrderingController {
             }
         }
         getItem2(model);
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return "basket";
     }
 }

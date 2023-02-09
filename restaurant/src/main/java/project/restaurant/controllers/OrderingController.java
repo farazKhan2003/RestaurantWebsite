@@ -166,4 +166,10 @@ public class OrderingController {
       return "basket";
     }
     
+    @GetMapping("/addRowItem")
+    public String addRowItem(@Param("input") Integer input,Model model) {
+      mList.add(input);
+      getItem2(model);
+      return "basket";
+    }
 }

@@ -172,4 +172,15 @@ public class OrderingController {
       getItem2(model);
       return "basket";
     }
+    @GetMapping("/deleteRowItem")
+    public String deleteRowItem(@Param("input") Integer input,Model model) {
+        for(int i = 0; i < mList.size(); i++) {
+            if(mList.get(i).equals(input)) {
+                mList.remove(i);
+                break;
+            }
+        }
+        getItem2(model);
+        return "basket";
+    }
 }

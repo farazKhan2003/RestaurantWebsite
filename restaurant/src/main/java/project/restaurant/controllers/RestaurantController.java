@@ -36,4 +36,10 @@ public class RestaurantController {
         return "ordering-menu";
     }
 	
+	//TEMP MAPPING WILL BE CHANGED LATER FOR FUNCTIONALITY.
+    @GetMapping("/waiter-orders")
+    public String getOrders() {
+        return "waiter-orders";
+    }
+	
 }

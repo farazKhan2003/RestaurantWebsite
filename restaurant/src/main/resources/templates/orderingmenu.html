@@ -85,15 +85,19 @@
   </div>
 
   <script>
-    toastr.options = {
-      "positionClass": "toast-bottom-right",
-      "showMethod": "fadeIn",
-      "hideMethod": "fadeOut"
-    }
+      // Customisations for the toastr
+      toastr.options = {
+          "positionClass": "toast-bottom-right",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+      }
 
-    function added() {
-      toastr.success("Item added to basket!");
-    }
+      /**
+       * This function notifies the user that the item has been added to the basket.
+       */
+      function added() {
+          toastr.success("Item added to basket!");
+      }
   </script>
 </body>
 

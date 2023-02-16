@@ -11,7 +11,7 @@ public class BasketItem {
     /**
      * Constructs a BasketItem from the menu.
      *
-     * @param name the name of the BasketItem
+     * @param name the name of the item
      * @param quantity the number of this item the customer has added to the basket
      * @param priceSum the total value of this item according to the quantity (price * quantity)
      */

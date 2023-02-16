@@ -177,6 +177,13 @@ public class OrderingController {
         }
       return "basket";
     }
+
+    /**
+     * This function react to the remove button of the item list. It will decrease one when the button have been clicked.
+     *
+     * @param input is the Menuitem id of the item that customer want to have less.
+     * @param model is the Model type parameter help the back-end code to add attribute for front-end web page
+     */
     @GetMapping("/deleteRowItem")
     public String deleteRowItem(@Param("input") Integer input,Model model) {
         

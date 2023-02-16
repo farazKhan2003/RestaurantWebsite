@@ -1,6 +1,5 @@
 package project.restaurant.controllers;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -26,9 +25,17 @@ import project.restaurant.repository.OrdersRepository;
 import project.restaurant.repository.UsersRepository;
 import project.restaurant.repository.WaitersRepository;
 
+/**
+ * This class is a controller class to realize the action related to customer ordering item.
+ */
 @Controller
 public class OrderingController {
     
+    /**
+     * This list is a temporary basket to store item that customer want.
+     *
+     * @return the name of the item
+     */
     private List<Integer> mList = new ArrayList<Integer>();
     
     @Autowired
@@ -46,6 +53,12 @@ public class OrderingController {
     @Autowired
     private OrdersRepository oRepo;
     
+    /**
+     * React to add button by adding an item into the basket.
+     *
+     * @param aMenuItem the Menuitem id of the item that customer want
+     * @param model is the Model type parameter help the back-end code to add attribute for front-end web page
+     */
     @PostMapping("/orderitem2")
     public String addOrderItem(@RequestParam("aMenuItem") Integer aMenuItem, Model model) {
       mList.add(aMenuItem);
@@ -65,6 +78,11 @@ public class OrderingController {
       return "orderingmenu";
     }
     
+    /**
+     * React to placeorder button by adding all item in the basket to database.
+     *
+     * @param model is the Model type parameter help the back-end code to add attribute for front-end web page
+     */
     @PostMapping("/placeorder2")
     public String placeOrder2(Model model) {
       if (mList.size() == 0) {
@@ -118,6 +136,11 @@ public class OrderingController {
       return "place-order-sucess";
     }
     
+    /**
+     * This function will help the web page to generate the list of ordered item.
+     *
+     * @param model is the Model type parameter help the back-end code to add attribute for front-end web page
+     */
     @GetMapping("/basket")
     public String getItem2(Model model) {
 
@@ -166,6 +189,12 @@ public class OrderingController {
       return "basket";
     }
     
+    /**
+     * This function react to the add button of the item list. It will increase one when the button have been clicked. 
+     * 
+     * @param input is the menuitem id of the item that customer want to have more.
+     * @param model is the Model type parameter help the back-end code to add attribute for front-end web page
+     */
     @GetMapping("/addRowItem")
     public String addRowItem(@Param("input") Integer input,Model model) {
       mList.add(input);
@@ -177,6 +206,7 @@ public class OrderingController {
         }
       return "basket";
     }
+    
     @GetMapping("/deleteRowItem")
     public String deleteRowItem(@Param("input") Integer input,Model model) {
         

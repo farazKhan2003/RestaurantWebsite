@@ -22,4 +22,13 @@ public class OrderStateController {
       model.addAttribute("deliveryStateOrder", deliveryStateOrder);
       return "orders";
     }
+    
+    @PostMapping("/getOtherStateOrder")
+    public String placeOtherOrder(Model model) {
+      
+      ItemsOrders otherStateOrder = new ItemsOrders();
+      
+      model.addAttribute("otherStateOrder", otherStateOrder);
+      return "orders";
+    }
 }

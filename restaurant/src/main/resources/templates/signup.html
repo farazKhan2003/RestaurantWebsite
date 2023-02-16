@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Home</title>
+  <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css"></link>
+  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<!-- The header -->
+<header>
+  <a href="#" class="logo">ResturantNameHere</a>
+  <nav class="navbar">
+    <a href="home">Home</a>
+    <a href="ordering-menu">dishes</a>
+    <a href="#">Contact us</a>
+    <a href="#">Orders</a>
+    <div class = "navbar-right"> <a href="login">Login</a> </div>
+  </nav>
+</header>
+
+<div class="loginblock">
+  <h3>Sign up</h3>
+  <form th:action="@{/signingup}" th:method="post">
+    <ul>
+      <label>Username:</label>
+      <li><input type="username" required name="username"></li>
+      <label>Email:</label>
+      <li><input type="email" required name="email"></li>
+      <label>Password:</label>
+      <li><input type="password" required name="password" ></li>
+      <li><button type="submit">Sign up</button></li>
+    </ul>
+  </form>
+  <a href = "login">Already have an account? Login</a>
+
+</div>
+</body>
+</html >
+
+
+
+

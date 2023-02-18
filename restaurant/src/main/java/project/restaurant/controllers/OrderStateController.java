@@ -2,7 +2,10 @@ package project.restaurant.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +35,7 @@ public class OrderStateController {
       Orders order = waiterOrder.get(i);
       if(order.getState().equals("ready")){
         deliveryStateOrder.add(order);
-      }else {
+      } else {
         otherStateOrder.add(order);
       }
     }
@@ -43,6 +46,15 @@ public class OrderStateController {
     model.addAttribute("deliveryStateOrder", deliveryStateOrder);
     model.addAttribute("otherStateOrder", otherStateOrder);
     
+    return "orders";
+  }
+  
+  @PostMapping("/changeToDelivered")
+  public String changeStateToDelivered(@Param("input") Integer input,Model model) {
+    Orders order = oRepo.findOrderByOrderId(input);
+    order.setState("delivered");
+    oRepo.save(order);
+    getOrders(model);
     return "orders";
   }
 }

@@ -12,4 +12,13 @@ import project.restaurant.models.Users;
 public interface UsersRepository extends JpaRepository<Users, Integer>{
   @Query("SELECT u FROM Users u WHERE u.usertype =?1")
   public List<Users> SearchUsersByType(@Param("usertype") String usertype);
+
+  @Query("SELECT u FROM Users u WHERE u.email_address =?1")
+  public Users SearchUsersByEmail(@Param("email_address") String email_address);
+
+  @Query("SELECT u FROM Users u WHERE u.username =?1")
+  public Users SearchUsersByUser(@Param("username") String username);
+
+  @Query("SELECT u FROM Users u WHERE (u.email_address =?1 OR u.username =?1) AND u.passwords = ?2")
+  public Users SearchUsersByUserOrEmailAndPassword(@Param("username") String username, @Param("password") String password);
 }

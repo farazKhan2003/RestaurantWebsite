@@ -1,0 +1,20 @@
+* {
+    box-sizing: border-box;
+}
+
+.ordersTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 100px;
+}
+
+.ordersTable td, .ordersTable th {
+    padding: 12px 15x;
+    border: 1px solid: #ddd;
+    text-align: center;
+}
+
+.ordersTable th {
+    background-color: orangered;
+    color: white;
+}

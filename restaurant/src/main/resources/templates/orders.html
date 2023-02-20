@@ -3,7 +3,7 @@
 <head>
     <title>Orders</title>
     <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css">
-    <link th:ref="@{/styles/orders.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/styles/orders.css}" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
@@ -18,7 +18,7 @@
     </header>
 
     <section class="orders">
-        <table class="otherStateOrder">
+        <table class="ordersTable">
             <thead>
             <tr>
                 <th>Order ID</th>
@@ -31,7 +31,7 @@
             </tbody>
         </table>
 
-        <table class="deliveryStateOrder">
+        <table class="ordersTable">
             <thead>
             <tr>
                 <th>Order ID</th>

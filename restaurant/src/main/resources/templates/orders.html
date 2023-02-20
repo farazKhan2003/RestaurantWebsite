@@ -2,36 +2,48 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Orders</title>
-    <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css"></link>
+    <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css">
+    <link th:ref="@{/styles/orders.css}" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <table class="otherStateOrder">
-        <thead>
+    <!-- The header -->
+    <header>
+        <a href="#" class="logo">ResturantNameHere</a>
+        <nav class="navbar">
+            <a href="#">Home</a> <a href="orderingmenu">dishes</a> <a href="#">Contact
+            us</a> <a href="#">Orders</a>
+        </nav>
+    </header>
+
+    <section class="orders">
+        <table class="otherStateOrder">
+            <thead>
             <tr>
                 <th>Order ID</th>
                 <th>Status</th>
                 <th>Table Number</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <table>
-        <thead>
+        <table class="deliveryStateOrder">
+            <thead>
             <tr>
                 <th>Order ID</th>
                 <th>Status</th>
                 <th>Table Number</th>
                 <th>Delivered?</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </section>
 </body>
 </html>

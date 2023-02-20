@@ -34,3 +34,7 @@
 .refresh img {
     max-width: 30px;
 }
+
+img:hover {
+    cursor: pointer;
+}

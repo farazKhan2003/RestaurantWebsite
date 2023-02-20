@@ -52,6 +52,12 @@
                      <td th:text="${item.getOrderId()}"></td>
                      <td th:text="${item.getState()}"></td>
                      <td>fake table number</td>
+                     <td>
+                        <form th:action="@{/changeToDelivered}" th:method="post">
+                          <button type="submit">Delivered</button>
+                          <input type="hidden" name ="input" th:value="${item.getOrderId()}"/>
+                        </form>
+                     </td>
                   </tr>
                 </tbody>
             </table>

@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+.tables {
+    width: 50%;
+    float: left;
+    border: 20px solid transparent;
+}
+
+.ordersTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 75px;
+}
+
+.ordersTable td, .ordersTable th {
+    padding: 12px 15x;
+    border: 1px solid: #ddd;
+    text-align: center;
+}
+
+.ordersTable th {
+    background-color: orangered;
+    color: white;
+}
+
+.refresh {
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+}
+
+.refresh img {
+    max-width: 30px;
+}
+
+img:hover {
+    cursor: pointer;
+}

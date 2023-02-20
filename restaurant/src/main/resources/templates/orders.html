@@ -29,7 +29,11 @@
                 </tr>
                 </thead>
                 <tbody>
-
+                   <tr th:each="item: ${otherStateOrder}">
+                     <td th:text="${item.getOrderId()}"></td>
+                     <td th:text="${item.getState()}"></td>
+                     <td>fake table number</td>
+                   </tr>
                 </tbody>
             </table>
         </section>
@@ -44,7 +48,7 @@
                 </tr>
                 </thead>
                 <tbody>
-
+                  
                 </tbody>
             </table>
         </section>

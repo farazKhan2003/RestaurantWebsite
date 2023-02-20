@@ -2,11 +2,56 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Orders</title>
-    <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css"></link>
+    <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/styles/orders.css}" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <!-- The header -->
+    <header>
+        <a href="#" class="logo">ResturantNameHere</a>
+        <nav class="navbar">
+            <a href="#">Home</a> <a href="orderingmenu">dishes</a> <a href="#">Contact
+            us</a> <a href="#">Orders</a>
+        </nav>
+        <a class="refresh"><img src="/images/refresh.png" alt="Refresh" onclick="location.reload()"></a>
+    </header>
 
+    <section>
+        <section class="tables">
+            <table class="ordersTable">
+                <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Status</th>
+                    <th>Table Number</th>
+                </tr>
+                </thead>
+                <tbody>
+                   <tr th:each="item: ${otherStateOrder}">
+                     <td th:text="${item.getOrderId()}"></td>
+                     <td th:text="${item.getState()}"></td>
+                     <td>fake table number</td>
+                   </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="tables">
+            <table class="ordersTable">
+                <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Status</th>
+                    <th>Table Number</th>
+                    <th>Delivered?</th>
+                </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+            </table>
+        </section>
+    </section>
 </body>
 </html>

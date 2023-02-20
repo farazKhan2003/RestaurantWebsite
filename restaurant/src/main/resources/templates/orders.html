@@ -47,7 +47,7 @@
                     <th>Delivered?</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody class = "Dtable">
                   <tr th:each="item: ${deliveryStateOrder}">
                      <td th:text="${item.getOrderId()}"></td>
                      <td th:text="${item.getState()}"></td>

@@ -71,10 +71,24 @@
     </section>
 
     <script>
+        // Customisations for toastr
+        toastr.options = {
+			"positionClass": "toast-bottom-right",
+			"showMethod": "fadeIn",
+			"hideMethod": "fadeOut"
+		}
+
+        // Get the ready order table element
         const table = document.getElementById("readyForDelivery");
+
+        // Get the number of orders ready for delivery
         const readyOrders = table.rows.length - 1;
+
         const message = " orders are ready for delivery!"
 
+        /**
+         * This function notifies the waiter about the ready orders via a toastr message.
+         */
         function notify() {
             if (readyOrders == 0) {
                 toastr.success("There are no orders ready for delivery!");
@@ -84,6 +98,7 @@
             }
         }
 
+        // Call notify function when the table loads
         window.addEventListener("load", notify);
     </script>
 </body>

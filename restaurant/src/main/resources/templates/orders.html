@@ -41,7 +41,7 @@
             </table>
         </section>
         <section class="tables">
-            <table class="ordersTable">
+            <table class="ordersTable" id="readyForDelivery">
                 <thead>
                 <tr>
                     <th>Order ID</th>
@@ -66,5 +66,10 @@
             </table>
         </section>
     </section>
+
+    <script>
+        const table = document.getElementById("readyForDelivery");
+        const readyOrders = table.rows.length - 1;
+    </script>
 </body>
 </html>

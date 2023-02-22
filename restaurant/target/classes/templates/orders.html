@@ -4,8 +4,11 @@
     <title>Orders</title>
     <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/styles/orders.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 <body>
     <!-- The header -->
@@ -41,7 +44,7 @@
             </table>
         </section>
         <section class="tables">
-            <table class="ordersTable">
+            <table class="ordersTable" id="readyForDelivery">
                 <thead>
                 <tr>
                     <th>Order ID</th>
@@ -66,5 +69,28 @@
             </table>
         </section>
     </section>
+
+    <script>
+        toastr.options = {
+			"positionClass": "toast-bottom-right",
+			"showMethod": "fadeIn",
+			"hideMethod": "fadeOut"
+		}
+
+        const table = document.getElementById("readyForDelivery");
+        const readyOrders = table.rows.length - 1;
+        const message = " orders are ready for delivery!"
+
+        function notify() {
+            if (readyOrders == 0) {
+                toastr.success("There are no orders ready for delivery!");
+            } else {
+                message = readyOrders + message;
+                toastr.success(message);
+            }
+        }
+
+        window.addEventListener("load", notify);
+    </script>
 </body>
 </html>

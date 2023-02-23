@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Orders</title>
+    <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/styles/orders.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+</head>
+<body>
+    <!-- The header -->
+    <header>
+        <a href="home" class="logo">ResturantNameHere</a>
+        <nav class="navbar">
+            <a href="home">Home</a>
+            <a href="orderingmenu">Dishes</a>
+            <a href="#">Contact us</a>
+            <a href="orders">Orders</a>
+            <a href="basket">basket</a>
+        </nav>
+        <a class="refresh"><img src="/images/refresh.png" alt="Refresh" onclick="location.reload()"></a>
+    </header>
+
+    <section>
+        <section class="tables">
+            <table class="ordersTable">
+                <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Status</th>
+                    <th>Table Number</th>
+                </tr>
+                </thead>
+                <tbody>
+                   <tr th:each="item: ${otherStateOrder}">
+                     <td th:text="${item.getOrderId()}"></td>
+                     <td th:text="${item.getState()}"></td>
+                     <td>fake table number</td>
+                   </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="tables">
+            <table class="ordersTable" id="readyForDelivery">
+                <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Status</th>
+                    <th>Table Number</th>
+                    <th>Delivered?</th>
+                </tr>
+                </thead>
+                <tbody class = "Dtable">
+                  <tr th:each="item: ${deliveryStateOrder}">
+                     <td th:text="${item.getOrderId()}"></td>
+                     <td th:text="${item.getState()}"></td>
+                     <td>fake table number</td>
+                     <td>
+                        <!-- this is the Delivered button on the orders web page -->
+                        <form th:action="@{/changeToDelivered}" th:method="post"> 
+                          <button type="submit">Delivered</button>
+                          <!-- this input is set to the orderid of the row order -->
+                          <input type="hidden" name ="input" th:value="${item.getOrderId()}"/>
+                        </form>
+                     </td>
+                  </tr>
+                </tbody>
+            </table>
+        </section>
+    </section>
+
+    <script>
+        // Customisations for toastr
+        toastr.options = {
+			"positionClass": "toast-bottom-right",
+			"showMethod": "fadeIn",
+			"hideMethod": "fadeOut"
+		}
+
+        // Get the ready order table element
+        const table = document.getElementById("readyForDelivery");
+
+        // Get the number of orders ready for delivery
+        const readyOrders = table.rows.length - 1;
+
+        const message = readyOrders + " orders are ready for delivery!"
+
+        /**
+         * This function notifies the waiter about the ready orders via a toastr message.
+         */
+        function notify() {
+            if (readyOrders == 0) {
+                toastr.success("There are no orders ready for delivery!");
+            } else {
+                toastr.success(message);
+            }
+        }
+
+        // Call notify function when the table loads
+        window.addEventListener("load", notify);
+    </script>
+</body>
+</html>

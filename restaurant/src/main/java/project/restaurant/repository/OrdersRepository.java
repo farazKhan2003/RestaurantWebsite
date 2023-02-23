@@ -21,6 +21,16 @@ public interface OrdersRepository extends JpaRepository<Orders, Integer>{
 	@Query(value = "SELECT DISTINCT orderid FROM orders", nativeQuery = true)
 	public List<String> findAllDistinctID();
     
+
 	@Query("SELECT o FROM Orders o WHERE o.state != ?1")
-	public List<Orders> findByState(String state);
+	public List<Orders> findByState2(String state);
+
+	@Query(value = "select * from orders where waiterid=:id", nativeQuery = true)
+    public List<Orders> findOrderByWaiterId(int id);
+    
+	@Query(value = "select * from orders where orderid=:input", nativeQuery = true)
+    public Orders findOrderByOrderId(Integer input);
+    
+	//@Query("SELECT o FROM Orders o WHERE o.orderId = ?1")
+	//public List<Orders> findByOrderId(Integer orderId);
 }

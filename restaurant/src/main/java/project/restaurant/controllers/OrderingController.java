@@ -1,5 +1,6 @@
 package project.restaurant.controllers;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -9,7 +10,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import project.restaurant.models.*;
+import project.restaurant.models.BasketItem;
+import project.restaurant.models.BasketItemWithId;
+import project.restaurant.models.ItemsOrders;
+import project.restaurant.models.MenuItems;
+import project.restaurant.models.Orders;
+import project.restaurant.models.Users;
+import project.restaurant.models.Waiters;
 import project.restaurant.repository.ItemsordersRepository;
 import project.restaurant.repository.ItemsordersRepository.BasketTypeInterface;
 import project.restaurant.repository.MenuItemsRepository;
@@ -25,17 +31,9 @@ import project.restaurant.repository.OrdersRepository;
 import project.restaurant.repository.UsersRepository;
 import project.restaurant.repository.WaitersRepository;
 
-/**
- * This class is a controller class to realize the action related to customer ordering item.
- */
 @Controller
 public class OrderingController {
     
-    /**
-     * This list is a temporary basket to store item that customer want.
-     *
-     * @return the name of the item
-     */
     private List<Integer> mList = new ArrayList<Integer>();
     
     @Autowired
@@ -53,12 +51,6 @@ public class OrderingController {
     @Autowired
     private OrdersRepository oRepo;
     
-    /**
-     * React to add button by adding an item into the basket.
-     *
-     * @param aMenuItem the Menuitem id of the item that customer want
-     * @param model is the Model type parameter help the back-end code to add attribute for front-end web page
-     */
     @PostMapping("/orderitem2")
     public String addOrderItem(@RequestParam("aMenuItem") Integer aMenuItem, Model model) {
       mList.add(aMenuItem);
@@ -78,11 +70,6 @@ public class OrderingController {
       return "orderingmenu";
     }
     
-    /**
-     * React to placeorder button by adding all item in the basket to database.
-     *
-     * @param model is the Model type parameter help the back-end code to add attribute for front-end web page
-     */
     @PostMapping("/placeorder2")
     public String placeOrder2(Model model) {
       if (mList.size() == 0) {
@@ -94,11 +81,12 @@ public class OrderingController {
         item.add(mRepo.findByIntegerId(mList.get(i)).get(0));
       }
       
+      LocalDateTime curTime = LocalDateTime.now();
       Users u = new Users("qwe1","qwe2","qwe3","qwe4");
       uRepo.save(u);
       Waiters waiter = new Waiters(1, u);
       wRepo.save(waiter);
-      Orders order = new Orders("not confirmed",waiter,u);
+      Orders order = new Orders("not confirmed",waiter,u ,curTime.toString());
       oRepo.save(order);
       
       for(MenuItems i:item) {
@@ -136,11 +124,6 @@ public class OrderingController {
       return "place-order-sucess";
     }
     
-    /**
-     * This function will help the web page to generate the list of ordered item.
-     *
-     * @param model is the Model type parameter help the back-end code to add attribute for front-end web page
-     */
     @GetMapping("/basket")
     public String getItem2(Model model) {
 
@@ -189,12 +172,6 @@ public class OrderingController {
       return "basket";
     }
     
-    /**
-     * This function react to the add button of the item list. It will increase one when the button have been clicked. 
-     * 
-     * @param input is the menuitem id of the item that customer want to have more.
-     * @param model is the Model type parameter help the back-end code to add attribute for front-end web page
-     */
     @GetMapping("/addRowItem")
     public String addRowItem(@Param("input") Integer input,Model model) {
       mList.add(input);
@@ -206,7 +183,6 @@ public class OrderingController {
         }
       return "basket";
     }
-    
     @GetMapping("/deleteRowItem")
     public String deleteRowItem(@Param("input") Integer input,Model model) {
         
@@ -227,5 +203,13 @@ public class OrderingController {
             e.printStackTrace();
         }
         return "basket";
+    }
+    
+    @GetMapping("/waiter-orders") 
+    public String getOrders(Model model) {
+      List<Orders> orderItems = oRepo.findByState("Done");
+      model.addAttribute("orderItems", orderItems);
+
+        return "waiter-orders";
     }
 }

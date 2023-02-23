@@ -16,8 +16,23 @@
         <a href="orderingmenu">dishes</a>
         <a href="#">Contact us</a>
         <a href="#">Orders</a>
+        <div class="navbar-right">
+          <a th:if="${session.user}==null" href="login">Login</a>
+          <span th:if="${session.user}!=null">
+            <a href = "help">Help</a>
+          <div class="logoutb">
+            <button class="logoutdrop" th:text="${session.user.getUsername}"></button>
+            <div class="dropcontent">
+              <form th:action="@{/logout}" th:method="post">
+                <button class="logout" type="submit">Logout</button>
+              </form>
+            </div>
+          </div>
+        </span>
+        </div>
       </nav>
     </header>
+
 
     <div id="background">
       <img src="/images/HomePageImage.jpg" class="stretch" alt="" />

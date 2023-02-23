@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Ordering Menu</title>
+  <link th:href="@{/styles/waiter-orders.css}" rel="stylesheet"
+  type="text/css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+  <script type="text/javascript"
+  src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+</head>
+<body>
+
+  <!-- The header -->
+  <header>
+    <a href="#" class="logo">ResturantNameHere</a>
+    <nav class="navbar">
+      <a href="#">Home</a> <a href="#">dishes</a> <a href="#">Contact
+        us</a> <a href="#">Orders</a> <a href="basket">basket</a>
+    </nav>
+  </header>
+  
+  <h1>A Fancy Table</h1>
+
+<section class="table">
+        <table class="basket-table">
+            <thead>
+                <tr>
+                    <th align="left">ORDER ID</th>
+                    <th align="left">ORDER STATE</th>
+                    <th align="left">WAITER ID</th>
+                    <th align="left">USER ID</th>
+                    <th align="left">TIMEPLACED</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="orderItems: ${orderItems}">
+                    <td th:text="${orderItems.orderid}"></td>
+                    <td th:text="${orderItems.state}"></td>
+                    <td th:text="${orderItems.waiterid.getWaiterid}"></td>
+                    <td th:text="${orderItems.userid.getUsername}"></td>
+                    <td th:text="${orderItems.timeplaced}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+  
+  
+  
+   
+</body>
+</html>

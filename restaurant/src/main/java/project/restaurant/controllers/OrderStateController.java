@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import project.restaurant.models.Orders;
 import project.restaurant.repository.OrdersRepository;
 
+/**
+ * This is class is used to react to the button of orders web page and generate list for it.
+ */
 @Controller
 public class OrderStateController {
 

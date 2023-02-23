@@ -138,13 +138,14 @@ div.content {
   color: black;
   border: 2px solid #f44336;
   padding: .5rem .5rem;
-
+  
 }
 
 .dropdown {
   position: relative;
   display: inline-block;
 }
+
 .dropdown-content {
   display: none;
   position: absolute;

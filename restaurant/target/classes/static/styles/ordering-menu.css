@@ -275,3 +275,7 @@ div.content {
     text-align: right;
 }
 
+.middle {
+	width:100px;
+	margin: 15px auto;
+}

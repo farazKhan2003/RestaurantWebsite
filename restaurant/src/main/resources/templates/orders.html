@@ -86,7 +86,7 @@
         // Get the number of orders ready for delivery
         const readyOrders = table.rows.length - 1;
 
-        const message = " orders are ready for delivery!"
+        const message = readyOrders + " orders are ready for delivery!"
 
         /**
          * This function notifies the waiter about the ready orders via a toastr message.
@@ -95,7 +95,6 @@
             if (readyOrders == 0) {
                 toastr.success("There are no orders ready for delivery!");
             } else {
-                message = readyOrders + message;
                 toastr.success(message);
             }
         }

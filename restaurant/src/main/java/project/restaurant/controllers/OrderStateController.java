@@ -47,6 +47,12 @@ public class OrderStateController {
     return "orders";
   }
   
+  /**
+   * This function will react to the delivered button of ready state order list to set the order state to delivered.
+   * 
+   * @param input is the id of order that waiter want to set its state to delivered.
+   * @param model is the Model type parameter help the back-end code to add attribute for front-end web page
+   */
   @PostMapping("/changeToDelivered")
   public String changeStateToDelivered(@Param("input") Integer input,Model model) {
     Orders order = oRepo.findOrderByOrderId(input);

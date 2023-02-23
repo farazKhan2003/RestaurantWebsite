@@ -14,22 +14,20 @@
   <header>
     <a href="#" class="logo">ResturantNameHere</a>
     <nav class="navbar">
-      <a href="home">Home</a>
-      <a href="orderingmenu">dishes</a>
+      <a href="waiterhome">Home</a>
+      <a href="changeMenu">Change Menu</a>
       <a href="#">Contact us</a>
-      <a href="#">Orders</a>
+      <a href="waiterOrder">Keep Track of Orders</a>
+      <a href="waiterHelp">Help</a>
       <div class="navbar-right">
-        <a th:if="${session.user}==null" href="login">Login</a>
-        <span th:if="${session.user}!=null">
-          <div class="logoutb">
-            <button class="logoutdrop" th:text="${session.user.getUsername}"></button>
-            <div class="dropcontent">
-              <form th:action="@{/logout}" th:method="post">
-                <button class="logout" type="submit">Logout</button>
-              </form>
-            </div>
+        <div class="logoutb">
+          <button class="logoutdrop" th:text="${session.user.getUsername}"></button>
+          <div class="dropcontent">
+            <form th:action="@{/logout}" th:method="post">
+              <button class="logout" type="submit">Logout</button>
+            </form>
           </div>
-        </span>
+        </div>
       </div>
     </nav>
   </header>
@@ -45,4 +43,3 @@
 </body>
 
 </html>
-

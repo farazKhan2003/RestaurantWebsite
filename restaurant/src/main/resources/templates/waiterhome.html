@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Home</title>
+  <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css">
+  </link>
+  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <!-- The header -->
+  <header>
+    <a href="#" class="logo">ResturantNameHere</a>
+    <nav class="navbar">
+      <a href="waiterhome">Home</a>
+      <a href="changeMenu">Change Menu</a>
+      <a href="#">Contact us</a>
+      <a href="waiterOrder">Keep Track of Orders</a>
+      <a href="waiterHelp">Help</a>
+      <div class="navbar-right">
+        <div class="logoutb">
+          <button class="logoutdrop" th:text="${session.user.getUsername}"></button>
+          <div class="dropcontent">
+            <form th:action="@{/logout}" th:method="post">
+              <button class="logout" type="submit">Logout</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div id="background">
+    <img src="/images/HomePageImage.jpg" class="stretch" alt="" />
+  </div>
+
+  <section class="middle" id="middle">
+    <h2>welcome</h2>
+    <p>product description</p>
+  </section>
+</body>
+
+</html>

@@ -17,6 +17,11 @@ public class OrderStateController {
   @Autowired
   private OrdersRepository oRepo;
   
+  /**
+   * This function will offer the data the need to generate ready state list and other state list for orders web page.
+   *
+   * @param model is the Model type parameter help the back-end code to add attribute for front-end web page
+   */
   @GetMapping("/orders")
   public String getOrders(Model model) {
     

@@ -35,6 +35,9 @@ public class Orders {
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "userid")
   private Users userid;
+  
+  @Column(name = "timeplaced", nullable = false)
+  private String timeplaced;
 
   @Column(name="timeplaced", nullable=false)
   private String timeplaced;
@@ -50,12 +53,19 @@ public class Orders {
   //  @OneToMany(cascade = CascadeType.ALL)
 //  private Set<Itemsorders> itemsorders;
 
- 
+  public String getTimeplaced() {
+    return timeplaced;
+  }
+
+  public void setTimeplaced(String timeplaced) {
+    this.timeplaced = timeplaced;
+  }
   
-  public Orders(String state, Waiters waiterid, Users userid) {
+  public Orders(String state, Waiters waiterid, Users userid, String timeplaced) {
     this.state = state;
     this.waiterid = waiterid;
     this.userid = userid;
+    this.timeplaced = timeplaced;
   }
   
   public Orders() {

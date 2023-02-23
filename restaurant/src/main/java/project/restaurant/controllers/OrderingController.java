@@ -1,6 +1,6 @@
 package project.restaurant.controllers;
 
-import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -10,7 +10,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -18,7 +17,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import project.restaurant.models.*;
+import project.restaurant.models.BasketItem;
+import project.restaurant.models.BasketItemWithId;
+import project.restaurant.models.ItemsOrders;
+import project.restaurant.models.MenuItems;
+import project.restaurant.models.Orders;
+import project.restaurant.models.Users;
+import project.restaurant.models.Waiters;
 import project.restaurant.repository.ItemsordersRepository;
 import project.restaurant.repository.ItemsordersRepository.BasketTypeInterface;
 import project.restaurant.repository.MenuItemsRepository;
@@ -76,11 +81,12 @@ public class OrderingController {
         item.add(mRepo.findByIntegerId(mList.get(i)).get(0));
       }
       
+      LocalDateTime curTime = LocalDateTime.now();
       Users u = new Users("qwe1","qwe2","qwe3","qwe4");
       uRepo.save(u);
       Waiters waiter = new Waiters(1, u);
       wRepo.save(waiter);
-      Orders order = new Orders("not confirmed",waiter,u);
+      Orders order = new Orders("not confirmed",waiter,u ,curTime.toString());
       oRepo.save(order);
       
       for(MenuItems i:item) {
@@ -197,5 +203,13 @@ public class OrderingController {
             e.printStackTrace();
         }
         return "basket";
+    }
+    
+    @GetMapping("/waiter-orders") 
+    public String getOrders(Model model) {
+      List<Orders> orderItems = oRepo.findByState("Done");
+      model.addAttribute("orderItems", orderItems);
+
+        return "waiter-orders";
     }
 }

@@ -31,6 +31,15 @@
         <th align="left">TIMEPLACED</th>
       </tr>
       </thead>
+      <tbody>
+      <tr th:each="orderItems: ${orderItems}">
+        <td th:text="${orderItems.orderid}"></td>
+        <td th:text="${orderItems.state}"></td>
+        <td th:text="${orderItems.waiterid.getWaiterid}"></td>
+        <td th:text="${orderItems.userid.getUsername}"></td>
+        <td th:text="${orderItems.timeplaced}"></td>
+      </tr>
+      </tbody>
     </table>
   </section>
 </html>

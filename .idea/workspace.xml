@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a778246a-5c6b-4d2b-8a6a-5bddebce8ca2" name="Changes" comment="Add buttons to return order page when order failed to be placed">
-      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/waiter-orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/waiter-orders.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/repository/OrdersRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/repository/OrdersRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

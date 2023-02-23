@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Home</title>
+  <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css">
+  </link>
+  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <!-- The header -->
+  <header>
+    <a href="#" class="logo">ResturantNameHere</a>
+    <nav class="navbar">
+      <a href="waiterhome">Home</a>
+      <a href="changeMenu">Change Menu</a>
+      <a href="#">Contact us</a>
+      <a href="waiterOrder">Keep Track of Orders</a>
+      <a th:href="waiterhelps">Help</a>
+      <div class="navbar-right">
+        <div class="logoutb">
+          <button class="logoutdrop" th:text="${session.user.getUsername}"></button>
+          <div class="dropcontent">
+            <form th:action="@{/logout}" th:method="post">
+              <button class="logout" type="submit">Logout</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div>
+    <p th:text="${helps}"></p>
+    <p th:text="${helps}"></p>
+    <p th:text="${helps}"></p>
+    <p th:text="${helps}"></p>
+    <p th:text="${helps}"></p>
+    <p th:text="${helps}"></p>
+    <p th:text="${helps}"></p>
+    <table>
+      <thead>
+        <th th:if="${helps!=null}" scope="row">Help State</th>
+        <th th:if="${helps!=null}" scope="row">User Id</th>
+        <th th:if="${helps!=null}" scope="row">Update help</th>
+      </thead>
+      <tr th:each="help: ${helps}">
+        <td th:text = "${help.state}"></td>
+        <td th:text = "${help.userid}"></td>
+        <td th:if = "${help.state=='needs help'}">
+          <form th:action="@{/accepthelp}" method="get">
+            <button type="submit">Accept Help</button>
+            <input type="hidden" name ="helpid" th:value="${help.helpid}" />
+          </form>
+        </td>
+        <td th:if = "${help.state=='helping'}">
+          <form th:action="@{/closehelp}" method="get">
+            <button type="submit">Close Help</button>
+            <input type="hidden" name ="helpid" th:value="${help.helpid}" />
+          </form>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</body>
+
+</html>

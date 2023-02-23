@@ -36,7 +36,18 @@ public class Orders {
   @JoinColumn(name = "userid")
   private Users userid;
 
-//  @OneToMany(cascade = CascadeType.ALL)
+  @Column(name="timeplaced", nullable=false)
+  private String timeplaced;
+
+  public String getTimeplaced() {
+    return timeplaced;
+  }
+
+  public void setTimeplaced(String timeplaced) {
+    this.timeplaced = timeplaced;
+  }
+
+  //  @OneToMany(cascade = CascadeType.ALL)
 //  private Set<Itemsorders> itemsorders;
 
  

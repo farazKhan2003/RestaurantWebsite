@@ -222,6 +222,44 @@ div.content {
 	display: block;
 }
 
+
+.logoutdrop {
+  font-family: "Poppins", sans-serif;
+  background-color: white;
+  border: none;
+  padding: 8px;
+  font-size: 1.5rem;
+
+}
+
+.logoutb {
+  position: relative;
+  display: inline-block;
+  padding: 0rem .5rem;
+
+}
+
+.dropcontent {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  padding: 1rem;
+  border-radius:12%;
+
+
+}
+
+.logoutb:hover .dropcontent {display: block;}
+
+.logoutb:hover .logoutdrop {
+  background: orangered;
+  color:#fff;
+  border-radius: .5rem;
+  margin:1rem 0rem;
+}
+
 .center:hover .dropbtn {    color: #fff;
     background: orangered;}
 
@@ -300,4 +338,27 @@ border: none;
 cursor: pointer;
 width: 100%;
 
+}
+
+.helpblock {
+    background: white;
+    border: 1px solid #000000;
+    display: block;
+    width: 380px;
+    margin-top: 15rem;
+    margin-left: 12.5rem;
+    margin-right: 50rem;
+    padding-right: 2rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+}
+
+.helpblock button {
+    background-color: #E82323;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
 }

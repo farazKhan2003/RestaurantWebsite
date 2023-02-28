@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import project.restaurant.models.ItemsOrders;
 import project.restaurant.models.MenuItems;
+import project.restaurant.models.Waiters;
 
 @Repository
 public interface MenuItemsRepository extends JpaRepository<MenuItems, Integer>{
@@ -31,4 +32,8 @@ public interface MenuItemsRepository extends JpaRepository<MenuItems, Integer>{
   
   @Query("SELECT o FROM MenuItems o WHERE o.itemid = ?1")
   public List<MenuItems> findByIntegerId(Integer integer);
+  
+  @Query("SELECT o FROM MenuItems o WHERE o.itemid = ?1")
+  public MenuItems findBySingleId(Integer integer);
+
 }

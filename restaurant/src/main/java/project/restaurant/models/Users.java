@@ -41,7 +41,7 @@ public class Users {
   @Column(name = "email_address", nullable = false)
   private String email_address;
 
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.MERGE)
   private Set<Orders> orders;
 
   public Integer getUserid() {

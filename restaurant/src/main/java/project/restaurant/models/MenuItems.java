@@ -62,11 +62,11 @@ public class MenuItems {
   @Column(name = "calories", nullable = false)
   private Integer calories;
   
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = CascadeType.MERGE)
   @JoinColumn(name = "waiterid")
   private Waiters waiterid;
   
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.MERGE)
   private Set<ItemsOrders> itemsorders;
  
   public String getItemName() {

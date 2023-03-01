@@ -2,13 +2,17 @@ package project.restaurant.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import jakarta.servlet.http.HttpSession;
 import project.restaurant.models.Orders;
+import project.restaurant.models.Waiters;
 import project.restaurant.repository.OrdersRepository;
 
 /**
@@ -25,10 +29,11 @@ public class OrderStateController {
    *
    * @param model is the Model type parameter help the back-end code to add attribute for front-end web page
    */
-  @GetMapping("/orders")
-  public String getOrders(Model model) {
-    
-    List<Orders> waiterOrder = oRepo.findOrderByWaiterId(77);
+  @GetMapping("/waiterOrder")
+  public String getOrders(Model model,HttpSession session) {
+    Waiters waiter = (Waiters) session.getAttribute("waiter");
+    List<Orders> allOrders = oRepo.findByState();
+    List<Orders> waiterOrder = oRepo.findOrderByWaiterId(waiter.getWaiterid());
     List<Orders> deliveryStateOrder = new ArrayList<Orders>();
     List<Orders> otherStateOrder = new ArrayList<Orders>();
     
@@ -43,7 +48,7 @@ public class OrderStateController {
     
     System.out.println(deliveryStateOrder.size());
     System.out.println(otherStateOrder.size());
-    
+    model.addAttribute("allorders",allOrders);
     model.addAttribute("deliveryStateOrder", deliveryStateOrder);
     model.addAttribute("otherStateOrder", otherStateOrder);
     
@@ -57,11 +62,22 @@ public class OrderStateController {
    * @param model is the Model type parameter help the back-end code to add attribute for front-end web page
    */
   @PostMapping("/changeToDelivered")
-  public String changeStateToDelivered(@Param("input") Integer input,Model model) {
+  public String changeStateToDelivered(@Param("input") Integer input,Model model,HttpSession session) {
     Orders order = oRepo.findOrderByOrderId(input);
     order.setState("delivered");
     oRepo.save(order);
-    getOrders(model);
+    getOrders(model,session);
+    return "orders";
+  }
+  
+  @PostMapping("/changeToConfirmed")
+  public String changeStateToConfirmed(@Param("input") Integer input,Model model,HttpSession session) {
+    Orders order = oRepo.findOrderByOrderId(input);
+    order.setState("confirmed");
+    Waiters waiter = (Waiters)session.getAttribute("waiter");
+    order.setWaiterId(waiter);
+    oRepo.save(order);
+    getOrders(model,session);
     return "orders";
   }
 }

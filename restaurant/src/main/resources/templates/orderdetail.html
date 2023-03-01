@@ -13,12 +13,14 @@
         <tr>
             <th align="left">Item name</th>
             <th align="left">Required amount</th>
+            <th align="left">Finished</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="item: ${basketOrder}">
             <td class="qty" th:text="${item.name}"></td>
             <td th:text="${item.quantity}"></td>
+            <td><input type="checkbox" /></td>
         </tr>
         </tbody>
     </table>

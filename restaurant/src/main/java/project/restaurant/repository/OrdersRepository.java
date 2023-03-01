@@ -35,4 +35,7 @@ public interface OrdersRepository extends JpaRepository<Orders, Integer>{
     
 	@Query("SELECT o FROM Orders o WHERE o.state = 'Cooking'")
     public List<Orders> findCookingState();
+	
+	@Query("SELECT o FROM Orders o WHERE o.state = 'Ready'")
+    public List<Orders> findReadyState();
 }

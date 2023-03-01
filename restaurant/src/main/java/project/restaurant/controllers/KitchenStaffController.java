@@ -50,6 +50,7 @@ public class KitchenStaffController {
         Orders order = oRepo.findOrderByOrderId(input);
         order.setState("ready");
         oRepo.save(order);
+        getKitchenOrders(model);
         return "kitchenStaffOrders";
     }
 }

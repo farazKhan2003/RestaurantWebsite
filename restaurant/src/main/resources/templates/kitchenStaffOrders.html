@@ -94,6 +94,29 @@
                 </tbody>
             </table>
         </section>
+
+        <section class="tables">
+            <table class="ordersTable">
+                <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Timeplaced</th>
+                    <th>Status</th>
+                    <th>View Details</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item: ${ReadyStateOrder}">
+                        <td th:text="${item.getOrderId()}"></td>
+                        <td th:text="${item.timeplaced}"></td>
+                        <td th:text="Ready"></td>
+                        <td>
+                            <button>View</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
     </section>
 </body>
 </html>

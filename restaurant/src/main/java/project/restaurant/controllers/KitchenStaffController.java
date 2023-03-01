@@ -30,7 +30,7 @@ public class KitchenStaffController {
       System.out.println(ReadyStateOrder.size());
       
       model.addAttribute("ConfirmedStateOrder", ConfirmedStateOrder);
-      model.addAttribute("CookingStateOrder", CookingStateOrder);
+      model.addAttribute("ConokingStateOrder", CookingStateOrder);
       model.addAttribute("ReadyStateOrder", ReadyStateOrder);
       
       return "kitchenStaffOrders";

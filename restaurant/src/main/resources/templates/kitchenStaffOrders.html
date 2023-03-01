@@ -54,7 +54,7 @@
                         <td th:text="Confirmed"></td>
                         <td>
                             <!-- This button changes the state of the item from "Confirmed" to "Cooking" -->
-                            <form th:action="@{/changeToCooking" th:method="post">
+                            <form th:action="@{/changeToCooking}" th:method="post">
                                 <button type="submit">Yes</button>
                                 <input type="hidden" name ="input" th:value="${item.getOrderId()}"/>
                             </form>

@@ -20,9 +20,9 @@ public class KitchenStaffController {
     @GetMapping("/kitchenStaffOrders")
     public String getKitchenOrders(Model model) {
       
-      List<Orders> ConfirmedStateOrder = oRepo.findConfirmedState();
-      List<Orders> CookingStateOrder = oRepo.findCookingState();
-      List<Orders> ReadyStateOrder = oRepo.findReadyState();
+      List<Orders> ConfirmedStateOrder = oRepo.findConfirmedStateASC();
+      List<Orders> CookingStateOrder = oRepo.findCookingStateASC();
+      List<Orders> ReadyStateOrder = oRepo.findReadyStateASC();
       
       System.out.println(ConfirmedStateOrder.size());
       System.out.println(CookingStateOrder.size());

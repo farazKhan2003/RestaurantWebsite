@@ -30,12 +30,12 @@ public interface OrdersRepository extends JpaRepository<Orders, Integer>{
 	@Query("SELECT o FROM Orders o WHERE o.state != ?1")
 	public List<Orders> findByState(String state);
 
-	@Query("SELECT o FROM Orders o WHERE o.state = 'Confirmed'")
-    public List<Orders> findConfirmedState();
+	@Query("SELECT o FROM Orders o WHERE o.state = 'Confirmed' Order by o.timeplaced ASC")
+    public List<Orders> findConfirmedStateASC();
     
-	@Query("SELECT o FROM Orders o WHERE o.state = 'Cooking'")
-    public List<Orders> findCookingState();
+	@Query("SELECT o FROM Orders o WHERE o.state = 'Cooking' Order by o.timeplaced ASC")
+    public List<Orders> findCookingStateASC();
 	
-	@Query("SELECT o FROM Orders o WHERE o.state = 'Ready'")
-    public List<Orders> findReadyState();
+	@Query("SELECT o FROM Orders o WHERE o.state = 'Ready' Order by o.timeplaced ASC")
+    public List<Orders> findReadyStateASC();
 }

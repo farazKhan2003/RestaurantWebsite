@@ -43,5 +43,12 @@ public class KitchenStaffController {
         oRepo.save(order);
         return "kitchenStaffOrders";
     }
-    
+
+    @PostMapping("/changeToReady")
+    public String changeStateToReady(@Param("input") Integer input, Model model) {
+        Orders order = oRepo.findOrderByOrderId(input);
+        order.setState("ready");
+        oRepo.save(order);
+        return "kitchenStaffOrders";
+    }
 }

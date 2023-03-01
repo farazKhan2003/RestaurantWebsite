@@ -34,6 +34,35 @@
             </span>
         </div>
     </nav>
+
+    <section>
+        <section class="tables">
+            <table class="ordersTable">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Timeplaced</th>
+                        <th>Status</th>
+                        <th>Start Cooking?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item: ${ConfirmedStateOrder}">
+                        <td th:text="${item.getOrderId()}"></td>
+                        <td th:text="${item.timeplaced}"></td>
+                        <td th:text="Confirmed"></td>
+                        <td>
+                            <!-- This button changes the state of the item from "Confirmed" to "Cooking" -->
+                            <form th:action="@{/changeToCooking" th:method="post">
+                                <button type="submit">Yes</button>
+                                <input type="hidden" name ="input" th:value="${item.getOrderId()}"/>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </section>
 </header>
 </body>
 </html>

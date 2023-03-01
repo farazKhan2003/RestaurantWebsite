@@ -52,4 +52,12 @@ public class KitchenStaffController {
         getKitchenOrders(model);
         return "kitchenStaffOrders";
     }
+    
+    @PostMapping("/viewDetail")
+    public String viewOrderDetail(@Param("input") Integer input, Model model) {
+        System.out.println("****************************************");
+        System.out.println(input);
+        System.out.println("****************************************");
+        return "kitchenStaffOrders";
+    }
 }

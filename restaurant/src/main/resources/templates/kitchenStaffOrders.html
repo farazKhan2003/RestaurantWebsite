@@ -41,7 +41,6 @@
             <table class="ordersTable">
                 <thead>
                     <tr><th>Confirmed Orders</th><tr>
-
                     <tr>
                         <th>Order ID</th>
                         <th>Timeplaced</th>
@@ -88,7 +87,7 @@
                         </td>
                         <td>
                             <!-- This button changes the state of the item from "Cooking" to "Ready" -->
-                            <form th:action="@{/changeToReady" th:method="post">
+                            <form th:action="@{/changeToReady}" th:method="post">
                                 <button type="submit">Yes</button>
                                 <input type="hidden" name ="input" th:value="${item.getOrderId()}"/>
                             </form>

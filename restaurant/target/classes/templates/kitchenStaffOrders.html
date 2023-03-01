@@ -117,7 +117,10 @@
                         <td th:text="${item.timeplaced}"></td>
                         <td th:text="Ready"></td>
                         <td>
-                            <button>View</button>
+                            <form th:action="@{/viewDetail}" th:method="post">
+                                <button type="submit">View</button>
+                                <input type="hidden" name ="input" th:value="${item.getOrderId()}"/>
+                            </form>
                         </td>
                     </tr>
                 </tbody>

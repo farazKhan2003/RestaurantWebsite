@@ -58,6 +58,7 @@ public class KitchenStaffController {
         System.out.println("****************************************");
         System.out.println(input);
         System.out.println("****************************************");
+        getKitchenOrders(model);
         return "kitchenStaffOrders";
     }
 }

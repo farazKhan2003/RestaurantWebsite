@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <title>Order detail</title>
+    <title>Ordering Menu</title>
+    <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<section class="table">
+    <table class="basket-table">
+        <thead>
+        <tr>
+            <th align="left">PRODUCT</th>
+            <th align="left">QTY</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item: ${basketOrder}">
+            <td class="qty" th:text="${item.name}"></td>
+            <td th:text="${item.quantity}"></td>
+        </tr>
+        </tbody>
+    </table>
+</section>
 </body>
 </html>

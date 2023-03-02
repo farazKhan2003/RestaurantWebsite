@@ -24,6 +24,10 @@ public class Orders {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "waiterid")
 	private Waiters waiterid;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "kitchenstaffid")
+    private KitchenStaff kitchenstaffid;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "userid")
@@ -38,12 +42,13 @@ public class Orders {
 	@Column(name = "tablenumber", nullable = false)
 	private Integer tablenumber;
 
-	public Orders(String state, Waiters waiterid, Users userid, String timeplaced, Integer tablenumber) {
+	public Orders(String state, Waiters waiterid, Users userid, String timeplaced, Integer tablenumber, KitchenStaff kitchenStaffId) {
 		this.state = state;
 		this.waiterid = waiterid;
 		this.userid = userid;
 		this.timeplaced = timeplaced;
 		this.tablenumber = tablenumber;
+		this.kitchenstaffid = kitchenStaffId;
 	}
 
 	public Orders() {
@@ -97,4 +102,12 @@ public class Orders {
 	public void setTableNumber(Integer tablenumber) {
 		this.tablenumber = tablenumber;
 	}
+	
+	public KitchenStaff getOkitchenStaffId() {
+      return kitchenstaffid;
+    }
+
+    public void setOkitchenStaffId(KitchenStaff kitchenstaffid) {
+      this.kitchenstaffid = kitchenstaffid;
+    }
 }

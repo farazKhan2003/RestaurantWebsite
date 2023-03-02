@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import project.restaurant.models.BasketItemWithId;
 import project.restaurant.models.ItemsOrders;
+import project.restaurant.models.KitchenStaff;
 import project.restaurant.models.MenuItems;
 import project.restaurant.models.Orders;
+import project.restaurant.models.Users;
 import project.restaurant.repository.ItemsordersRepository;
+import project.restaurant.repository.KitchenStaffRepository;
 import project.restaurant.repository.MenuItemsRepository;
 import project.restaurant.repository.OrdersRepository;
 
@@ -32,6 +35,9 @@ public class KitchenStaffController {
     
     @Autowired
     private MenuItemsRepository mRepo;
+    
+    @Autowired
+    private KitchenStaffRepository kRepo;
     
     @GetMapping("/kitchenStaffOrders")
     public String getKitchenOrders(Model model) {
@@ -52,10 +58,19 @@ public class KitchenStaffController {
     }
 
     @PostMapping("/changeToCooking")
-    public String changeStateToDelivered(@Param("input") Integer input, Model model) {
+    public String changeStateToCooking(@Param("input") Integer input, Model model) {
         Orders order = oRepo.findOrderByOrderId(input);
         order.setState("cooking");
+        
+        List<KitchenStaff> kstaff = kRepo.findKitchenStaffById(1);
+        System.out.println("****************************************");
+        System.out.println(kstaff.size());
+        System.out.println("****************************************");
+        order.setOkitchenStaffId(kstaff.get(0));
         oRepo.save(order);
+        System.out.println("****************************************");
+        System.out.println(order.getOkitchenStaffId().getKitchenStaffId());
+        System.out.println("****************************************");
         getKitchenOrders(model);
         return "kitchenStaffOrders";
     }

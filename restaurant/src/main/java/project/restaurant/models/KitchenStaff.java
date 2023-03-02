@@ -17,4 +17,35 @@ public class KitchenStaff {
     @MapsId
     @JoinColumn(name = "userid")
     private Users userid;
+
+    public KitchenStaff() {}
+
+    public KitchenStaff(Integer permissions, Users userid) {
+        this.userid = userid;
+        this.permissions = permissions;
+    }
+
+    public Integer getKitchenStaffId() {
+        return kitchenStaffId;
+    }
+
+    public void setKitchenStaffId(Integer kitchenStaffId) {
+        this.kitchenStaffId = kitchenStaffId;
+    }
+
+    public Integer getPermission() {
+        return permissions;
+    }
+
+    public void setPermissions(Integer permissions) {
+        this.permissions = permissions;
+    }
+
+    public Users getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Users userid) {
+        this.userid = userid;
+    }
 }

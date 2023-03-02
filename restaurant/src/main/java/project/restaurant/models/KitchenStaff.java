@@ -1,14 +1,15 @@
 package project.restaurant.models;
 
+import java.util.Set;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="KitchenStaff")
+@Table(name="kitchenstaff")
 public class KitchenStaff {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer kitchenStaffId;
+    private Integer kitchenstaffid;
 
     @Column(name = "permissions", nullable = false)
     private Integer permissions;
@@ -17,7 +18,11 @@ public class KitchenStaff {
     @MapsId
     @JoinColumn(name = "userid")
     private Users userid;
-
+    
+    //not sure if this stuff necessary
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Orders> orders;
+    
     public KitchenStaff() {}
 
     public KitchenStaff(Integer permissions, Users userid) {
@@ -26,11 +31,11 @@ public class KitchenStaff {
     }
 
     public Integer getKitchenStaffId() {
-        return kitchenStaffId;
+        return kitchenstaffid;
     }
 
-    public void setKitchenStaffId(Integer kitchenStaffId) {
-        this.kitchenStaffId = kitchenStaffId;
+    public void setKitchenStaffId(Integer kitchenstaffid) {
+        this.kitchenstaffid = kitchenstaffid;
     }
 
     public Integer getPermission() {

@@ -108,7 +108,7 @@ public class OrderingController {
 		}
 		Users u = (Users) session.getAttribute("user");
 		LocalDateTime curTime = LocalDateTime.now();
-		Orders order = new Orders("not confirmed", null, u, curTime.toString(),tablenumber);
+		Orders order = new Orders("not confirmed", null, u, curTime.toString(),tablenumber,null);
 		Orders order1 = oRepo.save(order);
 		for (MenuItems i : item) {
 			iRepo.save(new ItemsOrders(i, order));

@@ -18,7 +18,6 @@ import project.restaurant.models.ItemsOrders;
 import project.restaurant.models.KitchenStaff;
 import project.restaurant.models.MenuItems;
 import project.restaurant.models.Orders;
-import project.restaurant.models.Users;
 import project.restaurant.repository.ItemsordersRepository;
 import project.restaurant.repository.KitchenStaffRepository;
 import project.restaurant.repository.MenuItemsRepository;
@@ -99,8 +98,8 @@ public class KitchenStaffController {
       System.out.println("****************************************");
       System.out.println(input);
       System.out.println("****************************************");
-      
-      List<ItemsOrders> items = iRepo.findAllItemOrders(oRepo.findOrderByOrderId(input));
+      Orders order = oRepo.findOrderByOrderId(input);
+      List<ItemsOrders> items = iRepo.findAllItemOrders(order);
       
       System.out.println("****************************************");
       System.out.println(items.size());
@@ -157,13 +156,17 @@ public class KitchenStaffController {
       System.out.println("****************************************");
       
       model.addAttribute("Items", Items);
-      
+      model.addAttribute("OrderContent", order);
       return "orderdetail";
     }
 
     @PostMapping("/finishOrder")
-    public String finishOrder() {
-        return "kitchenStaffOrders";
+    public String finishOrder(@Param("input") Integer input, Model model) {
+      Orders order = oRepo.findOrderByOrderId(input);
+      order.setState("ready");
+      oRepo.save(order);
+      getOrderDetail(input, model);
+      return "orderdetail";
     }
     
 }

@@ -160,5 +160,10 @@ public class KitchenStaffController {
       
       return "orderdetail";
     }
+
+    @PostMapping("/finishOrder")
+    public String finishOrder() {
+        return "kitchenStaffOrders";
+    }
     
 }

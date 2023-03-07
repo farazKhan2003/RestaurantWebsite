@@ -27,6 +27,9 @@
         </tbody>
     </table>
     <input type="button" name="Submit" value="Return" onclick="javascript:history.go(-1)" />
+    <form th:action="@{/}" th:method="post">
+        <button type="submit">Finish</button>
+    </form>
 </section>
 </body>
 </html>

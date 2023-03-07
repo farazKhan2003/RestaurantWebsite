@@ -7,6 +7,24 @@
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+<header>
+    < a href=" " class="logo">ResturantNameHere</a>
+<nav class="navbar">
+    < a href="thiswebpage">Home</a>
+< a href="kitchenStaffOrders">thiswebpagename</a>
+<div class="navbar-right">
+    <div class="logoutb">
+        <button class="logoutdrop" th:text="${session.user.getUsername}"></button>
+        <div class="dropcontent">
+            <form th:action="@{/logout}" th:method="post">
+                <button class="logout" type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+</div>
+</nav>
+</header>
+
 <section class="table">
     <table class="basket-table">
         <thead>
@@ -27,7 +45,7 @@
         </tbody>
     </table>
     <input type="button" name="Submit" value="Return" onclick="javascript:history.go(-1)" />
-    <form th:action="@{/}" th:method="post">
+    <form th:action="@{/finishOrder}" th:method="post">
         <button type="submit">Finish</button>
     </form>
 </section>

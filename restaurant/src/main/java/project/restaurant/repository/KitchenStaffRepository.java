@@ -8,6 +8,6 @@ import project.restaurant.models.KitchenStaff;
 
 @Repository
 public interface KitchenStaffRepository extends JpaRepository<KitchenStaff,Integer>{
-  @Query(value = "SELECT * FROM KitchenStaff WHERE kitchenstaffid =:kitchenstaffid", nativeQuery = true)
+  @Query(value = "SELECT * FROM kitchen_staff WHERE kitchenstaffid =:kitchenstaffid", nativeQuery = true)
   List<KitchenStaff> findKitchenStaffById(Integer kitchenstaffid);
 }

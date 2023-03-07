@@ -4,7 +4,7 @@ import java.util.Set;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="kitchenstaff")
+@Table(name="KitchenStaff")
 public class KitchenStaff {
 
     @Id
@@ -15,7 +15,6 @@ public class KitchenStaff {
     private Integer permissions;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
     @JoinColumn(name = "userid")
     private Users userid;
     

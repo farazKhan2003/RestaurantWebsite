@@ -41,10 +41,11 @@ public class KitchenStaffController {
     private KitchenStaffRepository kRepo;
     
     @GetMapping("/kitchenStaffOrders")
-    public String getKitchenOrders(Model model) {
+    public String getKitchenOrders(Model model, HttpSession session) {
+      KitchenStaff kstaff = (KitchenStaff) session.getAttribute("kitchenstaff");
       
       List<Orders> ConfirmedStateOrder = oRepo.findConfirmedStateASC();
-      List<Orders> CookingStateOrder = oRepo.findCookingStateASC();
+      List<Orders> CookingStateOrder = oRepo.findCookingStateByKitchenStaffIdASC(kstaff);
       List<Orders> ReadyStateOrder = oRepo.findReadyStateASC();
       
       System.out.println(ConfirmedStateOrder.size());
@@ -72,16 +73,16 @@ public class KitchenStaffController {
         System.out.println(order.getOkitchenStaffId().getKitchenStaffId());
         System.out.println("****************************************");
         
-        getKitchenOrders(model);
+        getKitchenOrders(model, session);
         return "kitchenStaffOrders";
     }
 
     @PostMapping("/changeToReady")
-    public String changeStateToReady(@Param("input") Integer input, Model model) {
+    public String changeStateToReady(@Param("input") Integer input, Model model, HttpSession session) {
         Orders order = oRepo.findOrderByOrderId(input);
         order.setState("ready");
         oRepo.save(order);
-        getKitchenOrders(model);
+        getKitchenOrders(model, session);
         return "kitchenStaffOrders";
     }
     

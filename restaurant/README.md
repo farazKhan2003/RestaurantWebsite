@@ -45,6 +45,39 @@ This project has a wide spectrum of functionalities, which are expanded on in th
 * IntelliJ
 
 ## Features
+### Menu Management
+The waiter can add, edit and remove items from the menu. There are a variety of fields
+to describe menu items, including images, item name, description, ingredients etc. There are also
+menu filters to separate the items, thus making the menu more intuitive.
+
+### Order Processing
+The customer can make an order according to their table number. This order (as well as the
+table number) is assigned to a single waiter, who will manage its delivery and assist the customer
+if required. Once an order has been confirmed, the kitchen staff
+get a notification with the timestamp (to ensure that customers receive their orders in timely fashion),
+and they are able to "start cooking" it. Once it has been cooked, the kitchen staff can mark it as "ready",
+which will notify the waiter to deliver to the customer. Once it has been delivered, the waiter can mark the order
+as complete.
+
+There are clear states for an order:
+* Confirmed
+* Cooking
+* Ready for Delivery
+* Delivered
+
+### Users
+Different entities are able to log in to the system, including customers, waiters, and kitchen staff.
+Their permissions will differ according to their role. For example, a waiter can mark an order as "delivered"
+whereas kitchen staff cannot. 
+
+### Notifications
+Using the Toastr library, we have added a number of notifications. For example, if a customer adds an item
+to their basket, they will get a notification at the bottom right of their screen.
+
+## Customer Service
+Customer service is the heart of any restaurant business, and that is why this system makes it easy
+for customers to ask for help. They simply need to click a button on the page, which will notify
+the waiter to promptly assist the customer.
 
 ## Setup
 

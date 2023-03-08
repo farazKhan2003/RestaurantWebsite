@@ -26,6 +26,23 @@ as complete.
 This project has a wide spectrum of functionalities, which are expanded on in the [Features](#features) section.
 
 ## Technologies Used
+### Backend
+* Springboot
+* Thymeleaf
+* MySQL Workbench
+* MySQL Database
+* JavaScript
+* Java
+
+### Frontend
+* Toastr Library
+* jQuery
+* HTML
+* CSS
+
+### IDEs
+* Eclipse
+* IntelliJ
 
 ## Features
 

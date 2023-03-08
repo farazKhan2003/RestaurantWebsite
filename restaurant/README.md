@@ -74,7 +74,7 @@ whereas kitchen staff cannot.
 Using the Toastr library, we have added a number of notifications. For example, if a customer adds an item
 to their basket, they will get a notification at the bottom right of their screen.
 
-## Customer Service
+### Customer Service
 Customer service is the heart of any restaurant business, and that is why this system makes it easy
 for customers to ask for help. They simply need to click a button on the page, which will notify
 the waiter to promptly assist the customer.

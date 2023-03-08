@@ -56,4 +56,12 @@ public class LoginController {
     	}
     	return "waiterhome";
     }
+
+    @GetMapping("/kitchenStaffHome")
+    public String kitchenStaffHome(HttpSession session) {
+        if (session.getAttribute("kitchenstaff")==null) {
+            return "home";
+        }
+        return "kitchenStaffHome";
+    }
 }

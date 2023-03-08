@@ -37,7 +37,7 @@ public class LoginController {
             return "loginFailed";
         }
         Waiters waiter = wRepo.SearchWaitersByUserId(user);
-        KitchenStaff kitchenstaff = kRepo.findKitchenStaffByUID(user.getUserid()).get(0);
+        KitchenStaff kitchenstaff = kRepo.findKitchenStaffByUID(user);
         session.setAttribute("user",user);
         if(waiter==null && kitchenstaff==null) {
         	return "home";
@@ -56,6 +56,9 @@ public class LoginController {
     	if(session.getAttribute("waiter")!=null) {
     		session.removeAttribute("waiter");
     	}
+    	if(session.getAttribute("kitchenstaff")!=null) {
+          session.removeAttribute("kitchenstaff");
+        }
     	return "home";
     }
     

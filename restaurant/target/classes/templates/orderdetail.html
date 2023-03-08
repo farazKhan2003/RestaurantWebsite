@@ -45,11 +45,15 @@
 				</tr>
 			</tbody>
 		</table>
-		<input type="button" name="Submit" value="Return" onclick="javascript:history.go(-1)" />
-		<form th:action="@{/finishOrder}" th:method="post">
-			<button type="submit">Finish</button>
-			<input type="hidden" name ="input" th:value="${OrderContent.getOrderId()}"/>
-		</form>
+		<div class="flex">
+			<form th:action="@{/finishOrder}" th:method="post">
+				<button type="submit">Finish</button>
+				<input type="hidden" name ="input" th:value="${OrderContent.getOrderId()}"/>
+			</form>
+			<form th:action="@{/orderdetail}" th:method="get">
+				<button type="submit">Return</button>
+			</form>
+		</div>
 	</section>
 </body>
 </html>

@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
+import project.restaurant.models.KitchenStaff;
 import project.restaurant.models.Orders;
 import project.restaurant.models.Users;
 
@@ -38,4 +38,7 @@ public interface OrdersRepository extends JpaRepository<Orders, Integer>{
 	
 	@Query("SELECT o FROM Orders o WHERE o.state = 'Ready' Order by o.timeplaced ASC")
     public List<Orders> findReadyStateASC();
+    
+	@Query("SELECT o FROM Orders o WHERE o.state = 'Cooking' and o.kitchenstaffid = ?1 Order by o.timeplaced ASC")
+    public List<Orders> findCookingStateByKitchenStaffIdASC(KitchenStaff kstaff);
 }

@@ -453,3 +453,21 @@ div.content {
   padding-bottom: 3rem;
   text-align: center;
 }
+
+ /*Make the return and finish buttons in a column*/
+.flex {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.flex-child {
+  -webkit-box-flex: 1 1 auto;
+  -moz-box-flex:  1 1 auto;
+  -webkit-flex:  1 1 auto;
+  -ms-flex:  1 1 auto;
+  flex:  1 1 auto;
+  margin-right:5px;
+}

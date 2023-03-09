@@ -1,5 +1,6 @@
 package project.restaurant.controllers;
 
+import jakarta.persistence.Index;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,12 @@ public class CurrentOrderController {
   public String getCurrentOrder(Model model, HttpSession session) {
     Users user = (Users) session.getAttribute("user");
     List<Orders> orders = orepo.findbyStateAndID("done", user);
-    List<ItemsOrders> itemsOrdered = iorepo.findAllItemOrders(orders.get(0));
+    List<ItemsOrders> itemsOrdered;
+    try {
+      itemsOrdered = iorepo.findAllItemOrders(orders.get(0));
+    } catch (IndexOutOfBoundsException e) {
+      return "noCurrentOrder";
+    }
     List<MenuItems> menuItem = new ArrayList<>();
     for (ItemsOrders item : itemsOrdered) {
       menuItem.add(item.getItemid());

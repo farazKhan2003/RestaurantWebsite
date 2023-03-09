@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
+import project.restaurant.models.KitchenStaff;
 import project.restaurant.models.Users;
 import project.restaurant.models.Waiters;
+import project.restaurant.repository.KitchenStaffRepository;
 import project.restaurant.repository.UsersRepository;
 import project.restaurant.repository.WaitersRepository;
 
@@ -19,6 +21,9 @@ public class LoginController {
 
     @Autowired
     private WaitersRepository wRepo;
+    
+    @Autowired
+    private KitchenStaffRepository kRepo;
     
     @GetMapping("/login")
     public String getLogin() {
@@ -32,12 +37,17 @@ public class LoginController {
             return "loginFailed";
         }
         Waiters waiter = wRepo.SearchWaitersByUserId(user);
+        KitchenStaff kitchenstaff = kRepo.findKitchenStaffByUID(user);
         session.setAttribute("user",user);
-        if(waiter==null) {
+        if(waiter==null && kitchenstaff==null) {
         	return "home";
         }
-        session.setAttribute("waiter", waiter);
-        return "waiterhome";
+        if(waiter != null) {
+          session.setAttribute("waiter", waiter);
+          return "waiterhome";
+        }
+        session.setAttribute("kitchenstaff", kitchenstaff);
+        return "kitchenStaffHome";
     }
     
     @PostMapping("/logout")
@@ -46,6 +56,9 @@ public class LoginController {
     	if(session.getAttribute("waiter")!=null) {
     		session.removeAttribute("waiter");
     	}
+    	if(session.getAttribute("kitchenstaff")!=null) {
+          session.removeAttribute("kitchenstaff");
+        }
     	return "home";
     }
     
@@ -55,5 +68,13 @@ public class LoginController {
     		return "home";
     	}
     	return "waiterhome";
+    }
+
+    @GetMapping("/kitchenStaffHome")
+    public String kitchenStaffHome(HttpSession session) {
+        if (session.getAttribute("kitchenstaff")==null) {
+            return "home";
+        }
+        return "kitchenStaffHome";
     }
 }

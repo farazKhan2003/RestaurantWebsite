@@ -39,8 +39,15 @@
                     <th align="left">PRODUCT</th>
                     <th align="left">QTY</th>
                     <th align="left">PRICE</th>
+<<<<<<< HEAD
                     <th align="left">ADD</th>
                     <th align="right">REMOVE</th>
+=======
+                    <!--
+                    <th align="left">ADD</th>
+                    <th align="right">REMOVE</th>
+                    -->
+>>>>>>> KitchenStaff
                 </tr>
             </thead>
             <tbody>
@@ -48,6 +55,11 @@
                     <td class="qty" th:text="${item.name}"></td>
                     <td th:text="${item.quantity}"></td>
                     <td th:text="'£'+${item.priceSum}"></td>
+<<<<<<< HEAD
+=======
+                    
+                    <!-- 
+>>>>>>> KitchenStaff
                     <td>
                         <form th:action="@{/addRowItem}" th:method="get">
                           <button type="submit" onclick="added()">Add</button>
@@ -60,6 +72,11 @@
                           <input type="hidden" name ="input" th:value="${item.id}"/>
                         </form>
                     </td>
+<<<<<<< HEAD
+=======
+                    -->
+                    
+>>>>>>> KitchenStaff
                 </tr>
             </tbody>
             <tfoot>

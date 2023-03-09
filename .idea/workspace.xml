@@ -4,8 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a778246a-5c6b-4d2b-8a6a-5bddebce8ca2" name="Changes" comment="Add buttons to return order page when order failed to be placed">
-      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/place_order_fail.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/place_order_fail.html" afterDir="false" />
+    <list default="true" id="a778246a-5c6b-4d2b-8a6a-5bddebce8ca2" name="Changes" comment="Adding required dependencies for kitchen staff homepage">
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/kitchenStaffHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/kitchenStaffHome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/RestaurantApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/RestaurantApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/ChangeMenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/ChangeMenuController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/HelpController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/HelpController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/KitchenStaffController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/KitchenStaffController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/MenuViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/MenuViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/OrderStateController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/OrderStateController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/OrderingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/OrderingController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/RestaurantController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/RestaurantController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/SignUpController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/SignUpController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/BasketItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/BasketItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/BasketItemWithId.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/BasketItemWithId.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/Helps.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/Helps.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/ItemsOrders.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/ItemsOrders.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/KitchenStaff.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/KitchenStaff.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/MenuItems.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/MenuItems.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/Orders.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/Orders.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/Users.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/Users.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/Waiters.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/Waiters.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/HelpRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/HelpRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/ItemsordersRepository$BasketTypeInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/ItemsordersRepository$BasketTypeInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/ItemsordersRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/ItemsordersRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/KitchenStaffRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/KitchenStaffRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/MenuItemsRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/MenuItemsRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/OrdersRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/OrdersRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/UsersRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/UsersRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/WaitersRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/WaitersRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/test-classes/project/restaurant/RestaurantApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/test-classes/project/restaurant/RestaurantApplicationTests.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,17 +50,15 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="useMavenConfig" value="true" />
-      </MavenGeneralSettings>
-    </option>
   </component>
   <component name="ProjectId" id="2L8pX2e5wLDr07Pv4ZTyHLwEqJM" />
   <component name="ProjectViewState">
@@ -40,6 +68,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -133,7 +162,21 @@
       <option name="project" value="LOCAL" />
       <updated>1675382280633</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Creating empty HTML file for Kitchen Staff home">
+      <created>1678304908700</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1678304908700</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Adding required dependencies for kitchen staff homepage">
+      <created>1678305028018</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1678305028018</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,12 +192,15 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="create a html file for success placing order" />
     <MESSAGE value="create a html file for fail placing order" />
     <MESSAGE value="Add buttons to return home and ordering menu when order placed successfully" />
     <MESSAGE value="Add buttons to return order page when order failed to be placed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add buttons to return order page when order failed to be placed" />
+    <MESSAGE value="Creating empty HTML file for Kitchen Staff home" />
+    <MESSAGE value="Adding required dependencies for kitchen staff homepage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding required dependencies for kitchen staff homepage" />
   </component>
 </project>

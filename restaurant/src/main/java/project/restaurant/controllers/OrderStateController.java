@@ -1,39 +1,40 @@
 package project.restaurant.controllers;
 
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import jakarta.servlet.http.HttpSession;
 import project.restaurant.models.Orders;
 import project.restaurant.models.Waiters;
 import project.restaurant.repository.OrdersRepository;
 
 /**
  * This is class is used to react to the button of orders web page and generate list for it.
+ *
+ * @author Kenny Tanmeet Wen Bailey Dan Irmani
  */
 @Controller
 public class OrderStateController {
 
   @Autowired
-  private OrdersRepository oRepo;
+  private OrdersRepository orepo;
 
   /**
-   * This function will offer the data the need to generate ready state list and other state list for orders web page.
+   * This function will offer the data the need to generate ready state list
+   * and other state list for orders web page.
    *
-   * @param model is the Model type parameter help the back-end code to add attribute for front-end web page
+   * @param model is the Model type parameter help the back-end code
+   *              to add attribute for front-end web page
    */
   @GetMapping("/waiterOrder")
   public String getOrders(Model model, HttpSession session) {
     Waiters waiter = (Waiters) session.getAttribute("waiter");
-    List<Orders> allOrders = oRepo.findByState();
-    List<Orders> waiterOrder = oRepo.findOrderByWaiterId(waiter.getWaiterid());
+    List<Orders> waiterOrder = orepo.findOrderByWaiterId(waiter.getWaiterid());
     List<Orders> deliveryStateOrder = new ArrayList<Orders>();
     List<Orders> otherStateOrder = new ArrayList<Orders>();
 
@@ -45,7 +46,7 @@ public class OrderStateController {
         otherStateOrder.add(order);
       }
     }
-
+    List<Orders> allOrders = orepo.findByState();
     System.out.println(deliveryStateOrder.size());
     System.out.println(otherStateOrder.size());
     model.addAttribute("allorders", allOrders);
@@ -56,29 +57,40 @@ public class OrderStateController {
   }
 
   /**
-   * This function will react to the delivered button of ready state order list to set the order state to delivered.
+   * This function will react to the delivered button of
+   * ready state order list to set the order state to delivered.
    *
    * @param input is the id of order that waiter want to set its state to delivered.
-   * @param model is the Model type parameter help the back-end code to add attribute for front-end web page
+   * @param model is the Model type parameter help the back-end code
+   *              to add attribute for front-end web page
    */
   @PostMapping("/changeToDelivered")
   public String changeStateToDelivered(@Param("input") Integer input, Model model,
                                        HttpSession session) {
-    Orders order = oRepo.findOrderByOrderId(input);
+    Orders order = orepo.findOrderByOrderId(input);
     order.setState("delivered");
-    oRepo.save(order);
+    orepo.save(order);
     getOrders(model, session);
     return "orders";
   }
 
+  /**
+   * This method will change the state of the order to be confirmed.
+   *
+   * @param input   The ID of the order being confirmed
+   * @param model   is the Model type parameter help the back-end code
+   *                to add attribute for front-end web page
+   * @param session A method to identify a user and waiter across more than one page
+   * @return "orders" The webpage that displays all current orders
+   */
   @PostMapping("/changeToConfirmed")
   public String changeStateToConfirmed(@Param("input") Integer input, Model model,
                                        HttpSession session) {
-    Orders order = oRepo.findOrderByOrderId(input);
+    Orders order = orepo.findOrderByOrderId(input);
     order.setState("confirmed");
     Waiters waiter = (Waiters) session.getAttribute("waiter");
     order.setWaiterId(waiter);
-    oRepo.save(order);
+    orepo.save(order);
     getOrders(model, session);
     return "orders";
   }

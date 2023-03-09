@@ -1,5 +1,6 @@
 package project.restaurant.controllers;
 
+import jakarta.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +10,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -17,8 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import jakarta.servlet.http.HttpSession;
 import project.restaurant.models.BasketItem;
 import project.restaurant.models.BasketItemWithId;
 import project.restaurant.models.ItemsOrders;
@@ -35,49 +33,46 @@ import project.restaurant.repository.WaitersRepository;
 /**
  * This class is a controller class to realize the action related to customer
  * ordering item.
+ *
+ * @author Kenny Tanmeet Wen Bailey Dan Irmani
  */
 @Controller
 public class OrderingController {
 
-  /**
-   * This list is a temporary basket to store item that customer want.
-   *
-   * @return the name of the item
-   */
-  private List<Integer> mList = new ArrayList<Integer>();
+  private final List<Integer> mlist = new ArrayList<Integer>();
 
   @Autowired
-  private MenuItemsRepository mRepo;
+  private MenuItemsRepository mrepo;
 
   @Autowired
-  private UsersRepository uRepo;
+  private UsersRepository urepo;
 
   @Autowired
-  private WaitersRepository wRepo;
+  private WaitersRepository wrepo;
 
   @Autowired
-  private ItemsordersRepository iRepo;
+  private ItemsordersRepository irepo;
 
   @Autowired
-  private OrdersRepository oRepo;
+  private OrdersRepository orepo;
 
   /**
    * React to add button by adding an item into the basket.
    *
-   * @param aMenuItem the Menuitem id of the item that customer want
+   * @param amenuitem the Menuitem id of the item that customer want
    * @param model     is the Model type parameter help the back-end code to add
    *                  attribute for front-end web page
    */
   @PostMapping("/orderitem2")
-  public String addOrderItem(@RequestParam("aMenuItem") Integer aMenuItem, Model model) {
-    mList.add(aMenuItem);
-    for (Integer m : mList) {
+  public String addOrderItem(@RequestParam("aMenuItem") Integer amenuitem, Model model) {
+    mlist.add(amenuitem);
+    for (Integer m : mlist) {
       System.out.println(m);
     }
 
-    List<MenuItems> menuItems = mRepo.findAll();
+    List<MenuItems> menuItems = mrepo.findAll();
     model.addAttribute("menuItems", menuItems);
-    List<String> cat = mRepo.findAllDistinctCat();
+    List<String> cat = mrepo.findAllDistinctCat();
     model.addAttribute("cat", cat);
     try {
       TimeUnit.SECONDS.sleep(1);
@@ -96,32 +91,35 @@ public class OrderingController {
   @PostMapping("/placeorder2")
   public String placeOrder2(Model model, HttpSession session,
                             @RequestParam("tablenumber") Integer tablenumber) {
-    if (mList.size() == 0) {
+    if (mlist.size() == 0) {
       return "havent-add-anyitem";
     }
 
     List<MenuItems> item = new ArrayList<MenuItems>();
-    for (int i = 0; i < mList.size(); i++) {
-      item.add(mRepo.findByIntegerId(mList.get(i)).get(0));
+    float price = 0;
+
+    for (Integer integer : mlist) {
+      MenuItems mi1 = mrepo.findByIntegerId(integer).get(0);
+      price += mi1.getPrice();
+      item.add(mi1);
     }
     if (session.getAttribute("user") == null) {
       return "login";
     }
     Users u = (Users) session.getAttribute("user");
     LocalDateTime curTime = LocalDateTime.now();
-    Orders order = new Orders("not confirmed", null, u, curTime.toString(), tablenumber);
-    Orders order1 = oRepo.save(order);
+    Orders order = new Orders("not confirmed", null, u, curTime.toString(), tablenumber, price);
     for (MenuItems i : item) {
-      iRepo.save(new ItemsOrders(i, order));
+      irepo.save(new ItemsOrders(i, order));
     }
 
-    mList.clear();
-
+    mlist.clear();
+    Orders order1 = orepo.save(order);
     System.out.println("******************************************");
-    List<ItemsOrders> items = iRepo.findAllItemOrders(order1);
+    List<ItemsOrders> items = irepo.findAllItemOrders(order1);
 
     List<BasketTypeInterface> returnItems =
-        iRepo.findSumAmountById(items.get(0).getOrderid().getOrderId());
+        irepo.findSumAmountById(items.get(0).getOrderid().getOrderId());
 
     System.out.println("******************************************");
     System.out.println(returnItems.size());
@@ -135,7 +133,7 @@ public class OrderingController {
       Integer itemQuantity = returnItems.get(i).getQuantity();
       Float itemSumPrice = itemQuantity * returnItems.get(i).getPrice();
 
-      String itemName = mRepo.findByIntegerId(itemId).get(0).getItemName();
+      String itemName = mrepo.findByIntegerId(itemId).get(0).getItemName();
       basketTotal += itemSumPrice;
       basketOrder.add(new BasketItem(itemName, itemQuantity, itemSumPrice));
     }
@@ -154,7 +152,7 @@ public class OrderingController {
   @GetMapping("/basket")
   public String getItem2(Model model) {
 
-    Set<Integer> set = new TreeSet<Integer>(mList);
+    Set<Integer> set = new TreeSet<Integer>(mlist);
 
     Integer[] array = new Integer[set.size()];
 
@@ -168,11 +166,11 @@ public class OrderingController {
 
     Map<Integer, Integer> map = new HashMap<>();
 
-    for (int i = 0; i < mList.size(); i++) {
-      if (map.containsKey(mList.get(i)) == false) {
-        map.put(mList.get(i), 1);
+    for (int i = 0; i < mlist.size(); i++) {
+      if (!map.containsKey(mlist.get(i))) {
+        map.put(mlist.get(i), 1);
       } else {
-        map.put(mList.get(i), map.get(mList.get(i)) + 1);
+        map.put(mlist.get(i), map.get(mlist.get(i)) + 1);
       }
     }
 
@@ -180,7 +178,7 @@ public class OrderingController {
     Float basketTotal = (float) 0;
 
     for (int i = 0; i < array.length; i++) {
-      List<MenuItems> menuItem = mRepo.findByIntegerId(array[i]);
+      List<MenuItems> menuItem = mrepo.findByIntegerId(array[i]);
 
       Integer menuItemId = menuItem.get(0).getItemid();
       System.out.println(menuItemId);
@@ -209,7 +207,7 @@ public class OrderingController {
    */
   @GetMapping("/addRowItem")
   public String addRowItem(@Param("input") Integer input, Model model) {
-    mList.add(input);
+    mlist.add(input);
     getItem2(model);
     try {
       TimeUnit.SECONDS.sleep(1);
@@ -219,16 +217,20 @@ public class OrderingController {
     return "basket";
   }
 
+  /**
+   * This method will remove an item in the basket.
+   *
+   * @param input The quantity of the item the user wants to purchase
+   * @param model is the Model type parameter help the back-end code to add
+   *              attribute for front-end web page
+   * @return "basket" The webpage to view what is currently in your basket
+   */
   @GetMapping("/deleteRowItem")
   public String deleteRowItem(@Param("input") Integer input, Model model) {
 
-    System.out.println("******************************************");
-    System.out.println(input);
-    System.out.println("******************************************");
-
-    for (int i = 0; i < mList.size(); i++) {
-      if (mList.get(i).equals(input)) {
-        mList.remove(i);
+    for (int i = 0; i < mlist.size(); i++) {
+      if (mlist.get(i).equals(input)) {
+        mlist.remove(i);
         break;
       }
     }
@@ -241,9 +243,16 @@ public class OrderingController {
     return "basket";
   }
 
+  /**
+   * This method will confirm an order and adds it to the menu_items database.
+   *
+   * @param model is the Model type parameter help the back-end code to add
+   *              attribute for front-end web page
+   * @return "confirmOrder" The webpage that confirms to a user that their order has been placed
+   */
   @GetMapping("/confirmOrders")
-  public String confirmOrder(Model model, HttpSession session) {
-    Set<Integer> set = new TreeSet<Integer>(mList);
+  public String confirmOrder(Model model) {
+    Set<Integer> set = new TreeSet<Integer>(mlist);
 
     Integer[] array = new Integer[set.size()];
 
@@ -257,11 +266,11 @@ public class OrderingController {
 
     Map<Integer, Integer> map = new HashMap<>();
 
-    for (int i = 0; i < mList.size(); i++) {
-      if (map.containsKey(mList.get(i)) == false) {
-        map.put(mList.get(i), 1);
+    for (int i = 0; i < mlist.size(); i++) {
+      if (!map.containsKey(mlist.get(i))) {
+        map.put(mlist.get(i), 1);
       } else {
-        map.put(mList.get(i), map.get(mList.get(i)) + 1);
+        map.put(mlist.get(i), map.get(mlist.get(i)) + 1);
       }
     }
 
@@ -269,7 +278,7 @@ public class OrderingController {
     Float basketTotal = (float) 0;
 
     for (int i = 0; i < array.length; i++) {
-      List<MenuItems> menuItem = mRepo.findByIntegerId(array[i]);
+      List<MenuItems> menuItem = mrepo.findByIntegerId(array[i]);
 
       Integer menuItemId = menuItem.get(0).getItemid();
       System.out.println(menuItemId);

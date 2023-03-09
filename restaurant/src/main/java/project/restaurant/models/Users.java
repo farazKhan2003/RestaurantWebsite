@@ -33,15 +33,15 @@ public class Users {
    * @param usertype     The type of user (waiter or user)
    * @param username     The username of the user
    * @param passwords    The password of the user
-   * @param emailaddress The email address of the user
+   * @param email_address The email address of the user
    */
 
 
-  public Users(String usertype, String username, String passwords, String emailaddress) {
+  public Users(String usertype, String username, String passwords, String email_address) {
     this.usertype = usertype;
     this.username = username;
     this.passwords = passwords;
-    this.emailaddress = emailaddress;
+    this.email_address = email_address;
   }
 
   @Id
@@ -58,7 +58,7 @@ public class Users {
   private String passwords;
 
   @Column(name = "email_address", nullable = false)
-  private String emailaddress;
+  private String email_address;
 
   @OneToMany(cascade = CascadeType.MERGE)
   private Set<Orders> orders;

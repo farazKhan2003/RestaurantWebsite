@@ -18,7 +18,7 @@ public interface OrdersRepository extends JpaRepository<Orders, Integer>{
     @Query("SELECT o FROM Orders o WHERE o.userid = ?1")
     public List<Orders> findByUID(Optional<Users> user);
 
-    @Query(value = "select * from orders where waiterid=:id", nativeQuery = true)
+    @Query(value = "select * from orders where waiterid=:id and state != 'delivered'", nativeQuery = true)
     public List<Orders> findOrderByWaiterId(int id);
 
     @Query(value = "select * from orders where orderid=:input", nativeQuery = true)

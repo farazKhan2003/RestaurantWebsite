@@ -13,9 +13,9 @@
   <a href="#" class="logo">ResturantNameHere</a>
   <nav class="navbar">
     <a href="home">Home</a>
-    <a href="orderingmenu">Dishes</a>
+    <a href="orderingmenu">dishes</a>
     <a href="#">Contact us</a>
-    <a href="#">Orders</a>
+    <a href="basket">Orders</a>
     <div class = "navbar-right"> <a href="login">Login</a> </div>
   </nav>
 </header>
@@ -24,10 +24,10 @@
   <h3>Login</h3>
   <form th:action="@{/confirmLogin}" th:method="post">
     <ul>
-      <label>Username or Email:</label>
-      <li><input type="username" required name="username"></li>
-      <label>Password:</label>
-      <li><input type="password" required name="password" ></li>
+      <label for="name">Username or Email:<span class="required">*</span></label>
+      <li><input type="username" required name="username" aria-required=”true”></li>
+      <label for="name">Password<span class="required">*</span></label>
+      <li><input type="password" required name="password"></li>
       <li><button type="submit">Login</button></li>
     </ul>
   </form>
@@ -36,7 +36,4 @@
 </div>
 </body>
 </html >
-
-
-
 

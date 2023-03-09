@@ -453,3 +453,14 @@ div.content {
   padding-bottom: 3rem;
   text-align: center;
 }
+
+.seeorder button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  left: 43%;
+}

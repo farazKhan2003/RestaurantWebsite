@@ -24,11 +24,11 @@
   <h3>Sign up</h3>
   <form th:action="@{/signingup}" th:method="post">
     <ul>
-      <label>Username:</label>
+      <label for="name">Username:<span class="required">*</span></label>
       <li><input type="username" required name="username"></li>
-      <label>Email:</label>
+      <label for="name">Email:<span class="required">*</span></label>
       <li><input type="email" required name="email"></li>
-      <label>Password:</label>
+      <label for="name">Password:<span class="required">*</span></label>
       <li><input type="password" required name="password" ></li>
       <li><button type="submit">Sign up</button></li>
     </ul>

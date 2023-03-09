@@ -47,11 +47,11 @@
 		</table>
 		<div class="flex">
 			<form th:action="@{/finishOrder}" th:method="post">
-				<button type="submit">Finish</button>
+				<button style="float: left;" type="submit">Finish</button>
 				<input type="hidden" name ="input" th:value="${OrderContent.getOrderId()}"/>
 			</form>
-			<form th:action="@{/orderdetail}" th:method="get">
-				<button type="submit">Return</button>
+			<form th:action="@{/kitchenStaffOrders}" th:method="get">
+				<button style="float: right;" type="submit">Return</button>
 			</form>
 		</div>
 	</div>

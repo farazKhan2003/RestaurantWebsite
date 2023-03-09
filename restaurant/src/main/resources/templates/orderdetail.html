@@ -48,10 +48,14 @@
 			</tbody>
 		</table>
 		<div class="flex">
-			<form th:action="@{/finishOrder}" th:method="post">
-				<button style="float: left;" type="submit">Finish</button>
-				<input type="hidden" name ="input" th:value="${OrderContent.getOrderId()}"/>
-			</form>
+		  <span th:if="${OrderContent.getState()}==cooking">
+		    
+          <form th:action="@{/finishOrder}" th:method="post">
+            <button style="float: left;" type="submit">Finish</button>
+            <input type="hidden" name ="input" th:value="${OrderContent.getOrderId()}"/>
+          </form>
+        
+      </span>
 			<form th:action="@{/kitchenStaffOrders}" th:method="get">
 				<button style="float: right;" type="submit">Return</button>
 			</form>

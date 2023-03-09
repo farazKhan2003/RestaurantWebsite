@@ -461,6 +461,7 @@ div.content {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
+  justify-content: center;
 }
 
 .flex-child {
@@ -470,4 +471,50 @@ div.content {
   -ms-flex:  1 1 auto;
   flex:  1 1 auto;
   margin-right:5px;
+}
+
+.centerTable {
+  background: #eee;
+  border: 1px solid #ccc;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  margin: 0;
+  padding: 0;
+}
+
+.centerTable table{
+  border-collapse: collapse;
+  width: 30em;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 10px 30px 5px rgba(0, 0, 0, 0.15);
+  margin: 25px auto;
+  margin-top: 0;
+}
+
+.centerTable table thead tr {
+  border-bottom: 1px dashed grey;
+}
+
+.centerTable table tfoot tr {
+  border-top: 1px dashed grey;
+}
+
+.centerTable table tfoot tr td {
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: green;
+  padding: 8px;
+}
+
+.centerTable table tbody tr td {
+  padding: 8px;
+}
+
+.centerTable table thead tr td:nth-last-child(1),
+.centerTable table tbody tr td:nth-last-child(1),
+.centerTable table tfoot tr td:nth-last-child(1) {
+  text-align: right;
 }

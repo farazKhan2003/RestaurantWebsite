@@ -26,8 +26,10 @@
 		</nav>
 	</header>
 
-	<section class="table">
-		<table class="basket-table">
+	<div class = "centerTable">
+		<nobr style="font-size: 40px">State:</nobr>
+		<nobr style="font-size: 40px" th:text="${OrderContent.getState()}"></nobr>
+		<table>
 			<thead>
 				<tr>
 					<th align="left">Item Id</th>
@@ -46,14 +48,18 @@
 			</tbody>
 		</table>
 		<div class="flex">
-			<form th:action="@{/finishOrder}" th:method="post">
-				<button type="submit">Finish</button>
-				<input type="hidden" name ="input" th:value="${OrderContent.getOrderId()}"/>
-			</form>
-			<form th:action="@{/orderdetail}" th:method="get">
-				<button type="submit">Return</button>
+		  <span th:if="${OrderContent.getState()}==cooking">
+		    
+          <form th:action="@{/finishOrder}" th:method="post">
+            <button style="float: left;" type="submit">Finish</button>
+            <input type="hidden" name ="input" th:value="${OrderContent.getOrderId()}"/>
+          </form>
+        
+      </span>
+			<form th:action="@{/kitchenStaffOrders}" th:method="get">
+				<button style="float: right;" type="submit">Return</button>
 			</form>
 		</div>
-	</section>
+	</div>
 </body>
 </html>

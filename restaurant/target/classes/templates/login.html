@@ -24,9 +24,9 @@
   <h3>Login</h3>
   <form th:action="@{/confirmLogin}" th:method="post">
     <ul>
-      <label>Username or Email:</label>
+      <label for="name">Username or Email:<span class="required">*</span></label>
       <li><input type="username" required name="username"></li>
-      <label>Password:</label>
+      <label for="name">Password<span class="required">*</span></label>
       <li><input type="password" required name="password" ></li>
       <li><button type="submit">Login</button></li>
     </ul>

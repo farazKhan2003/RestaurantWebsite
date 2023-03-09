@@ -7,6 +7,10 @@
   list-style-type: none;
 }
 
+.required {
+  color: red;
+}
+
 body {
   background-color: #D3D3D3;
 }

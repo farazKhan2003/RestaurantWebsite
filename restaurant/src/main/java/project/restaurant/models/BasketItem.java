@@ -2,11 +2,12 @@ package project.restaurant.models;
 
 /**
  * This class represents an item from the menu in the customer's basket.
+ * @author Tanmeet Kenny Wen
  */
 public class BasketItem {
-  private String name;
-  private Integer quantity;
-  private Float priceSum;
+  private final String name;
+  private final Integer quantity;
+  private final Float priceSum;
 
   /**
    * Constructs a BasketItem from the menu.
@@ -39,8 +40,8 @@ public class BasketItem {
     return quantity;
   }
 
-  /**
-   * This method gets the the sum price of the item
+  /**.
+   * This method gets the sum price of the item
    *
    * @return the total price according to the quantity
    */

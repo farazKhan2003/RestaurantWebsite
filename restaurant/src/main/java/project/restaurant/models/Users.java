@@ -16,7 +16,8 @@ import jakarta.persistence.Table;
 @Table(name = "Users")
 public class Users {
 
-  public Users() {}
+  public Users() {
+  }
 
   public Users(String usertype, String username, String passwords, String email_address) {
     this.usertype = usertype;

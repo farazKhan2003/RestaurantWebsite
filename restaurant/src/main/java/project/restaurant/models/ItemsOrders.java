@@ -10,51 +10,52 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Itemsorders")
+@Table(name = "Itemsorders")
 public class ItemsOrders {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer itemsordersid;
-      
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "itemid")
-    private MenuItems itemid;
-    
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "orderid")
-    private Orders orderid;
-    
-    public ItemsOrders() {}
-    
-    public ItemsOrders(MenuItems itemid, Orders orderid) {
-        this.itemid = itemid;
-        this.orderid = orderid;
-    }
 
-    public Integer getItemordersid() {
-        return itemsordersid;
-    }
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer itemsordersid;
 
-    public void setItemordersid(Integer itemordersid) {
-        this.itemsordersid = itemordersid;
-    }
+  @ManyToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "itemid")
+  private MenuItems itemid;
 
-    public MenuItems getItemid() {
-        return itemid;
-    }
+  @ManyToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "orderid")
+  private Orders orderid;
 
-    public void setItemid(MenuItems itemid) {
-        this.itemid = itemid;
-    }
+  public ItemsOrders() {
+  }
 
-    public Orders getOrderid() {
-        return orderid;
-    }
+  public ItemsOrders(MenuItems itemid, Orders orderid) {
+    this.itemid = itemid;
+    this.orderid = orderid;
+  }
 
-    public void setOrderid(Orders orderid) {
-        this.orderid = orderid;
-    }
+  public Integer getItemordersid() {
+    return itemsordersid;
+  }
+
+  public void setItemordersid(Integer itemordersid) {
+    this.itemsordersid = itemordersid;
+  }
+
+  public MenuItems getItemid() {
+    return itemid;
+  }
+
+  public void setItemid(MenuItems itemid) {
+    this.itemid = itemid;
+  }
+
+  public Orders getOrderid() {
+    return orderid;
+  }
+
+  public void setOrderid(Orders orderid) {
+    this.orderid = orderid;
+  }
 }
     
     

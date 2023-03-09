@@ -15,55 +15,56 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Waiters")
+@Table(name = "Waiters")
 public class Waiters {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer waiterid;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer waiterid;
 
-    @Column(name = "permissions", nullable = false)
-    private Integer permissions;
+  @Column(name = "permissions", nullable = false)
+  private Integer permissions;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    @JoinColumn(name = "userid")
-    private Users userid;
+  @OneToOne(fetch = FetchType.LAZY)
+  @MapsId
+  @JoinColumn(name = "userid")
+  private Users userid;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<MenuItems> menuItems;
+  @OneToMany(cascade = CascadeType.ALL)
+  private Set<MenuItems> menuItems;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Orders> orders;
+  @OneToMany(cascade = CascadeType.ALL)
+  private Set<Orders> orders;
 
-    public Waiters() {}
+  public Waiters() {
+  }
 
-    public Waiters(Integer permissions, Users userid) {
-        this.userid = userid;
-        this.permissions = permissions;
-    }
+  public Waiters(Integer permissions, Users userid) {
+    this.userid = userid;
+    this.permissions = permissions;
+  }
 
-    public Integer getWaiterid() {
-        return waiterid;
-    }
+  public Integer getWaiterid() {
+    return waiterid;
+  }
 
-    public void setWaiterid(Integer waiterid) {
-        this.waiterid = waiterid;
-    }
+  public void setWaiterid(Integer waiterid) {
+    this.waiterid = waiterid;
+  }
 
-    public Integer getPermissions() {
-        return permissions;
-    }
+  public Integer getPermissions() {
+    return permissions;
+  }
 
-    public void setPermissions(Integer permissions) {
-        this.permissions = permissions;
-    }
+  public void setPermissions(Integer permissions) {
+    this.permissions = permissions;
+  }
 
-    public Users getUserid() {
-        return userid;
-    }
+  public Users getUserid() {
+    return userid;
+  }
 
-    public void setUserid(Users userid) {
-        this.userid = userid;
-    }
+  public void setUserid(Users userid) {
+    this.userid = userid;
+  }
 }

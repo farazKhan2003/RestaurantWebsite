@@ -17,51 +17,52 @@ import project.restaurant.repository.HelpRepository;
 
 @Controller
 public class HelpController {
-	@Autowired
-	private HelpRepository hRepo;
+  @Autowired
+  private HelpRepository hRepo;
 
-	@GetMapping("/help")
-	public String getHelp(HttpSession session) {
-		Users user = (Users) session.getAttribute("user");
-		if (hRepo.SearchHelpByUserId(user.getUserid()) != null) {
-			return "helpRequested";
-		}
-		return "help";
-	}
-	
-	@GetMapping("/waiterhelps")
-	public String getWaiterHelps(Model model) {
-		List<Helps> lHelps = hRepo.findAll();
-		model.addAttribute("helps",lHelps);
-		return "waiterhelp";
-	}
-	@PostMapping("/helpRequest")
-	public String requestHelp(HttpSession session) {
-		Users user = (Users) session.getAttribute("user");
-		if (hRepo.SearchHelpByUserId(user.getUserid()) != null) {
-			return "helpRequested";
-		}
-		Helps newRequest = new Helps("needs help", user.getUserid());
-		hRepo.save(newRequest);
-		return "helpRequested";
-	}
+  @GetMapping("/help")
+  public String getHelp(HttpSession session) {
+    Users user = (Users) session.getAttribute("user");
+    if (hRepo.SearchHelpByUserId(user.getUserid()) != null) {
+      return "helpRequested";
+    }
+    return "help";
+  }
 
-	@GetMapping("/accepthelp")
-	public String acceptHelp(@RequestParam("helpid") Integer helpid, Model model) {
-		Helps helpRequest = hRepo.getReferenceById(helpid);
-		helpRequest.setState("helping");
-		hRepo.save(helpRequest);
-		List<Helps> lHelps = hRepo.findAll();
-		model.addAttribute("helps",lHelps);
-		return "waiterhelp";
-	}
+  @GetMapping("/waiterhelps")
+  public String getWaiterHelps(Model model) {
+    List<Helps> lHelps = hRepo.findAll();
+    model.addAttribute("helps", lHelps);
+    return "waiterhelp";
+  }
 
-	@GetMapping("/closehelp")
-	public String closeHelp(@RequestParam("helpid") Integer helpid, Model model) {
-		System.out.println(helpid);
-		hRepo.deleteById(helpid);
-		List<Helps> lHelps = hRepo.findAll();
-		model.addAttribute("helps",lHelps);
-		return "waiterhelp";
-	}
+  @PostMapping("/helpRequest")
+  public String requestHelp(HttpSession session) {
+    Users user = (Users) session.getAttribute("user");
+    if (hRepo.SearchHelpByUserId(user.getUserid()) != null) {
+      return "helpRequested";
+    }
+    Helps newRequest = new Helps("needs help", user.getUserid());
+    hRepo.save(newRequest);
+    return "helpRequested";
+  }
+
+  @GetMapping("/accepthelp")
+  public String acceptHelp(@RequestParam("helpid") Integer helpid, Model model) {
+    Helps helpRequest = hRepo.getReferenceById(helpid);
+    helpRequest.setState("helping");
+    hRepo.save(helpRequest);
+    List<Helps> lHelps = hRepo.findAll();
+    model.addAttribute("helps", lHelps);
+    return "waiterhelp";
+  }
+
+  @GetMapping("/closehelp")
+  public String closeHelp(@RequestParam("helpid") Integer helpid, Model model) {
+    System.out.println(helpid);
+    hRepo.deleteById(helpid);
+    List<Helps> lHelps = hRepo.findAll();
+    model.addAttribute("helps", lHelps);
+    return "waiterhelp";
+  }
 }

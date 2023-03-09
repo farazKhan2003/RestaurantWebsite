@@ -31,31 +31,33 @@ public class MenuViewController {
 
   @Autowired
   private WaitersRepository wRepo;
-  
 
-  @GetMapping("/orderingmenu") 
+
+  @GetMapping("/orderingmenu")
   public String getMenuView(Model model) {
     List<MenuItems> menuItems = mRepo.findAll();
     model.addAttribute("menuItems", menuItems);
     List<String> cat = mRepo.findAllDistinctCat();
-    model.addAttribute("cat", cat); 
+    model.addAttribute("cat", cat);
     return "orderingmenu";
   }
-  
+
   @PostMapping("/addItem2")
   public String postAddItem(@RequestParam("file") MultipartFile file) throws IOException {
-    Users u = new Users("qwe2","waiter","password123","qwe5");
+    Users u = new Users("qwe2", "waiter", "password123", "qwe5");
     uRepo.save(u);
     Waiters waiter = new Waiters(1, u);
     wRepo.save(waiter);
     Float f = 1.25f;
     byte[] thisArray = file.getBytes();
     String fle = Base64.encodeBase64String(thisArray);
-    MenuItems m = new MenuItems("ItemName1", "this is a description this is a description this is a description this is a descriptionthis is a description this is a description this is a descriptionthis is a descriptionthis is a description this is a description this is a description this is a description this is a descriptionthis is a descriptionthis is a description this is a description", f, fle , 1, waiter, "drinks", "Paprika, Curry Sauce", 450);
+    MenuItems m = new MenuItems("ItemName1",
+        "this is a description this is a description this is a description this is a descriptionthis is a description this is a description this is a descriptionthis is a descriptionthis is a description this is a description this is a description this is a description this is a descriptionthis is a descriptionthis is a description this is a description",
+        f, fle, 1, waiter, "drinks", "Paprika, Curry Sauce", 450);
     mRepo.save(m);
     return "insert";
   }
-  
+
   @GetMapping("/insert")
   public String getInserts() {
     return "insert";

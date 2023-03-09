@@ -10,25 +10,27 @@ import project.restaurant.repository.UsersRepository;
 
 @Controller
 public class SignUpController {
-    @Autowired
-    private UsersRepository uRepo;
+  @Autowired
+  private UsersRepository uRepo;
 
-    @GetMapping("/signup")
-    public String getSignUp() {
-        return "signup";
-    }
+  @GetMapping("/signup")
+  public String getSignUp() {
+    return "signup";
+  }
 
-    @PostMapping("/signingup")
-    public String getSearchUsers(@RequestParam("username") String userName, @RequestParam("email") String emailAddress, @RequestParam("password") String passWord) {
-        String msg;
-        if(uRepo.SearchUsersByUser(userName) == null && uRepo.SearchUsersByEmail(emailAddress) == null) {
-            Users user = new Users("0", userName, passWord, emailAddress);
-            uRepo.save(user);
-            msg = "home";
-        }
-        else {
-            msg = "signupFailed";
-        }
-        return msg;
+  @PostMapping("/signingup")
+  public String getSearchUsers(@RequestParam("username") String userName,
+                               @RequestParam("email") String emailAddress,
+                               @RequestParam("password") String passWord) {
+    String msg;
+    if (uRepo.SearchUsersByUser(userName) == null &&
+        uRepo.SearchUsersByEmail(emailAddress) == null) {
+      Users user = new Users("0", userName, passWord, emailAddress);
+      uRepo.save(user);
+      msg = "home";
+    } else {
+      msg = "signupFailed";
     }
+    return msg;
+  }
 }

@@ -49,7 +49,6 @@ public class ItemsOrders {
    *
    * @return the ID of the order
    */
-
   public Integer getItemordersid() {
     return itemsordersid;
   }
@@ -66,7 +65,6 @@ public class ItemsOrders {
    *
    * @return the ID of the menu item
    */
-
   public MenuItems getItemid() {
     return itemid;
   }

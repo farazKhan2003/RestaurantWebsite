@@ -15,7 +15,6 @@ import project.restaurant.models.Users;
  * 
  * @author Tanmeet, Peter, Irmani, Faraz, James, Wen, Pengyuan(Kenny), Daniel, Bailey
  */
-
 @Repository
 public interface OrdersRepository extends JpaRepository<Orders, Integer> {
   /**
@@ -53,8 +52,6 @@ public interface OrdersRepository extends JpaRepository<Orders, Integer> {
    */
   @Query("SELECT o FROM Orders o WHERE o.userid = ?1")
   List<Orders> findByuID(Optional<Users> user);
-
-
 
   @Query("SELECT o FROM Orders o WHERE o.state = 'Confirmed' Order by o.timeplaced ASC")
   public List<Orders> findConfirmedStateASC();
@@ -95,5 +92,4 @@ public interface OrdersRepository extends JpaRepository<Orders, Integer> {
    */
   @Query("SELECT o FROM Orders o WHERE o.state != ?1 AND o.userid = ?2")
   List<Orders> findbyStateAndID(String state, Users user);
-
 }

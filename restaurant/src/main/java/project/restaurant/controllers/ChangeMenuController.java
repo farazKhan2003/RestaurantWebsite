@@ -23,7 +23,6 @@ import project.restaurant.repository.MenuItemsRepository;
  *
  * @author James, Faraz, Pete
  */
-
 @Controller
 public class ChangeMenuController {
   @Autowired
@@ -34,7 +33,6 @@ public class ChangeMenuController {
    *
    * @return "menuChange" the html link for displaying options to the waiter to change the menu
    */
-
   @GetMapping("/menuChange")
   public String getMenuChange() {
     return "menuChange";
@@ -65,7 +63,6 @@ public class ChangeMenuController {
    * @return "menuChanges" The webpage for menuChange
    * @throws IOException If a user inputs the wrong type for a parameter, throw an IOException
    */
-
   @PostMapping("/addItems")
   public String addItems(HttpSession session, @RequestParam("itemName") String itemName,
                          @RequestParam("description") String description,
@@ -115,7 +112,6 @@ public class ChangeMenuController {
    * @param model A method to identify menu items and their category on one webpage
    * @return "viewMenu" The link to the page that allows a waiter to view the current menu
    */
-
   @PostMapping("/viewMenu")
   public String getViewMenu(Model model) {
     List<MenuItems> menuItems = miRepo.findAll();
@@ -180,7 +176,6 @@ public class ChangeMenuController {
    * @param model A method to identify menu items and their ID on one webpage
    * @return "editSpecificItem" The link to the webpage that allows an item to be changed
    */
-
   @PostMapping("/editItem")
   public String getEditItem(@RequestParam("aMenuItem") Integer itemid, Model model) {
     MenuItems mi = miRepo.findBySingleId(itemid);
@@ -203,7 +198,6 @@ public class ChangeMenuController {
    * @return "menuChanges" The default page where a waiter can change the menu
    * @throws IOException If a user inputs the wrong type for a parameter, throw an IOException
    */
-
   @PostMapping("/updateItems")
   public String getUpdateItem(@RequestParam("aMenuItem") Integer itemid, HttpSession session,
                               @RequestParam("itemName") String itemName,
@@ -230,6 +224,4 @@ public class ChangeMenuController {
     miRepo.save(mi);
     return "menuChanges";
   }
-
-
 }

@@ -19,7 +19,6 @@ import project.restaurant.repository.WaitersRepository;
  *
  * @author James Faraz Pete Pengyuan
  */
-
 @Controller
 public class LoginController {
   @Autowired

@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import project.restaurant.models.KitchenStaff;
 import project.restaurant.models.Users;
-import project.restaurant.models.Waiters;
 
 @Repository
 public interface KitchenStaffRepository extends JpaRepository<KitchenStaff,Integer>{

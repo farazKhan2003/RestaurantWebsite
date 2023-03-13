@@ -12,7 +12,6 @@ import jakarta.persistence.Table;
  *
  * @author James Faraz Pete
  */
-
 @Entity
 @Table(name = "Helps")
 public class Helps {
@@ -75,7 +74,6 @@ public class Helps {
    *
    * @return the state of the help request
    */
-
   public String getState() {
     return state;
   }

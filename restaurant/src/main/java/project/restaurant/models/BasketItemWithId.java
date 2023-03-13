@@ -3,7 +3,7 @@ package project.restaurant.models;
 /**
  * This class extends the basketItem model to include its ID.
  *
- * @author Tanmeet Kenny Wen
+ * @author Tanmeet
  */
 public class BasketItemWithId extends BasketItem {
   private final Integer id;

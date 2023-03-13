@@ -21,7 +21,7 @@ import project.restaurant.repository.WaitersRepository;
 /**
  * This class will display the menu for users.
  *
- * @author James Faraz Pete Bailey Dan Tanmeet Kenny Irmani Wen
+ * @author James Faraz Pete Bailey Dan Tanmeet Pengyuan Irmani Wen
  */
 
 @Controller

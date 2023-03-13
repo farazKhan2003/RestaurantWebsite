@@ -19,7 +19,6 @@ import java.util.Set;
  *
  * @author James Faraz Pete
  */
-
 @Entity
 @Table(name = "Waiters")
 public class Waiters {
@@ -45,7 +44,6 @@ public class Waiters {
   /**
    * This constructor builds an empty waiter.
    */
-
   public Waiters() {
   }
 
@@ -66,7 +64,6 @@ public class Waiters {
    *
    * @return the ID of the waiter
    */
-
   public Integer getWaiterid() {
     return waiterid;
   }
@@ -83,7 +80,6 @@ public class Waiters {
    *
    * @return the permission of the waiter
    */
-
   public Integer getPermissions() {
     return permissions;
   }
@@ -100,7 +96,6 @@ public class Waiters {
    *
    * @return the ID of the user
    */
-
   public Users getUserid() {
     return userid;
   }

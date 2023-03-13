@@ -15,8 +15,6 @@ import java.util.Set;
  *
  * @author James Faraz Pete
  */
-
-
 @Entity
 @Table(name = "Users")
 public class Users {
@@ -35,8 +33,6 @@ public class Users {
    * @param passwords    The password of the user
    * @param email_address The email address of the user
    */
-
-
   public Users(String usertype, String username, String passwords, String email_address) {
     this.usertype = usertype;
     this.username = username;
@@ -68,7 +64,6 @@ public class Users {
    *
    * @return the ID of the user
    */
-
   public Integer getUserid() {
     return userid;
   }
@@ -76,7 +71,6 @@ public class Users {
   /**
    * This method sets the ID of the user.
    */
-
   public void setUserid(Integer userid) {
     this.userid = userid;
   }
@@ -102,7 +96,6 @@ public class Users {
    *
    * @return the username of the user
    */
-
   public String getUsername() {
     return username;
   }
@@ -110,7 +103,6 @@ public class Users {
   /**
    * This method sets the username of user.
    */
-
   public void setUsername(String username) {
     this.username = username;
   }
@@ -120,7 +112,6 @@ public class Users {
    *
    * @return the password of the user
    */
-
   public String getPasswords() {
     return passwords;
   }
@@ -128,7 +119,6 @@ public class Users {
   /**
    * This method sets the password of user.
    */
-
   public void setPasswords(String passwords) {
     this.passwords = passwords;
   }

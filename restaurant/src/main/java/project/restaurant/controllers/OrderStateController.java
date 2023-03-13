@@ -16,7 +16,7 @@ import project.restaurant.repository.OrdersRepository;
 /**
  * This is class is used to react to the button of orders web page and generate list for it.
  *
- * @author Kenny Tanmeet Wen Bailey Dan Irmani
+ * @author Pengyuan Tanmeet Wen Bailey Dan Irmani
  */
 @Controller
 public class OrderStateController {
@@ -25,11 +25,11 @@ public class OrderStateController {
   private OrdersRepository orepo;
 
   /**
-   * This function will offer the data the need to generate ready state list
-   * and other state list for orders web page.
+   * This function will offer the data the need to generate ready state list and other state list
+   * for orders web page.
    *
-   * @param model is the Model type parameter help the back-end code
-   *              to add attribute for front-end web page
+   * @param model is the Model type parameter help the back-end code to add attribute for front-end
+   *        web page
    */
   @GetMapping("/waiterOrder")
   public String getOrders(Model model, HttpSession session) {
@@ -57,16 +57,16 @@ public class OrderStateController {
   }
 
   /**
-   * This function will react to the delivered button of
-   * ready state order list to set the order state to delivered.
+   * This function will react to the delivered button of ready state order list to set the order
+   * state to delivered.
    *
    * @param input is the id of order that waiter want to set its state to delivered.
-   * @param model is the Model type parameter help the back-end code
-   *              to add attribute for front-end web page
+   * @param model is the Model type parameter help the back-end code to add attribute for front-end
+   *        web page
    */
   @PostMapping("/changeToDelivered")
   public String changeStateToDelivered(@Param("input") Integer input, Model model,
-                                       HttpSession session) {
+      HttpSession session) {
     Orders order = orepo.findOrderByOrderId(input);
     order.setState("delivered");
     orepo.save(order);
@@ -77,15 +77,15 @@ public class OrderStateController {
   /**
    * This method will change the state of the order to be confirmed.
    *
-   * @param input   The ID of the order being confirmed
-   * @param model   is the Model type parameter help the back-end code
-   *                to add attribute for front-end web page
+   * @param input The ID of the order being confirmed
+   * @param model is the Model type parameter help the back-end code to add attribute for front-end
+   *        web page
    * @param session A method to identify a user and waiter across more than one page
    * @return "orders" The webpage that displays all current orders
    */
   @PostMapping("/changeToConfirmed")
   public String changeStateToConfirmed(@Param("input") Integer input, Model model,
-                                       HttpSession session) {
+      HttpSession session) {
     Orders order = orepo.findOrderByOrderId(input);
     order.setState("confirmed");
     Waiters waiter = (Waiters) session.getAttribute("waiter");

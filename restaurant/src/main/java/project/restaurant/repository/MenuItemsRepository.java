@@ -9,14 +9,16 @@ import org.springframework.stereotype.Repository;
 import project.restaurant.models.MenuItems;
 
 /**
- * JpaRepository is a collection of APIs used for basic operations and sorting,
- * and MenuItemsRepository extends this collection to modify 'menu_items' table.
- * @author Tanmeet, Peter, Irmani, Faraz, James, Wen, Pengyuan(Kenny), Daniel, Bailey
+ * JpaRepository is a collection of APIs used for basic operations and sorting, and
+ * MenuItemsRepository extends this collection to modify 'menu_items' table.
+ * 
+ * @author Tanmeet, Peter, Irmani, Faraz, James, Wen, Pengyuan, Daniel, Bailey
  */
 @Repository
 public interface MenuItemsRepository extends JpaRepository<MenuItems, Integer> {
   /**
    * Selects all items from menu_items where the keyword is the given parameter.
+   * 
    * @param keyword a string variable representing the keyword.
    * @return a list of menu items satisfying the query.
    */
@@ -27,14 +29,16 @@ public interface MenuItemsRepository extends JpaRepository<MenuItems, Integer> {
 
   /**
    * Select all distinct categories from menu_items.
+   * 
    * @return a list of string values.
    */
   @Query(value = "SELECT DISTINCT category FROM menu_items", nativeQuery = true)
   List<String> findAllDistinctCat();
 
   /**
-   *selects all items from menu_items where the category is the given parameter.
-   * @param cat  a string variable representing the category.
+   * selects all items from menu_items where the category is the given parameter.
+   * 
+   * @param cat a string variable representing the category.
    * @return a list of menu items satisfying the query.
    */
   @Query(value = "SELECT * FROM menu_items m WHERE m.category = :cat", nativeQuery = true)
@@ -42,11 +46,12 @@ public interface MenuItemsRepository extends JpaRepository<MenuItems, Integer> {
 
   /**
    * selects name by ID including 'sumprice'.
+   * 
    * @param itemid an object of type MenuItems to represent ItemId field.
    * @return a string representing the result of the query.
    */
-  @Query(value =
-      "select T.item_name from (SELECT item_name,count(item_name)"
+  @Query(
+      value = "select T.item_name from (SELECT item_name,count(item_name)"
           + " as quantity ,sum(price) as sumprice "
           + "FROM menu_items m WHERE m.itemid=1 group by item_name order by sumprice desc) as T",
       nativeQuery = true)
@@ -54,19 +59,20 @@ public interface MenuItemsRepository extends JpaRepository<MenuItems, Integer> {
 
   /**
    * find 'sumprice' by ID.
+   * 
    * @param itemid an object of type MenuItems to represent ItemId field.
    * @return a Float representing the result of the query.
    */
-  @Query(value =
-      "select T.sumprice from (SELECT item_name,count(item_name) as quantity ,sum(price) "
-          +
-          "as sumprice FROM menu_items m "
+  @Query(
+      value = "select T.sumprice from (SELECT item_name,count(item_name) as quantity ,sum(price) "
+          + "as sumprice FROM menu_items m "
           + "WHERE m.itemid=1 group by item_name order by sumprice desc) as T",
       nativeQuery = true)
   Float findSumPriceById(MenuItems itemid);
 
   /**
    * selects all items from MenuItems where menuItem is the given parameter.
+   * 
    * @param menuItem an object of type Optional MenuItems.
    * @return a list of menu Items satisfying the query.
    */
@@ -75,6 +81,7 @@ public interface MenuItemsRepository extends JpaRepository<MenuItems, Integer> {
 
   /**
    * selects all items from MenuItems where integer is the given parameter.
+   * 
    * @param integer an object of type Integer.
    * @return a list of menu Items satisfying the query.
    */
@@ -83,6 +90,7 @@ public interface MenuItemsRepository extends JpaRepository<MenuItems, Integer> {
 
   /**
    * selects all items from MenuItems where integer is the given parameter.
+   * 
    * @param integer an object of type Integer.
    * @return a menu item
    */

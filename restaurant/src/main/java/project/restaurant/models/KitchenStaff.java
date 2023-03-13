@@ -18,6 +18,7 @@ public class KitchenStaff {
     @JoinColumn(name = "userid")
     private Users userid;
     
+    //not sure if this stuff necessary
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Orders> orders;
     

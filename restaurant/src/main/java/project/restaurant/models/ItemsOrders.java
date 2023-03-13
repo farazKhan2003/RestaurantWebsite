@@ -9,88 +9,52 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-/**
- * This class represents an order.
- *
- * @author James Faraz Pete
- */
 @Entity
-@Table(name = "Itemsorders")
+@Table(name="Itemsorders")
 public class ItemsOrders {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer itemsordersid;
+      
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "itemid")
+    private MenuItems itemid;
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "orderid")
+    private Orders orderid;
+    
+    public ItemsOrders() {}
+    
+    public ItemsOrders(MenuItems itemid, Orders orderid) {
+        this.itemid = itemid;
+        this.orderid = orderid;
+    }
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer itemsordersid;
+    public Integer getItemordersid() {
+        return itemsordersid;
+    }
 
-  @ManyToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "itemid")
-  private MenuItems itemid;
+    public void setItemordersid(Integer itemordersid) {
+        this.itemsordersid = itemordersid;
+    }
 
-  @ManyToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "orderid")
-  private Orders orderid;
+    public MenuItems getItemid() {
+        return itemid;
+    }
 
-  /**
-   * This constructor will build an empty order.
-   */
-  public ItemsOrders() {
-  }
+    public void setItemid(MenuItems itemid) {
+        this.itemid = itemid;
+    }
 
-  /**
-   * This constructor will build an order and attach it to the menu items ID.
-   */
-  public ItemsOrders(MenuItems itemid, Orders orderid) {
-    this.itemid = itemid;
-    this.orderid = orderid;
-  }
+    public Orders getOrderid() {
+        return orderid;
+    }
 
-  /**
-   * This method gets the ID of the order.
-   *
-   * @return the ID of the order
-   */
-  public Integer getItemordersid() {
-    return itemsordersid;
-  }
-
-  /**
-   * This method sets the ID of the order.
-   */
-  public void setItemordersid(Integer itemordersid) {
-    this.itemsordersid = itemordersid;
-  }
-
-  /**
-   * This method gets the ID of the menu item.
-   *
-   * @return the ID of the menu item
-   */
-  public MenuItems getItemid() {
-    return itemid;
-  }
-
-  /**
-   * This method sets the ID of the menu item.
-   */
-  public void setItemid(MenuItems itemid) {
-    this.itemid = itemid;
-  }
-
-  /**
-   * This method gets the ID of the order.
-   *
-   * @return the ID of the order
-   */
-  public Orders getOrderid() {
-    return orderid;
-  }
-
-  /**
-   * This method sets the ID of the order.
-   */
-  public void setOrderid(Orders orderid) {
-    this.orderid = orderid;
-  }
+    public void setOrderid(Orders orderid) {
+        this.orderid = orderid;
+    }
 }
     
     

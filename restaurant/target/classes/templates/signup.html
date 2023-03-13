@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Home</title>
-    <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css"></link>
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <title>Home</title>
+  <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css"></link>
+  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 <!-- The header -->
 <header>
-    <a href="#" class="logo">ResturantNameHere</a>
-    <nav class="navbar">
-        <a href="home">Home</a>
-        <a href="orderingmenu">Dishes</a>
-        <a href="#">Contact us</a>
-        <a href="#">Orders</a>
-        <div class="navbar-right"><a href="login">Login</a></div>
-    </nav>
+  <a href="#" class="logo">ResturantNameHere</a>
+  <nav class="navbar">
+    <a href="home">Home</a>
+    <a href="orderingmenu">Dishes</a>
+    <a href="#">Contact us</a>
+    <a href="#">Orders</a>
+    <div class = "navbar-right"> <a href="login">Login</a> </div>
+  </nav>
 </header>
 
 <div class="loginblock">
-
   <h3>Sign up</h3>
   <form th:action="@{/signingup}" th:method="post">
     <ul>
@@ -38,7 +37,7 @@
 
 </div>
 </body>
-</html>
+</html >
 
 
 

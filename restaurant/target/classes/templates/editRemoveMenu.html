@@ -2,77 +2,77 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Home</title>
-    <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css">
-    </link>
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <title>Home</title>
+  <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css">
+  </link>
+  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-<!-- The header -->
-<header>
+  <!-- The header -->
+  <header>
     <a href="#" class="logo">ResturantNameHere</a>
     <nav class="navbar">
-        <a href="waiterhome">Home</a>
-        <a th:href="menuChange">Change Menu</a>
-        <a href="#">Contact us</a>
-        <a href="waiterOrder">Keep Track of Orders</a>
-        <a th:href="waiterhelps">Help</a>
-        <div class="navbar-right">
-            <div class="logoutb">
-                <button class="logoutdrop" th:text="${session.user.getUsername}"></button>
-                <div class="dropcontent">
-                    <form th:action="@{/logout}" th:method="post">
-                        <button class="logout" type="submit">Logout</button>
-                    </form>
-                </div>
-            </div>
+      <a href="waiterhome">Home</a>
+      <a th:href="menuChange">Change Menu</a>
+      <a href="#">Contact us</a>
+      <a href="waiterOrder">Keep Track of Orders</a>
+      <a th:href="waiterhelps">Help</a>
+      <div class="navbar-right">
+        <div class="logoutb">
+          <button class="logoutdrop" th:text="${session.user.getUsername}"></button>
+          <div class="dropcontent">
+            <form th:action="@{/logout}" th:method="post">
+              <button class="logout" type="submit">Logout</button>
+            </form>
+          </div>
         </div>
+      </div>
     </nav>
-</header>
-<div class="sidebar">
+  </header>
+  <div class="sidebar">
     <a class="active">Our Dishes</a>
     <li th:each="cats : ${cat}">
-        <input type="hidden" th:value="${cats}"></input>
-        <a th:href="@{editRemoveMenu} + ${'#' + {cats}}" th:text="${cats}"></a>
+      <input type="hidden" th:value="${cats}"></input>
+      <a th:href="@{editRemoveMenu} + ${'#' + {cats}}" th:text="${cats}"></a>
     </li>
-</div>
+  </div>
 
-<section th:each="category : ${cat}" class="items" th:id="${category}">
+  <section th:each="category : ${cat}" class="items" th:id="${category}">
     <h2 th:text="${category}"></h2>
     <ul>
-        <th:block th:each="menuItem : ${menuItems}" th:if="${menuItem.category} == ${category}">
-            <li>
-                <figure>
-                    <img th:src="'data:image/jpeg;base64,'+${menuItem.img}"/>
-                    <figcaption style="height:2rem;padding-bottom:1rem;">
-                        <h3 th:text="${menuItem.itemName}"></h3>
-                    </figcaption>
-                </figure>
-                <p th:text="${menuItem.descriptions}"></p>
-                <p>--------------------</p>
-                <p><strong>Price:</strong></p>
-                <p th:text="'£'+${menuItem.price}"></p>
-                <div class="center" style="margin-right:5rem;">
-                    <form th:action="@{/removeItem}" method="post">
-                        <input type="hidden" name="aMenuItem" th:value="${menuItem.itemid}"/>
-                        <button style="width:10rem;" class="order-button" type="submit">Remove Item From Menu</button>
-                    </form>
-                </div>
-                <div class="center">
-                    <form th:action="@{/editItem}" method="post">
-                        <input type="hidden" name="aMenuItem" th:value="${menuItem.itemid}"/>
-                        <button class="dropbtn">Edit Item</button>
-                    </form>
-                </div>
-            </li>
-        </th:block>
+      <th:block th:each="menuItem : ${menuItems}" th:if="${menuItem.category} == ${category}">
+        <li>
+          <figure>
+            <img th:src="'data:image/jpeg;base64,'+${menuItem.img}" />
+            <figcaption style="height:2rem;padding-bottom:1rem;">
+              <h3 th:text="${menuItem.itemName}"></h3>
+            </figcaption>
+          </figure>
+          <p th:text="${menuItem.descriptions}"></p>
+          <p>--------------------</p>
+          <p><strong>Price:</strong></p>
+          <p th:text="'£'+${menuItem.price}"></p>
+          <div class="center" style="margin-right:5rem;">
+            <form th:action="@{/removeItem}" method="post">
+              <input type="hidden" name="aMenuItem" th:value="${menuItem.itemid}" />
+              <button style="width:10rem;"class="order-button" type="submit">Remove Item From Menu</button>
+            </form>
+          </div>
+          <div class="center">
+            <form th:action="@{/editItem}" method="post">
+              <input type="hidden" name="aMenuItem" th:value="${menuItem.itemid}" />
+              <button class="dropbtn">Edit Item</button>
+            </form>
+          </div>
+        </li>
+      </th:block>
     </ul>
-</section>
-<div class="placeorder">
+  </section>
+  <div class="placeorder">
     <button class="order-button" type="submit">PlaceOrder</button>
-</div>
+  </div>
 
 
 </body>

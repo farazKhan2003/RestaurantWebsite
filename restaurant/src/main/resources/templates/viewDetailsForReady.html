@@ -35,7 +35,6 @@
             <th align="left">Item Id</th>
             <th align="left">Item name</th>
             <th align="left">Required amount</th>
-            <th align="left">Finished</th>
         </tr>
         </thead>
         <tbody>
@@ -43,19 +42,10 @@
             <td class="id" th:text="${item.id}"></td>
             <td class="qty" th:text="${item.name}"></td>
             <td th:text="${item.quantity}"></td>
-            <td><input type="checkbox" /></td>
         </tr>
         </tbody>
     </table>
     <div class="flex">
-		  <span th:if="${OrderContent.getState()}==cooking">
-
-          <form th:action="@{/finishOrder}" th:method="post">
-            <button style="float: left;" type="submit">Finish</button>
-            <input type="hidden" name ="input" th:value="${OrderContent.getOrderId()}"/>
-          </form>
-
-      </span>
         <form th:action="@{/kitchenStaffOrders}" th:method="get">
             <button style="float: right;" type="submit">Return</button>
         </form>

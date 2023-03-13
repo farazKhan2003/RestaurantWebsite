@@ -5,13 +5,10 @@
   text-decoration: none;
   transition: all 0.2s linear;
   list-style-type: none;
-<<<<<<< HEAD
 }
 
 .required {
   color: red;
-=======
->>>>>>> KitchenStaff
 }
 
 body {
@@ -459,8 +456,6 @@ div.content {
   padding-top: 2.2rem;
   padding-bottom: 3rem;
   text-align: center;
-<<<<<<< HEAD
-=======
 }
 
  /*Make the return and finish buttons in a column*/
@@ -526,5 +521,16 @@ div.content {
 .centerTable table tbody tr td:nth-last-child(1),
 .centerTable table tfoot tr td:nth-last-child(1) {
   text-align: right;
->>>>>>> KitchenStaff
 }
+
+.seeorder button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  left: 43%;
+}
+

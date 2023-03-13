@@ -1,5 +1,6 @@
 package project.restaurant.controllers;
 
+import jakarta.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +10,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -17,8 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import jakarta.servlet.http.HttpSession;
 import project.restaurant.models.BasketItem;
 import project.restaurant.models.BasketItemWithId;
 import project.restaurant.models.ItemsOrders;
@@ -35,255 +33,387 @@ import project.restaurant.repository.WaitersRepository;
 /**
  * This class is a controller class to realize the action related to customer
  * ordering item.
+ *
+ * @author Kenny Tanmeet Wen Bailey Dan Irmani
  */
 @Controller
 public class OrderingController {
 
-	/**
-	 * This list is a temporary basket to store item that customer want.
-	 *
-	 * @return the name of the item
-	 */
-	private List<Integer> mList = new ArrayList<Integer>();
+  private final List<Integer> mlist = new ArrayList<Integer>();
 
-	@Autowired
-	private MenuItemsRepository mRepo;
+  @Autowired
+  private MenuItemsRepository mrepo;
 
-	@Autowired
-	private UsersRepository uRepo;
+  @Autowired
+  private UsersRepository urepo;
 
-	@Autowired
-	private WaitersRepository wRepo;
+  @Autowired
+  private WaitersRepository wrepo;
 
-	@Autowired
-	private ItemsordersRepository iRepo;
+  @Autowired
+  private ItemsordersRepository irepo;
 
-	@Autowired
-	private OrdersRepository oRepo;
+  @Autowired
+  private OrdersRepository orepo;
 
-	/**
-	 * React to add button by adding an item into the basket.
-	 *
-	 * @param aMenuItem the Menuitem id of the item that customer want
-	 * @param model     is the Model type parameter help the back-end code to add
-	 *                  attribute for front-end web page
-	 */
-	@PostMapping("/orderitem2")
-	public String addOrderItem(@RequestParam("aMenuItem") Integer aMenuItem, Model model) {
-		mList.add(aMenuItem);
-		for (Integer m : mList) {
-			System.out.println(m);
-		}
+  /**
+   * React to add button by adding an item into the basket.
+   *
+   * @param amenuitem the Menuitem id of the item that customer want
+   * @param model     is the Model type parameter help the back-end code to add
+   *                  attribute for front-end web page
+   */
+  @PostMapping("/orderitem2")
+  public String addOrderItem(@RequestParam("aMenuItem") Integer amenuitem, Model model) {
+    mlist.add(amenuitem);
+    for (Integer m : mlist) {
+      System.out.println(m);
+    }
 
-		List<MenuItems> menuItems = mRepo.findAll();
-		model.addAttribute("menuItems", menuItems);
-		List<String> cat = mRepo.findAllDistinctCat();
-		model.addAttribute("cat", cat);
-		try {
-			TimeUnit.SECONDS.sleep(1);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		return "orderingmenu";
-	}
+    List<MenuItems> menuItems = mrepo.findAll();
+    List<String> priceList = new ArrayList<>();
+    
+    for (MenuItems mi : menuItems) {
+      String str = mi.getPrice()+""; //connverting int to string
+      String digit = str.substring(str.length() - 2, str.length());
+      String frontDigit = str.substring(0, str.length() - 2);
+      System.out.println(digit);
+      if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
+          || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
+          || digit.equals(".8") || digit.equals(".9")) {
+        digit = digit + "0";
+        frontDigit = frontDigit + digit;
+        // basketTotal = Float.parseFloat(frontDigit);
+      } else {
+        frontDigit = str;
+      }
+      priceList.add(frontDigit);
+      
+    }
+    model.addAttribute("priceList", priceList);
+    
+    model.addAttribute("menuItems", menuItems);
+    List<String> cat = mrepo.findAllDistinctCat();
+    model.addAttribute("cat", cat);
+    try {
+      TimeUnit.SECONDS.sleep(1);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    return "orderingmenu";
+  }
 
-	/**
-	 * React to placeorder button by adding all item in the basket to database.
-	 *
-	 * @param model is the Model type parameter help the back-end code to add
-	 *              attribute for front-end web page
-	 */
-	@PostMapping("/placeorder2")
-	public String placeOrder2(Model model, HttpSession session, @RequestParam("tablenumber")Integer tablenumber) {
-		if (mList.size() == 0) {
-			return "havent-add-anyitem";
-		}
+  /**
+   * React to placeorder button by adding all item in the basket to database.
+   *
+   * @param model is the Model type parameter help the back-end code to add
+   *              attribute for front-end web page
+   */
+  @PostMapping("/placeorder2")
+  public String placeOrder2(Model model, HttpSession session,
+                            @RequestParam("tablenumber") Integer tablenumber) {
+    if (mlist.size() == 0) {
+      return "havent-add-anyitem";
+    }
 
-		List<MenuItems> item = new ArrayList<MenuItems>();
-		for (int i = 0; i < mList.size(); i++) {
-			item.add(mRepo.findByIntegerId(mList.get(i)).get(0));
-		}
-		if (session.getAttribute("user") == null) {
-			return "login";
-		}
-		Users u = (Users) session.getAttribute("user");
-		LocalDateTime curTime = LocalDateTime.now();
-		Orders order = new Orders("not confirmed", null, u, curTime.toString(),tablenumber,null);
-		Orders order1 = oRepo.save(order);
-		for (MenuItems i : item) {
-			iRepo.save(new ItemsOrders(i, order));
-		}
+    List<MenuItems> item = new ArrayList<MenuItems>();
+    float price = 0;
 
-		mList.clear();
+    for (Integer integer : mlist) {
+      MenuItems mi1 = mrepo.findByIntegerId(integer).get(0);
+      price += mi1.getPrice();
+      item.add(mi1);
+    }
+    if (session.getAttribute("user") == null) {
+      return "login";
+    }
+    Users u = (Users) session.getAttribute("user");
+    LocalDateTime curTime = LocalDateTime.now();
+    Orders order = new Orders("not confirmed", null, u, curTime.toString(), tablenumber,null, price);
+    for (MenuItems i : item) {
+      irepo.save(new ItemsOrders(i, order));
+    }
 
-		System.out.println("******************************************");
-		List<ItemsOrders> items = iRepo.findAllItemOrders(order1);
+    mlist.clear();
+    Orders order1 = orepo.save(order);
+    System.out.println("******************************************");
+    List<ItemsOrders> items = irepo.findAllItemOrders(order1);
 
-		List<BasketTypeInterface> returnItems = iRepo.findSumAmountById(items.get(0).getOrderid().getOrderId());
+    List<BasketTypeInterface> returnItems =
+        irepo.findSumAmountById(items.get(0).getOrderid().getOrderId());
 
-		System.out.println("******************************************");
-		System.out.println(returnItems.size());
-		System.out.println("******************************************");
+    System.out.println("******************************************");
+    System.out.println(returnItems.size());
+    System.out.println("******************************************");
 
-		List<BasketItem> basketOrder = new ArrayList<BasketItem>();
+    List<BasketItem> basketOrder = new ArrayList<BasketItem>();
+    List<String> priceList = new ArrayList<>();
+    Float basketTotal = (float) 0;
+    for (int i = 0; i < returnItems.size(); i++) {
+      Integer itemId = returnItems.get(i).getItemId();
+      Integer itemQuantity = returnItems.get(i).getQuantity();
+      Float itemSumPrice = itemQuantity * returnItems.get(i).getPrice();
+      
+      
+      String str = itemSumPrice+""; //connverting int to string
+      String digit = str.substring(str.length() - 2, str.length());
+      String frontDigit = str.substring(0, str.length() - 2);
+      System.out.println(digit);
+      if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
+          || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
+          || digit.equals(".8") || digit.equals(".9")) {
+        digit = digit + "0";
+        frontDigit = frontDigit + digit;
+        // basketTotal = Float.parseFloat(frontDigit);
+      } else {
+        frontDigit = str;
+      }
+      priceList.add(frontDigit);
+      
+      
+      String itemName = mrepo.findByIntegerId(itemId).get(0).getItemName();
+      basketTotal += itemSumPrice;
+      basketOrder.add(new BasketItem(itemName, itemQuantity, itemSumPrice));
+    }
+    
+    String str = basketTotal+""; //connverting int to string
+    String digit = str.substring(str.length() - 2, str.length());
+    String frontDigit = str.substring(0, str.length() - 2);
+    System.out.println(digit);
+    if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
+        || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
+        || digit.equals(".8") || digit.equals(".9")) {
+      digit = digit + "0";
+      frontDigit = frontDigit + digit;
+      // basketTotal = Float.parseFloat(frontDigit);
+    } else {
+      frontDigit = str;
+    }
+    
+    
+    model.addAttribute("priceList", priceList);
+    model.addAttribute("basketOrder", basketOrder);
+    model.addAttribute("basketTotal", frontDigit);
+    return "place-order-sucess";
+  }
 
-		Float basketTotal = (float) 0;
-		for (int i = 0; i < returnItems.size(); i++) {
-			Integer itemId = returnItems.get(i).getItemId();
-			Integer itemQuantity = returnItems.get(i).getQuantity();
-			Float itemSumPrice = itemQuantity * returnItems.get(i).getPrice();
+  /**
+   * This function will help the web page to generate the list of ordered item.
+   *
+   * @param model is the Model type parameter help the back-end code to add
+   *              attribute for front-end web page
+   */
+  @GetMapping("/basket")
+  public String getItem2(Model model) {
 
-			String itemName = mRepo.findByIntegerId(itemId).get(0).getItemName();
-			basketTotal += itemSumPrice;
-			basketOrder.add(new BasketItem(itemName, itemQuantity, itemSumPrice));
-		}
+    Set<Integer> set = new TreeSet<Integer>(mlist);
 
-		model.addAttribute("basketOrder", basketOrder);
-		model.addAttribute("basketTotal", basketTotal);
-		return "place-order-sucess";
-	}
+    Integer[] array = new Integer[set.size()];
 
-	/**
-	 * This function will help the web page to generate the list of ordered item.
-	 *
-	 * @param model is the Model type parameter help the back-end code to add
-	 *              attribute for front-end web page
-	 */
-	@GetMapping("/basket")
-	public String getItem2(Model model) {
+    Iterator<Integer> iterator = set.iterator();
 
-		Set<Integer> set = new TreeSet<Integer>(mList);
+    int j = 0;
+    while (iterator.hasNext()) {
+        array[j] = iterator.next();
+        j++;
+    }
 
-		Integer[] array = new Integer[set.size()];
+    Map<Integer, Integer> map = new HashMap<>();
 
-		Iterator<Integer> iterator = set.iterator();
+    for (int i = 0; i < mlist.size(); i++) {
+        if (map.containsKey(mlist.get(i)) == false) {
+            map.put(mlist.get(i), 1);
+        } else {
+            map.put(mlist.get(i), map.get(mlist.get(i)) + 1);
+        }
+    }
+    
+    System.out.println(map);
+    
+    List<BasketItemWithId> basketItems = new ArrayList<>();
+    Float basketTotal = (float) 0;
 
-		int j = 0;
-		while (iterator.hasNext()) {
-			array[j] = iterator.next();
-			j++;
-		}
+    List<String>priceList = new ArrayList<>();
+    String frontDigitPrice ="";
+    
+    for (int i = 0; i < array.length; i++) {
+        List<MenuItems> menuItem = mrepo.findByIntegerId(array[i]);
 
-		Map<Integer, Integer> map = new HashMap<>();
+        Integer menuItemId = menuItem.get(0).getItemid();
+        String name = menuItem.get(0).getItemName();
+        Float price = menuItem.get(0).getPrice();
+        
+        Integer quantity = map.get(array[i]);
+        
+        Float curPrice = price * quantity;
+        System.out.println(quantity);
+         String strPrice = curPrice+""; //connverting int to string
+            String digit = strPrice.substring(strPrice.length()-2, strPrice.length());
+            frontDigitPrice = strPrice.substring(0, strPrice.length() - 2);
+            if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3") || digit.equals(".4") || digit.equals(".5") ||digit.equals(".6") ||digit.equals(".7") || digit.equals(".8") || digit.equals(".9")) {
+              digit = digit + "0";
+              frontDigitPrice = frontDigitPrice + digit;   
+            } else {
+              frontDigitPrice = strPrice;
+            }
+            priceList.add(frontDigitPrice);
 
-		for (int i = 0; i < mList.size(); i++) {
-			if (map.containsKey(mList.get(i)) == false) {
-				map.put(mList.get(i), 1);
-			} else {
-				map.put(mList.get(i), map.get(mList.get(i)) + 1);
-			}
-		}
+        BasketItemWithId item = new BasketItemWithId(name, quantity, curPrice, menuItemId);
+        basketTotal += (curPrice);
+        basketItems.add(item);
+    }
 
-		List<BasketItemWithId> basketItems = new ArrayList<>();
-		Float basketTotal = (float) 0;
+    String str = String.format("%.2f", basketTotal); //connverting int to string
+    String digit = str.substring(str.length() - 2, str.length());
+    String frontDigit = str.substring(0, str.length() - 2);
+    System.out.println(digit);
+    if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3") || digit.equals(".4") || digit.equals(".5") ||digit.equals(".6") ||digit.equals(".7") || digit.equals(".8") || digit.equals(".9")) {
+      digit = digit + "0";
+      frontDigit = frontDigit + digit;
+      //basketTotal = Float.parseFloat(frontDigit);
+    } else {
+      frontDigit = str;
+    }
+    
+    System.out.println(frontDigitPrice+" here");
+    
+    model.addAttribute("basketItems", basketItems);
+    model.addAttribute("basketTotal", frontDigit);
+    model.addAttribute("priceList", priceList);
+    return "basket";
+  }
 
-		for (int i = 0; i < array.length; i++) {
-			List<MenuItems> menuItem = mRepo.findByIntegerId(array[i]);
+  /**
+   * This function react to the add button of the item list. It will increase one
+   * when the button have been clicked.
+   *
+   * @param input is the menuitem id of the item that customer want to have more.
+   * @param model is the Model type parameter help the back-end code to add
+   *              attribute for front-end web page
+   */
+  @GetMapping("/addRowItem")
+  public String addRowItem(@Param("input") Integer input, Model model) {
+    mlist.add(input);
+    getItem2(model);
+    try {
+      TimeUnit.SECONDS.sleep(1);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    return "basket";
+  }
 
-			Integer menuItemId = menuItem.get(0).getItemid();
-			System.out.println(menuItemId);
-			String name = menuItem.get(0).getItemName();
-			Float price = menuItem.get(0).getPrice();
-			Integer quantity = map.get(array[i]);
+  /**
+   * This method will remove an item in the basket.
+   *
+   * @param input The quantity of the item the user wants to purchase
+   * @param model is the Model type parameter help the back-end code to add
+   *              attribute for front-end web page
+   * @return "basket" The webpage to view what is currently in your basket
+   */
+  @GetMapping("/deleteRowItem")
+  public String deleteRowItem(@Param("input") Integer input, Model model) {
 
-			BasketItemWithId item = new BasketItemWithId(name, quantity, price * quantity, menuItemId);
-			basketTotal += (price * quantity);
-			basketItems.add(item);
-		}
+    for (int i = 0; i < mlist.size(); i++) {
+      if (mlist.get(i).equals(input)) {
+        mlist.remove(i);
+        break;
+      }
+    }
+    getItem2(model);
+    try {
+      TimeUnit.SECONDS.sleep(1);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    return "basket";
+  }
 
-		model.addAttribute("basketItems", basketItems);
-		model.addAttribute("basketTotal", basketTotal);
+  /**
+   * This method will confirm an order and adds it to the menu_items database.
+   *
+   * @param model is the Model type parameter help the back-end code to add
+   *              attribute for front-end web page
+   * @return "confirmOrder" The webpage that confirms to a user that their order has been placed
+   */
+  @GetMapping("/confirmOrders")
+  public String confirmOrder(Model model, HttpSession session) {
+      Set<Integer> set = new TreeSet<Integer>(mlist);
 
-		return "basket";
-	}
+      Integer[] array = new Integer[set.size()];
 
-	/**
-	 * This function react to the add button of the item list. It will increase one
-	 * when the button have been clicked.
-	 * 
-	 * @param input is the menuitem id of the item that customer want to have more.
-	 * @param model is the Model type parameter help the back-end code to add
-	 *              attribute for front-end web page
-	 */
-	@GetMapping("/addRowItem")
-	public String addRowItem(@Param("input") Integer input, Model model) {
-		mList.add(input);
-		getItem2(model);
-		try {
-			TimeUnit.SECONDS.sleep(1);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		return "basket";
-	}
+      Iterator<Integer> iterator = set.iterator();
 
-	@GetMapping("/deleteRowItem")
-	public String deleteRowItem(@Param("input") Integer input, Model model) {
+      int j = 0;
+      while (iterator.hasNext()) {
+          array[j] = iterator.next();
+          j++;
+      }
 
-		System.out.println("******************************************");
-		System.out.println(input);
-		System.out.println("******************************************");
+      Map<Integer, Integer> map = new HashMap<>();
 
-		for (int i = 0; i < mList.size(); i++) {
-			if (mList.get(i).equals(input)) {
-				mList.remove(i);
-				break;
-			}
-		}
-		getItem2(model);
-		try {
-			TimeUnit.SECONDS.sleep(1);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		return "basket";
-	}
+      for (int i = 0; i < mlist.size(); i++) {
+          if (map.containsKey(mlist.get(i)) == false) {
+              map.put(mlist.get(i), 1);
+          } else {
+              map.put(mlist.get(i), map.get(mlist.get(i)) + 1);
+          }
+      }
+      
+      System.out.println(map);
+      
+      List<BasketItemWithId> basketItems = new ArrayList<>();
+      Float basketTotal = (float) 0;
 
-	@GetMapping("/confirmOrders")
-	public String confirmOrder(Model model, HttpSession session) {
-		Set<Integer> set = new TreeSet<Integer>(mList);
+      List<String>priceList = new ArrayList<>();
+      String frontDigitPrice ="";
+      
+      for (int i = 0; i < array.length; i++) {
+          List<MenuItems> menuItem = mrepo.findByIntegerId(array[i]);
 
-		Integer[] array = new Integer[set.size()];
+          Integer menuItemId = menuItem.get(0).getItemid();
+          String name = menuItem.get(0).getItemName();
+          Float price = menuItem.get(0).getPrice();
+          
+          Integer quantity = map.get(array[i]);
+          
+          Float curPrice = price * quantity;
+          System.out.println(quantity);
+           String strPrice = curPrice+""; //connverting int to string
+              String digit = strPrice.substring(strPrice.length()-2, strPrice.length());
+              frontDigitPrice = strPrice.substring(0, strPrice.length() - 2);
+              if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3") || digit.equals(".4") || digit.equals(".5") ||digit.equals(".6") ||digit.equals(".7") || digit.equals(".8") || digit.equals(".9")) {
+                digit = digit + "0";
+                frontDigitPrice = frontDigitPrice + digit;   
+              } else {
+                frontDigitPrice = strPrice;
+              }
+              priceList.add(frontDigitPrice);
 
-		Iterator<Integer> iterator = set.iterator();
+          BasketItemWithId item = new BasketItemWithId(name, quantity, curPrice, menuItemId);
+          basketTotal += (curPrice);
+          basketItems.add(item);
+      }
 
-		int j = 0;
-		while (iterator.hasNext()) {
-			array[j] = iterator.next();
-			j++;
-		}
-
-		Map<Integer, Integer> map = new HashMap<>();
-
-		for (int i = 0; i < mList.size(); i++) {
-			if (map.containsKey(mList.get(i)) == false) {
-				map.put(mList.get(i), 1);
-			} else {
-				map.put(mList.get(i), map.get(mList.get(i)) + 1);
-			}
-		}
-
-		List<BasketItemWithId> basketItems = new ArrayList<>();
-		Float basketTotal = (float) 0;
-
-		for (int i = 0; i < array.length; i++) {
-			List<MenuItems> menuItem = mRepo.findByIntegerId(array[i]);
-
-			Integer menuItemId = menuItem.get(0).getItemid();
-			System.out.println(menuItemId);
-			String name = menuItem.get(0).getItemName();
-			Float price = menuItem.get(0).getPrice();
-			Integer quantity = map.get(array[i]);
-
-			BasketItemWithId item = new BasketItemWithId(name, quantity, price * quantity, menuItemId);
-			basketTotal += (price * quantity);
-			basketItems.add(item);
-		}
-
-		model.addAttribute("basketItems", basketItems);
-		model.addAttribute("basketTotal", basketTotal);
-		return "confirmOrder";
-	}
-	
+      String str = String.format("%.2f", basketTotal); //connverting int to string
+      String digit = str.substring(str.length() - 2, str.length());
+      String frontDigit = str.substring(0, str.length() - 2);
+      System.out.println(digit);
+      if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3") || digit.equals(".4") || digit.equals(".5") ||digit.equals(".6") ||digit.equals(".7") || digit.equals(".8") || digit.equals(".9")) {
+        digit = digit + "0";
+        frontDigit = frontDigit + digit;
+        //basketTotal = Float.parseFloat(frontDigit);
+      } else {
+        frontDigit = str;
+      }
+      
+      System.out.println(frontDigitPrice+" here");
+      
+      model.addAttribute("basketItems", basketItems);
+      model.addAttribute("basketTotal", frontDigit);
+      model.addAttribute("priceList", priceList);
+      return "confirmOrder";
+  }
+  
 
 }

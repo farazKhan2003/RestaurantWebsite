@@ -94,6 +94,15 @@ public class KitchenStaffController {
         getOrderDetail(input, model);
         return "orderdetail";
     }
+
+    @PostMapping("/viewDetailsForReady")
+    public String viewDetailsForReady(@Param("input") Integer input, Model model) {
+        System.out.println("****************************************");
+        System.out.println(input);
+        System.out.println("****************************************");
+        getOrderDetail(input, model);
+        return "viewDetailsForReady";
+    }
     
     @GetMapping("/orderdetail")
     public String getOrderDetail(@Param("input") Integer input, Model model) {

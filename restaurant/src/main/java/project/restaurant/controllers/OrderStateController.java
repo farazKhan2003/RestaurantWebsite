@@ -16,7 +16,7 @@ import project.restaurant.repository.OrdersRepository;
 /**
  * This is class is used to react to the button of orders web page and generate list for it.
  *
- * @author Kenny Tanmeet Wen Bailey Dan Irmani
+ * @author Pengyuan Tanmeet Wen Bailey Dan Irmani
  */
 @Controller
 public class OrderStateController {

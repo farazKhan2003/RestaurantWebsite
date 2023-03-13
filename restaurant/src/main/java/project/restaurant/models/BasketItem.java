@@ -3,7 +3,7 @@ package project.restaurant.models;
 /**
  * This class represents an item from the menu in the customer's basket.
  * 
- * @author Tanmeet Kenny Wen
+ * @author Tanmeet Pengyuan Wen
  */
 public class BasketItem {
   private final String name;

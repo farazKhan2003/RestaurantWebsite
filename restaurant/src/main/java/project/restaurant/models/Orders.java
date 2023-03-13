@@ -15,7 +15,6 @@ import jakarta.persistence.Table;
  *
  * @author James Faraz, Pete, Pengyuan, Tanmeet, Wen
  */
-
 @Entity
 @Table(name = "Orders")
 public class Orders {
@@ -31,7 +30,7 @@ public class Orders {
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "waiterid")
   private Waiters waiterid;
-	
+
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "kitchenstaffid")
   private KitchenStaff kitchenstaffid;
@@ -51,6 +50,7 @@ public class Orders {
 
   /**
    * This constructor builds an order with all its characteristics.
+   * 
    * @param state The state the order is in
    * @param waiterid The ID of the waiter that the order is assigned to
    * @param userid The ID of the user that placed the order
@@ -58,14 +58,15 @@ public class Orders {
    * @param tablenumber The table number of the user
    * @param price The price of the order
    */
-   public Orders(String state, Waiters waiterid, Users userid, String timeplaced, Integer tablenumber, KitchenStaff kitchenStaffId, Float price) {
-		this.state = state;
-		this.waiterid = waiterid;
-		this.userid = userid;
-		this.timeplaced = timeplaced;
-		this.tablenumber = tablenumber;
-		this.kitchenstaffid = kitchenStaffId;
-		this.price = price;
+  public Orders(String state, Waiters waiterid, Users userid, String timeplaced,
+      Integer tablenumber, KitchenStaff kitchenStaffId, Float price) {
+    this.state = state;
+    this.waiterid = waiterid;
+    this.userid = userid;
+    this.timeplaced = timeplaced;
+    this.tablenumber = tablenumber;
+    this.kitchenstaffid = kitchenStaffId;
+    this.price = price;
   }
 
   /**
@@ -80,7 +81,6 @@ public class Orders {
    *
    * @return the price of the order
    */
-
   public Float getPrice() {
     return price;
   }
@@ -88,7 +88,6 @@ public class Orders {
   /**
    * This method sets the price of the order.
    */
-
   public void setPrice(Float price) {
     this.price = price;
   }
@@ -98,7 +97,6 @@ public class Orders {
    *
    * @return the time the order was placed
    */
-
   public String getTimeplaced() {
     return timeplaced;
   }
@@ -106,7 +104,6 @@ public class Orders {
   /**
    * This method sets the time the order was placed.
    */
-
   public void setTimeplaced(String timeplaced) {
     this.timeplaced = timeplaced;
   }
@@ -116,7 +113,6 @@ public class Orders {
    *
    * @return the ID of the order
    */
-
   public Integer getOrderId() {
     return orderid;
   }
@@ -132,16 +128,16 @@ public class Orders {
    * This method sets the table number of the user.
    */
   public void setTableNumber(Integer tablenumber) {
-	this.tablenumber = tablenumber;
+    this.tablenumber = tablenumber;
   }
-	
-	public KitchenStaff getOkitchenStaffId() {
-      return kitchenstaffid;
-    }
 
-    public void setOkitchenStaffId(KitchenStaff kitchenstaffid) {
-      this.kitchenstaffid = kitchenstaffid;
-    }
+  public KitchenStaff getOkitchenStaffId() {
+    return kitchenstaffid;
+  }
+
+  public void setOkitchenStaffId(KitchenStaff kitchenstaffid) {
+    this.kitchenstaffid = kitchenstaffid;
+  }
 
   /**
    * This method gets the state of the order.
@@ -155,7 +151,6 @@ public class Orders {
   /**
    * This method sets the state of the order.
    */
-
   public void setState(String state) {
     this.state = state;
   }
@@ -168,10 +163,10 @@ public class Orders {
   public Waiters getWaiterId() {
     return waiterid;
   }
+
   /**
    * This method gets the ID of the waiter.
    */
-
   public void setWaiterId(Waiters waiterid) {
     this.waiterid = waiterid;
   }
@@ -181,7 +176,6 @@ public class Orders {
    *
    * @return the ID of the user
    */
-
   public Users getUserid() {
     return userid;
   }
@@ -189,7 +183,6 @@ public class Orders {
   /**
    * This method sets the ID of the user.
    */
-
   public void setUserid(Users userid) {
     this.userid = userid;
   }
@@ -199,10 +192,7 @@ public class Orders {
    *
    * @return the table number of the user
    */
-
   public Integer getTableNumber() {
     return tablenumber;
   }
-
-  
 }

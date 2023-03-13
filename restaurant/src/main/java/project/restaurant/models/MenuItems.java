@@ -17,7 +17,6 @@ import java.util.Set;
  *
  * @author James Faraz Pete
  */
-
 @Entity
 @Table(name = "MenuItems")
 public class MenuItems {
@@ -25,7 +24,6 @@ public class MenuItems {
   /**
    * This constructor builds an empty menu item.
    */
-
   public MenuItems() {
   }
 
@@ -42,7 +40,6 @@ public class MenuItems {
    * @param ingredients  The ingredients of the menu item
    * @param calories     The calories of the menu item
    */
-
   public MenuItems(String itemName, String descriptions, Float price, String img,
                    Integer stockAmount, Waiters waiterid, String category, String ingredients,
                    Integer calories) {
@@ -98,7 +95,6 @@ public class MenuItems {
    *
    * @return the name of the menu item
    */
-
   public String getItemName() {
     return itemName;
   }
@@ -106,7 +102,6 @@ public class MenuItems {
   /**
    * This method sets the name of the menu item.
    */
-
   public void setItemName(String itemName) {
     this.itemName = itemName;
   }
@@ -116,7 +111,6 @@ public class MenuItems {
    *
    * @return the description of the menu item
    */
-
   public String getDescriptions() {
     return descriptions;
   }
@@ -124,7 +118,6 @@ public class MenuItems {
   /**
    * This method sets the description of the menu item.
    */
-
   public void setDescriptions(String descriptions) {
     this.descriptions = descriptions;
   }
@@ -150,7 +143,6 @@ public class MenuItems {
    *
    * @return the image of the menu item
    */
-
   public String getImg() {
     return img;
   }
@@ -158,7 +150,6 @@ public class MenuItems {
   /**
    * This method sets the name of the menu item.
    */
-
   public void setImg(String img) {
     this.img = img;
   }
@@ -168,7 +159,6 @@ public class MenuItems {
    *
    * @return the ID of the waiter
    */
-
   public Waiters getWaiterid() {
     return waiterid;
   }
@@ -201,7 +191,6 @@ public class MenuItems {
    *
    * @return the stock amount of the menu item
    */
-
   public Integer getStockAmount() {
     return stockAmount;
   }
@@ -225,7 +214,6 @@ public class MenuItems {
   /**
    * This method sets the category of the menu item.
    */
-
   public void setCategory(String category) {
     this.category = category;
   }
@@ -235,7 +223,6 @@ public class MenuItems {
    *
    * @return the ingredients of the menu item
    */
-
   public String getIngredients() {
     return ingredients;
   }
@@ -243,7 +230,6 @@ public class MenuItems {
   /**
    * This method sets the ingredients of the menu item.
    */
-
   public void setIngredients(String ingredients) {
     this.ingredients = ingredients;
   }
@@ -263,5 +249,4 @@ public class MenuItems {
   public void setCalories(Integer calories) {
     this.calories = calories;
   }
-
 }

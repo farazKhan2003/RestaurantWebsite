@@ -33,7 +33,7 @@ import project.restaurant.repository.WaitersRepository;
 /**
  * This class is a controller class to realize the action related to customer ordering item.
  *
- * @author Kenny Tanmeet Wen Bailey Dan Irmani
+ * @author Pengyuan Tanmeet Wen Bailey Dan Irmani
  */
 @Controller
 public class OrderingController {

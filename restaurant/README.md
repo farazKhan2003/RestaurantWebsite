@@ -81,4 +81,14 @@ the waiter to promptly assist the customer.
 
 ## Setup
 
+1. Install Eclipse or IntelliJ, as well as MySQL Workbench and MySQL.
+2. Ensure that MySQL server is running.
+3. Clone the repository.
+4. Run the SQL file which is in the repository to set up the database. This is done in MySQL Workbench.
+5. In the IDE, run the "RestaurantApplication" file. 
+6. Access the site on "localhost:8080/home".
+
+Here is a setup video for further clarity:
+INSERT VIDEO LINK HERE
+
 ## Screenshots

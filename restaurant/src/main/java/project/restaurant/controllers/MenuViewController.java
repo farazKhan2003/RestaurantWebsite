@@ -23,7 +23,6 @@ import project.restaurant.repository.WaitersRepository;
  *
  * @author James Faraz Pete Bailey Dan Tanmeet Pengyuan Irmani Wen
  */
-
 @Controller
 public class MenuViewController {
 
@@ -105,7 +104,6 @@ public class MenuViewController {
    *
    * @return "insert" The webpage for inserting menu items
    */
-
   @GetMapping("/insert")
   public String getInserts() {
     return "insert";

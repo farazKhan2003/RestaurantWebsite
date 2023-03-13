@@ -13,7 +13,6 @@ import project.restaurant.repository.UsersRepository;
  *
  * @author James Faraz Pete
  */
-
 @Controller
 public class SignUpController {
   @Autowired

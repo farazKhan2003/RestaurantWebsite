@@ -32,11 +32,10 @@ public class CurrentOrderController {
   @Autowired
   private MenuItemsRepository mrepo;
 
-
   /**
    * This method shows a user their current orders and what state it is in.
    *
-   * @param model   A method to identify a menu item on one webpage
+   * @param model A method to identify a menu item on one webpage
    * @param session A method to identify a user and waiter across more than one page
    * @return "currentOrder" The link to the webpage that displays the information of a users orders
    */
@@ -51,8 +50,8 @@ public class CurrentOrderController {
       return "noCurrentOrder";
     }
     List<String> priceList = new ArrayList<>();
-    for(Orders o:orders) {
-      String str = String.format("%.2f", o.getPrice()); //connverting int to string
+    for (Orders o : orders) {
+      String str = String.format("%.2f", o.getPrice()); // connverting int to string
       String digit = str.substring(str.length() - 2, str.length());
       String frontDigit = str.substring(0, str.length() - 2);
       System.out.println(digit);
@@ -66,7 +65,7 @@ public class CurrentOrderController {
         frontDigit = str;
       }
       priceList.add(frontDigit);
-      
+
     }
     List<MenuItems> menuItem = new ArrayList<>();
     for (ItemsOrders item : itemsOrdered) {

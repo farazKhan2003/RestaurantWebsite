@@ -28,7 +28,6 @@ public class HelpController {
    * @param session A method to identify a user and waiter across more than one page
    * @return "help" The webpage that allows a user to request help
    */
-
   @GetMapping("/help")
   public String getHelp(HttpSession session) {
     Users user = (Users) session.getAttribute("user");
@@ -53,6 +52,7 @@ public class HelpController {
 
   /**
    * This method will store a users request for help if they have not already requested help.
+   * 
    * @param session A method to identify a user and waiter across more than one page
    * @return "helpRequested" The webpage confirming to the user that their request has gone through
    */
@@ -69,6 +69,7 @@ public class HelpController {
 
   /**
    * This method will allow a waiter to accept help and set the help request to 'helping'.
+   * 
    * @param helpid The ID of the help request
    * @param model A method to identify a help request on one webpage
    * @return "waiterhelp" The webpage for a waiter to see current help requests
@@ -85,6 +86,7 @@ public class HelpController {
 
   /**
    * This method allows a waiter to close a help request if they have completed the help request.
+   * 
    * @param helpid The ID of the help request
    * @param model A method to identify a help request on one webpage
    * @return "waiterhelp" The webpage for a waiter to see current help requests

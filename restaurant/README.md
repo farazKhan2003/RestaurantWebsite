@@ -96,3 +96,4 @@ INSERT VIDEO LINK HERE
 Here are some screenshots from the project to give you an idea of how we have structured the system:
 
 ![Homepage](src/main/resources/static/images/home.png)
+![Add item page](src/main/resources/static/images/additem.png)

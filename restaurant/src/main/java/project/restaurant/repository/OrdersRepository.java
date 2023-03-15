@@ -92,4 +92,7 @@ public interface OrdersRepository extends JpaRepository<Orders, Integer> {
    */
   @Query("SELECT o FROM Orders o WHERE o.state != ?1 AND o.userid = ?2")
   List<Orders> findbyStateAndID(String state, Users user);
+  
+  @Query("SELECT o FROM Orders o WHERE o.state = 'confirmed' OR o.state = 'not confirmed' AND o.userid=?1")
+  List<Orders> findNotComfirmedAndComfirmedOrdersByUserId(Users userid);
 }

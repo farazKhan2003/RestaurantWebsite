@@ -43,19 +43,20 @@
       <th>Order ID</th>
       <th>Timeplaced</th>
       <th>Status</th>
+      <th>Table Number</th>
       <th>Cancel?</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="item: ${allorders}">
+    <tr th:each="item: ${cancelOrder}">
       <td th:text="${item.getOrderId()}"></td>
       <td th:text="${item.timeplaced}"></td>
       <td th:text="${item.getState()}"></td>
       <td th:text="${item.getTableNumber}"></td>
       <td>
         <!-- this is the Confirmed button on the orders web page -->
-        <form th:action="@{/changeToConfirmed}" th:method="post">
-          <button type="submit">Confirmed</button>
+        <form th:action="@{/tryToCancel}" th:method="post">
+          <button type="submit">Cancel</button>
           <!-- this input is set to the orderid of the row order -->
           <input type="hidden" name="input" th:value="${item.getOrderId()}"/>
         </form>

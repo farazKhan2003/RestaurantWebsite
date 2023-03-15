@@ -13,7 +13,7 @@
 <body>
     <!-- The header -->
     <header>
-    <a href=" " class="logo">ResturantNameHere</a>
+    <a href=" " class="logo">Oaxaca</a>
     <nav class="navbar">
       <a href="kitchenStaffHome">Home</a> <a href="kitchenStaffOrders">Confirmed Order</a>
       <div class="navbar-right">
@@ -110,12 +110,46 @@
                         <td th:text="${item.timeplaced}"></td>
                         <td th:text="Ready"></td>
                         <td>
-                            <form th:action="@{/viewDetail}" th:method="post">
+                            <form th:action="@{/viewDetailsForReady}" th:method="post">
                                 <button type="submit">View</button>
                                 <input type="hidden" name ="input" th:value="${item.getOrderId()}"/>
                             </form>
                         </td>
                     </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="tables">
+            <table class="ordersTable">
+                <thead>
+                <tr><th>Cancelled Orders</th><tr>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Time placed</th>
+                    <th>Status</th>
+                    <th>View Details</th>
+                    <th>Acknowledged?</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item: ${ReadyStateOrder}">
+                    <td th:text="${item.getOrderId()}"></td>
+                    <td th:text="${item.timeplaced}"></td>
+                    <td th:text="Cancelled"></td>
+                    <td>
+                        <form th:action="@{/viewDetailsForReady}" th:method="post">
+                            <button type="submit">View</button>
+                            <input type="hidden" name ="input" th:value="${item.getOrderId()}"/>
+                        </form>
+                    </td>
+                    <td>
+                        <form th:action="@{/viewDetailsForReady}" th:method="post">
+                            <button type="submit">Yes</button>
+                            <input type="hidden" name ="input" th:value="${item.getOrderId()}"/>
+                        </form>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </section>

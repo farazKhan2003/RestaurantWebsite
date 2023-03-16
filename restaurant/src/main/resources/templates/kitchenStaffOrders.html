@@ -133,7 +133,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="item: ${ReadyStateOrder}">
+                <tr th:each="item: ${CancelStateOrder}">
                     <td th:text="${item.getOrderId()}"></td>
                     <td th:text="${item.timeplaced}"></td>
                     <td th:text="Cancelled"></td>
@@ -144,7 +144,7 @@
                         </form>
                     </td>
                     <td>
-                        <form th:action="@{/viewDetailsForReady}" th:method="post">
+                        <form th:action="@{/deleteOrder}" th:method="post">
                             <button type="submit">Yes</button>
                             <input type="hidden" name ="input" th:value="${item.getOrderId()}"/>
                         </form>

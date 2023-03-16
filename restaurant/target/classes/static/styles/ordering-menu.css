@@ -129,7 +129,6 @@ header .icons a {
 .order-button {
   border-radius: 12%;
   width: 100%;
-  display: block;
   text-align: center;
   margin: 15px auto;
   font-size: 14px;
@@ -288,11 +287,14 @@ div.content {
   background: #eee;
   border: 1px solid #ccc;
   position: absolute;
-  left: 46%;
+  left: 48%;
   top: 50%;
   margin-left: -50px;
   margin-top: -50px;
+  border-radius: 6%;
+  padding: 1rem;
 }
+
 
 /* The following CSS code for the basket table was inspired by a YouTube video by 'FollowAndrew' */
 .basket-table {
@@ -572,4 +574,3 @@ div.content {
 .container form .flexbox .inputBox{
     flex:1 1 150px;
 }
-

@@ -11,6 +11,8 @@
             src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="static/scripts/toastr.js"></script>
+    <script src="static/scripts/orderingNotification.js"></script>
 </head>
 
 <body>
@@ -89,23 +91,6 @@
         <button class="order-button" type="submit">PlaceOrder</button>
     </form>
 </div>
-
-<script>
-      // Customisations for the toastr
-      toastr.options = {
-          "positionClass": "toast-bottom-right",
-          "showMethod": "fadeIn",
-          "hideMethod": "fadeOut"
-      }
-
-      /**
-       * This function notifies the user that the item has been added to the basket.
-       */
-      function added() {
-          toastr.success("Item added to basket!");
-      }
-
-</script>
 </body>
 
 </html>

@@ -36,6 +36,7 @@
 <div class="tables">
     <table class="ordersTable">
         <thead>
+        <tr><th>Help Requests</th><tr>
         <th th:if="${helps!=null}" scope="row">Help State</th>
         <th th:if="${helps!=null}" scope="row">User Id</th>
         <th th:if="${helps!=null}" scope="row">Update help</th>
@@ -58,6 +59,39 @@
         </tr>
     </table>
 </div>
+
+<section class="tables">
+    <table class="ordersTable">
+        <thead>
+        <tr><th>Cancellation Requests</th><tr>
+        <tr>
+            <th>Order ID</th>
+            <th>Time placed</th>
+            <th>Status</th>
+            <th>Cancel?</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item: ${CancelStateOrder}">
+            <td th:text="${item.getOrderId()}"></td>
+            <td th:text="${item.timeplaced}"></td>
+            <td th:text="Cancellation Request"></td>
+            <td>
+                <form th:action="@{/viewDetailsForReady}" th:method="post">
+                    <button type="submit">View</button>
+                    <input type="hidden" name ="input" th:value="${item.getOrderId()}"/>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/deleteOrder}" th:method="post">
+                    <button type="submit">Yes</button>
+                    <input type="hidden" name ="input" th:value="${item.getOrderId()}"/>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
 
 </body>
 

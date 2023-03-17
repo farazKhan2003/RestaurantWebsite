@@ -13,6 +13,8 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="static/scripts/toastr.js"></script>
+<script src="static/scripts/orderingNotification.js"></script>
 </head>
 <body>
 	<!-- The header -->
@@ -94,29 +96,5 @@
 			</form>
 		</div>
 	</section>
-
-
-	<script>
-		// Customisations for the toastr
-		toastr.options = {
-			"positionClass" : "toast-bottom-right",
-			"showMethod" : "fadeIn",
-			"hideMethod" : "fadeOut"
-		}
-
-		/**
-		 * This function notifies the user that the item has been added to the basket.
-		 */
-		function added() {
-			toastr.success("Item added to basket!");
-		}
-
-		/**
-		 * This function notifies the user that the item has been removed from the basket.
-		 */
-		function removed() {
-			toastr.success("Item removed from basket!");
-		}
-	</script>
 </body>
 </html>

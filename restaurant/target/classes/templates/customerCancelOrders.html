@@ -56,7 +56,7 @@
       <td th:text="${item.getTableNumber}"></td>
       <td>
         <!-- this is the View button on the orders web page -->
-        <form th:action="@{/viewCOrderDetail}" th:method="post">
+        <form th:action="@{/viewCOrderDetail}" th:method="get">
           <button type="submit">View</button>
           <!-- this input is set to the orderid of the row order -->
           <input type="hidden" name="input" th:value="${item.getOrderId()}"/>

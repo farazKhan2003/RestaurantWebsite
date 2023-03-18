@@ -2,74 +2,76 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <title>Home</title>
-  <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css">
-  </link>
-  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-  <style>
+    <title>Home</title>
+    <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css">
+    </link>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <style>
     body {
       background-image: url("images/HomePageImage.jpg");
     }
-  </style>
+
+    </style>
 </head>
 
 <body>
 
-  <!-- The header -->
-  <header>
-    <a href="#" class="logo">ResturantNameHere</a>
+<!-- The header -->
+<header>
+    <a href="#" class="logo">Oaxaca</a>
     <nav class="navbar">
-      <a href="waiterhome">Home</a>
-      <a th:href="menuChange">Change Menu</a>
-      <a href="#">Contact us</a>
-      <a href="waiterOrder">Keep Track of Orders</a>
-      <a th:href="waiterhelps">Help</a>
-      <div class="navbar-right">
-        <div class="logoutb">
-          <button class="logoutdrop" th:text="${session.user.getUsername}"></button>
-          <div class="dropcontent">
-            <form th:action="@{/logout}" th:method="post">
-              <button class="logout" type="submit">Logout</button>
-            </form>
-          </div>
+        <a href="waiterhome">Home</a>
+        <a th:href="menuChange">Change Menu</a>
+        <a href="#">Contact us</a>
+        <a href="waiterOrder">Keep Track of Orders</a>
+        <a th:href="waiterhelps">Help</a>
+        <div class="navbar-right">
+            <div class="logoutb">
+                <button class="logoutdrop" th:text="${session.user.getUsername}"></button>
+                <div class="dropcontent">
+                    <form th:action="@{/logout}" th:method="post">
+                        <button class="logout" type="submit">Logout</button>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
     </nav>
-  </header>
+</header>
 
-  <div class="addItems">
+<div class="addItems">
     <h3 style="padding-left:1rem;">Enter Dish Details Below:</h3>
     <form th:action="@{/addItems}" method="post" enctype="multipart/form-data">
-      <ul>
-        <label>Dish Name</label>
-        <li><input type="text" required name="itemName"></li>
-        <br>
-        <label>Description</label>
-        <li><textarea style="height:150px;width:400px;text-align:left;" type="text" required name="description"></textarea></li>
-        <br>
-        <label>Price (£)</label>
-        <li><input style="text-align:center;" type="number" step="0.01" required name="price"></li>
-        <br>
-        <label>Image</label>
-        <li><input style="padding-left:5rem" type="file" name="file" accept=".jpg,.png" /></li>
-        <br>
-        <label>Stock Amount</label>
-        <li><input type="number" required name="stockAmount"></li>
-        <br>
-        <label>Category</label>
-        <li><input type="text" required name="category"></li>
-        <br>
-        <label>Ingredients</label>
-        <li><input type="text" required name="ingredients"></li>
-        <br>
-        <label>Calories (Kcal)</label>
-        <li><input type="number" required name="calories"></li>
-      </ul>
-      <button type="submit">Add Dish</button>
+        <ul>
+            <label>Dish Name</label>
+            <li><input type="text" required name="itemName"></li>
+            <br>
+            <label>Description</label>
+            <li><textarea style="height:150px;width:400px;text-align:left;" type="text" required
+                          name="description"></textarea></li>
+            <br>
+            <label>Price (£)</label>
+            <li><input style="text-align:center;" type="number" step="0.01" required name="price"></li>
+            <br>
+            <label>Image</label>
+            <li><input style="padding-left:5rem" type="file" name="file" accept=".jpg,.png"/></li>
+            <br>
+            <label>Stock Amount</label>
+            <li><input type="number" required name="stockAmount"></li>
+            <br>
+            <label>Category</label>
+            <li><input type="text" required name="category"></li>
+            <br>
+            <label>Ingredients</label>
+            <li><input type="text" required name="ingredients"></li>
+            <br>
+            <label>Calories (Kcal)</label>
+            <li><input type="number" required name="calories"></li>
+        </ul>
+        <button type="submit">Add Dish</button>
     </form>
 
-  </div>
+</div>
 
 
 </body>

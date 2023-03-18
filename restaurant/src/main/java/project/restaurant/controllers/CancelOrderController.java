@@ -46,13 +46,18 @@ public class CancelOrderController {
   @PostMapping("/tryToCancel")
   public String changeStateToDelivered(@Param("input") Integer input, Model model, HttpSession session) {
     Orders order = oRepo.findOrderByOrderId(input);
-    order.setState("canceling");
-    oRepo.save(order);
+    System.out.println(order.getState());
+    if(order.getState().equals("not confirmed")) {
+      oRepo.delete(order);;
+    }else {
+      order.setState("canceling");
+      oRepo.save(order);
+    }
     getCancelOrders(model, session);
     return "customerCancelOrders";
   }
   
-  @GetMapping("/viewOrderDetail")
+  @GetMapping("/viewCOrderDetail")
   public String getOrderDetail(@Param("input") Integer input, Model model) {
     
     System.out.println("****************************************");
@@ -117,6 +122,6 @@ public class CancelOrderController {
     
     model.addAttribute("Items", Items);
     model.addAttribute("OrderContent", order);
-    return "newWebPage";
+    return "viewCOrderDetail";
   }
 }

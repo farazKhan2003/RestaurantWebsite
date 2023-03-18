@@ -3,14 +3,18 @@ package project.restaurant.controllers;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import project.restaurant.models.Helps;
+import project.restaurant.models.Orders;
 import project.restaurant.models.Users;
+import project.restaurant.models.Waiters;
 import project.restaurant.repository.HelpRepository;
+import project.restaurant.repository.OrdersRepository;
 
 /**
  * This class will allow a user to seek assistance from a waiter and allows a waiter to accept it.
@@ -21,6 +25,9 @@ import project.restaurant.repository.HelpRepository;
 public class HelpController {
   @Autowired
   private HelpRepository hrepo;
+  
+  @Autowired
+  private OrdersRepository orepo;
 
   /**
    * This method will allow the user to request for help if they have not already requested help.
@@ -44,9 +51,12 @@ public class HelpController {
    * @return "waiterhelp" The webpage that allows a waiter to accept the users help request
    */
   @GetMapping("/waiterhelps")
-  public String getWaiterHelps(Model model) {
+  public String getWaiterHelps(Model model,HttpSession session) {
+    Waiters waiter = (Waiters) session.getAttribute("waiter");
     List<Helps> lhelps = hrepo.findAll();
+    List<Orders> CancelStateOrder = orepo.findOrderInCancelingStateByWaiterId(waiter);
     model.addAttribute("helps", lhelps);
+    model.addAttribute("CancelStateOrder", CancelStateOrder);
     return "waiterhelp";
   }
 
@@ -97,6 +107,15 @@ public class HelpController {
     hrepo.deleteById(helpid);
     List<Helps> lhelps = hrepo.findAll();
     model.addAttribute("helps", lhelps);
+    return "waiterhelp";
+  }
+  
+  @PostMapping("/confirmCancel")
+  public String confirmCancel(HttpSession session, Model model, @Param("input") Integer input) {
+    Orders order = orepo.findOrderByOrderId(input);
+    order.setState("cancelled");
+    orepo.save(order);
+    getWaiterHelps(model, session);
     return "waiterhelp";
   }
 }

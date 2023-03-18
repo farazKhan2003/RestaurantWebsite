@@ -38,7 +38,7 @@
 </header>
 
 <div class = "centerTable">
-    /<nobr style="font-size: 40px">State:</nobr>
+    <nobr style="font-size: 40px">State:</nobr>
     <nobr style="font-size: 40px" th:text="${OrderContent.getState()}"></nobr>
     <table>
         <thead>
@@ -57,7 +57,7 @@
         </tbody>
     </table>
     <div class="flex">
-        <form th:action="@{/kitchenStaffOrders}" th:method="get">
+        <form th:action="@{/customerCancelOrders}" th:method="get">
             <button style="float: right;" type="submit">Return</button>
         </form>
     </div>

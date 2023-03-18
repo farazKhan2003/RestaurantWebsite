@@ -74,18 +74,12 @@
         <tbody>
         <tr th:each="item: ${CancelStateOrder}">
             <td th:text="${item.getOrderId()}"></td>
-            <td th:text="${item.timeplaced}"></td>
-            <td th:text="Cancellation Request"></td>
+            <td th:text="${item.getTimeplaced()}"></td>
+            <td th:text="${item.getState()}"></td>
             <td>
-                <form th:action="@{/viewDetailsForReady}" th:method="post">
-                    <button type="submit">View</button>
-                    <input type="hidden" name ="input" th:value="${item.getOrderId()}"/>
-                </form>
-            </td>
-            <td>
-                <form th:action="@{/deleteOrder}" th:method="post">
-                    <button type="submit">Yes</button>
-                    <input type="hidden" name ="input" th:value="${item.getOrderId()}"/>
+                <form th:action="@{/confirmCancel}" method="post">
+                    <button type="submit">Confirm Cancel</button>
+                    <input type="hidden" name="input" th:value="${item.getOrderId()}"/>
                 </form>
             </td>
         </tr>

@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>Ordering Menu</title>
-    <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css"></link>
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <title>Ordering Menu</title>
+  <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css">
+  </link>
+  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-<!-- The header -->
-<header>
+  <!-- The header -->
+  <header>
     <a href="#" class="logo">ResturantNameHere</a>
     <nav class="navbar">
-        <a href="home">Home</a>
-        <a href="orderingmenu">dishes</a>
-        <a href="#">Contact us</a>
-        <a href="#">Orders</a>
-        <div class="navbar-right">
-            <a th:if="${session.user}==null" href="login">Login</a>
-            <span th:if="${session.user}!=null">
+      <a href="home">Home</a>
+      <a href="orderingmenu">dishes</a>
+      <a href="#">Contact us</a>
+      <a href="#">Orders</a>
+      <div class="navbar-right">
+        <a th:if="${session.user}==null" href="login">Login</a>
+        <span th:if="${session.user}!=null">
           <div class="logoutb">
             <button class="logoutdrop" th:text="${session.user.getUsername}"></button>
             <div class="dropcontent">
@@ -28,28 +30,28 @@
             </div>
           </div>
         </span>
-        </div>
+      </div>
     </nav>
-</header>
+  </header>
 
 
-    <section class="table">
-        <table class="basket-table">
-            <thead>
-                <tr>
-                    <th align="left">PRODUCT</th>
-                    <th align="left">QTY</th>
-                    <th align="left">PRICE</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="item, interStat: ${basketItems}">
-                    <td class="qty" th:text="${item.name}"></td>
-                    <td th:text="${item.quantity}"></td>
-                    <td th:text="'£'+${priceList[interStat.index]}"></td>
-                    
-                    <!-- 
+  <section class="table">
+    <table class="basket-table">
+      <thead>
+        <tr>
+          <th align="left">PRODUCT</th>
+          <th align="left">QTY</th>
+          <th align="left">PRICE</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="item, interStat: ${basketItems}">
+          <td class="qty" th:text="${item.name}"></td>
+          <td th:text="${item.quantity}"></td>
+          <td th:text="'£'+${priceList[interStat.index]}"></td>
+
+          <!-- 
                     <td>
                         <form th:action="@{/addRowItem}" th:method="get">
                           <button type="submit" onclick="added()">Add</button>
@@ -63,37 +65,43 @@
                         </form>
                     </td>
                     -->
-                    
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="2" align="right">Total</td>
-                    <td th:text="'£'+${basketTotal}" align="center"></td>
-                </tr>
-            </tfoot>
-        </table>
-    </section>
 
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2" align="right">Total</td>
+          <td th:text="'£'+${basketTotal}" align="center"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </section>
 
-<div class="centerBox">
-    <form th:action="@{/placeorder2}" th:method="post">
-        <label>Please enter your table number</label>
-        <input type="text" required name="tablenumber"/>
-        <button class="order-button" type="submit">Confirm your Order</button>
+  <div class="centerBox">
+    <form action="/Payment">
+      <button class="order-button" type="submit">Pay By Card</button>
     </form>
-</div>
-<script>
-        // Customisations for the toastr
+    <form th:action="@{/changeToWaiting}" th:method="post">
+      <button class="order-button" type="needhelp">Pay By Cash</button>
+    </form>
+    <form th:action="@{/placeorder2}" th:method="post">
+      <label>Please enter your table number</label>
+      <input type="text" required name="tablenumber" />
+      <button class="order-button" type="submit">Confirm your Order</button>
+    </form>
+  </div>
+
+  <script>
+    // Customisations for the toastr
     toastr.options = {
       "positionClass": "toast-bottom-right",
       "showMethod": "fadeIn",
       "hideMethod": "fadeOut"
     }
 
-        /**
-         * This function notifies the user that the item has been added to the basket.
-         */
+    /**
+     * This function notifies the user that the item has been added to the basket.
+     */
     function added() {
       toastr.success("Item added to basket!");
     }
@@ -102,12 +110,12 @@
      * This function notifies the user that the item has been removed from the basket.
      */
     function removed() {
-        toastr.success("Item removed from basket!");
+      toastr.success("Item removed from basket!");
     }
 
 
 
-</script>
+  </script>
 </body>
 
 </html>

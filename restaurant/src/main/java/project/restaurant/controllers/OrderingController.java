@@ -129,7 +129,7 @@ public class OrderingController {
     Users u = (Users) session.getAttribute("user");
     LocalDateTime curTime = LocalDateTime.now();
     Orders order =
-        new Orders("not confirmed", null, u, curTime.toString(), tablenumber, null, price);
+        new Orders("not confirmed","unpaid" , null, u, curTime.toString(), tablenumber, null, price);
     for (MenuItems i : item) {
       irepo.save(new ItemsOrders(i, order));
     }

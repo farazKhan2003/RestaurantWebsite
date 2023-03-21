@@ -283,12 +283,12 @@ div.content {
 /*Place the button in the center of the page ( absolutely )*/
 .centerBox {
   width: 180px;
-  height: 120px;
+  height: 220px;
   background: #eee;
   border: 1px solid #ccc;
   position: absolute;
-  left: 48%;
-  top: 50%;
+  left: 47%;
+  top: 45%;
   margin-left: -50px;
   margin-top: -50px;
   border-radius: 6%;

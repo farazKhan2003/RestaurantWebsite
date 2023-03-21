@@ -60,9 +60,10 @@ public class Orders {
    * @param tablenumber The table number of the user
    * @param price The price of the order
    */
-  public Orders(String state, Waiters waiterid, Users userid, String timeplaced,
+  public Orders(String state, String paystate, Waiters waiterid, Users userid, String timeplaced,
       Integer tablenumber, KitchenStaff kitchenStaffId, Float price) {
     this.state = state;
+    this.paystate = paystate;
     this.waiterid = waiterid;
     this.userid = userid;
     this.timeplaced = timeplaced;

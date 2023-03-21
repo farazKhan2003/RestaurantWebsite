@@ -13,7 +13,7 @@
 <body>
 <!-- The header -->
 <header>
-    <a href="#" class="logo">ResturantNameHere</a>
+    <a href="#" class="logo">Oaxaca</a>
     <nav class="navbar">
         <a href="waiterhome">Home</a>
         <a th:href="menuChange">Change Menu</a>
@@ -36,6 +36,7 @@
 <div class="tables">
     <table class="ordersTable">
         <thead>
+        <tr><th>Help Requests</th><tr>
         <th th:if="${helps!=null}" scope="row">Help State</th>
         <th th:if="${helps!=null}" scope="row">User Id</th>
         <th th:if="${helps!=null}" scope="row">Update help</th>
@@ -58,6 +59,33 @@
         </tr>
     </table>
 </div>
+
+<section class="tables">
+    <table class="ordersTable">
+        <thead>
+        <tr><th>Cancellation Requests</th><tr>
+        <tr>
+            <th>Order ID</th>
+            <th>Time placed</th>
+            <th>Status</th>
+            <th>Cancel?</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item: ${CancelStateOrder}">
+            <td th:text="${item.getOrderId()}"></td>
+            <td th:text="${item.getTimeplaced()}"></td>
+            <td th:text="${item.getState()}"></td>
+            <td>
+                <form th:action="@{/confirmCancel}" method="post">
+                    <button type="submit">Confirm Cancel</button>
+                    <input type="hidden" name="input" th:value="${item.getOrderId()}"/>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
 
 </body>
 

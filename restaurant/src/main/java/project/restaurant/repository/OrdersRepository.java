@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import project.restaurant.models.KitchenStaff;
 import project.restaurant.models.Orders;
 import project.restaurant.models.Users;
+import project.restaurant.models.Waiters;
 
 /**
  * JpaRepository is a collection of APIs used for basic operations and sorting, and OrdersRepository
@@ -92,4 +93,13 @@ public interface OrdersRepository extends JpaRepository<Orders, Integer> {
    */
   @Query("SELECT o FROM Orders o WHERE o.state != ?1 AND o.userid = ?2")
   List<Orders> findbyStateAndID(String state, Users user);
+  
+  @Query("SELECT o FROM Orders o WHERE o.state = 'confirmed' OR o.state = 'not confirmed' AND o.userid=?1")
+  List<Orders> findNotComfirmedAndComfirmedOrdersByUserId(Users userid);
+  
+  @Query("SELECT o FROM Orders o WHERE o.state = 'cancelled'")
+  List<Orders> findCancelStateOrderState();
+  
+  @Query("SELECT o FROM Orders o WHERE o.state = 'canceling' AND o.waiterid=?1")
+  List<Orders> findOrderInCancelingStateByWaiterId(Waiters waiterid);
 }

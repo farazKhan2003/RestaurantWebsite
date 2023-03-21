@@ -544,3 +544,26 @@ div.content {
   position: fixed;
   left: 34%;
 }
+
+.cancelBlock {
+  background: white;
+  border: 1px solid #000000;
+  display: block;
+  width: 380px;
+  margin-top: 15rem;
+  margin-left: 31rem;
+  margin-right: 50rem;
+  padding-right: 2rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+}
+
+.cancelBlock button {
+  background-color: #E82323;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}

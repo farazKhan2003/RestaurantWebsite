@@ -47,6 +47,7 @@ public class KitchenStaffController {
       List<Orders> ConfirmedStateOrder = oRepo.findConfirmedStateASC();
       List<Orders> CookingStateOrder = oRepo.findCookingStateByKitchenStaffIdASC(kstaff);
       List<Orders> ReadyStateOrder = oRepo.findReadyStateASC();
+      List<Orders> CancelStateOrder = oRepo.findCancelStateOrderState();
       
       System.out.println(ConfirmedStateOrder.size());
       System.out.println(CookingStateOrder.size());
@@ -55,6 +56,7 @@ public class KitchenStaffController {
       model.addAttribute("ConfirmedStateOrder", ConfirmedStateOrder);
       model.addAttribute("CookingStateOrder", CookingStateOrder);
       model.addAttribute("ReadyStateOrder", ReadyStateOrder);
+      model.addAttribute("CancelStateOrder", CancelStateOrder);
       
       return "kitchenStaffOrders";
     }
@@ -93,6 +95,15 @@ public class KitchenStaffController {
         System.out.println("****************************************");
         getOrderDetail(input, model);
         return "orderdetail";
+    }
+
+    @PostMapping("/viewDetailsForReady")
+    public String viewDetailsForReady(@Param("input") Integer input, Model model) {
+        System.out.println("****************************************");
+        System.out.println(input);
+        System.out.println("****************************************");
+        getOrderDetail(input, model);
+        return "viewDetailsForReady";
     }
     
     @GetMapping("/orderdetail")
@@ -172,4 +183,11 @@ public class KitchenStaffController {
       return "orderdetail";
     }
     
+    @PostMapping("/deleteOrder")
+    public String deleteOrder(@Param("input") Integer input, Model model) {
+      Orders order = oRepo.findOrderByOrderId(input);
+      oRepo.delete(order);
+      getOrderDetail(input, model);
+      return "kitchenStaffOrders";
+    }
 }

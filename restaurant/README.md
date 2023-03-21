@@ -92,3 +92,13 @@ Here is a setup video for further clarity:
 INSERT VIDEO LINK HERE
 
 ## Screenshots
+
+Here are some screenshots from the project to give you an idea of how we have structured the system:
+
+![Homepage](src/main/resources/static/images/home.png)
+![Add item page](src/main/resources/static/images/additem.png)
+![Login page](src/main/resources/static/images/login.png)
+![Waiter order tracking](src/main/resources/static/images/ordertracking.png)
+
+To explore all the pages, view the video in which we explain every aspect of the system.
+

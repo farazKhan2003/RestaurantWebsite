@@ -10,7 +10,7 @@
 
 <!-- The header -->
 <header>
-    <a href="#" class="logo">ResturantNameHere</a>
+    <a href="#" class="logo">Oaxaca</a>
     <nav class="navbar">
         <a href="home">Home</a>
         <a href="orderingmenu">Dishes</a>
@@ -19,6 +19,7 @@
         <div class="navbar-right">
             <a th:if="${session.user}==null" href="login">Login</a>
             <span th:if="${session.user}!=null">
+          <a href="#">Help</a>
           <div class="logoutb">
             <button class="logoutdrop" th:text="${session.user.getUsername}"></button>
             <div class="dropcontent">
@@ -37,12 +38,14 @@
     <h3>Assistance Required</h3>
     <form th:action="@{/helpRequest}" th:method="post">
         <ul>
-            <li><button type="needhelp">Need Help?</button></li>
+            <li>
+                <button type="needhelp">Need Help?</button>
+            </li>
         </ul>
     </form>
 </div>
 </body>
-</html >
+</html>
 
 
 

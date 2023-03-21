@@ -9,11 +9,12 @@
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="" th:src="@{scripts/toastr.js}"></script>
 </head>
 <body>
 <!-- The header -->
 <header>
-    <a href="#" class="logo">ResturantNameHere</a>
+    <a href="#" class="logo">Oaxaca</a>
     <nav class="navbar">
         <a href="waiterhome">Home</a>
         <a th:href="menuChange">Change Menu</a>
@@ -38,6 +39,7 @@
     <section class="tables">
         <table class="ordersTable">
             <thead>
+            <tr><th>Waiting for Confirm</th><tr>
             <tr>
                 <th>Order ID</th>
                 <th>Timeplaced</th>
@@ -68,6 +70,7 @@
         <section class="tables">
             <table class="ordersTable">
                 <thead>
+                <tr><th>Confirmed Orders</th><tr>
                 <tr>
                     <th>Order ID</th>
                     <th>Timeplaced</th>
@@ -79,7 +82,7 @@
                 <tr th:each="item: ${otherStateOrder}">
                     <td th:text="${item.getOrderId()}"></td>
                     <td th:text="${item.timeplaced}"></td>
-                    <td th:text="Cooking"></td>
+                    <td th:text="Confirmed"></td>
                     <td th:text="${item.getTableNumber}"></td>
                 </tr>
                 </tbody>
@@ -88,6 +91,7 @@
         <section class="tables">
             <table class="ordersTable" id="readyForDelivery">
                 <thead>
+                <tr><th>Ready for Delivery</th><tr>
                 <tr>
                     <th>Order ID</th>
                     <th>Timeplaced</th>
@@ -115,20 +119,12 @@
             </table>
         </section>
     </section>
-
     <script>
-        // Customisations for toastr
-        toastr.options = {
-      "positionClass": "toast-bottom-right",
-      "showMethod": "fadeIn",
-      "hideMethod": "fadeOut"
-    }
-
         // Get the ready order table element
         const table = document.getElementById("readyForDelivery");
 
         // Get the number of orders ready for delivery
-        const readyOrders = table.rows.length - 1;
+        const readyOrders = table.rows.length - 3;
 
         var message = " orders are ready for delivery!"
 
@@ -146,7 +142,6 @@
 
         // Call notify function when the table loads
         window.addEventListener("load", notify);
-
     </script>
 </body>
 </html>

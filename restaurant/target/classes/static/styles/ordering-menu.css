@@ -5,13 +5,10 @@
   text-decoration: none;
   transition: all 0.2s linear;
   list-style-type: none;
-<<<<<<< HEAD
 }
 
 .required {
   color: red;
-=======
->>>>>>> KitchenStaff
 }
 
 body {
@@ -300,7 +297,7 @@ div.content {
 /* The following CSS code for the basket table was inspired by a YouTube video by 'FollowAndrew' */
 .basket-table {
   border-collapse: collapse;
-  width: 30em;
+  width: 35em;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0px 10px 30px 5px rgba(0, 0, 0, 0.15);
@@ -459,8 +456,6 @@ div.content {
   padding-top: 2.2rem;
   padding-bottom: 3rem;
   text-align: center;
-<<<<<<< HEAD
-=======
 }
 
  /*Make the return and finish buttons in a column*/
@@ -526,5 +521,49 @@ div.content {
 .centerTable table tbody tr td:nth-last-child(1),
 .centerTable table tfoot tr td:nth-last-child(1) {
   text-align: right;
->>>>>>> KitchenStaff
+}
+
+.seeorder button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  left: 55%;
+}
+
+.seeDorder button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  left: 34%;
+}
+
+.cancelBlock {
+  background: white;
+  border: 1px solid #000000;
+  display: block;
+  width: 380px;
+  margin-top: 15rem;
+  margin-left: 31rem;
+  margin-right: 50rem;
+  padding-right: 2rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+}
+
+.cancelBlock button {
+  background-color: #E82323;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
 }

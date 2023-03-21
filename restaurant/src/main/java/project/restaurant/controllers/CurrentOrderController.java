@@ -42,7 +42,7 @@ public class CurrentOrderController {
   @GetMapping("/currentOrder")
   public String getCurrentOrder(Model model, HttpSession session) {
     Users user = (Users) session.getAttribute("user");
-    List<Orders> orders = orepo.findbyStateAndID("done", user);
+    List<Orders> orders = orepo.findbyStateAndID("delivered", user);
     List<ItemsOrders> itemsOrdered;
     try {
       itemsOrdered = iorepo.findAllItemOrders(orders.get(0));
@@ -54,7 +54,6 @@ public class CurrentOrderController {
       String str = String.format("%.2f", o.getPrice()); // connverting int to string
       String digit = str.substring(str.length() - 2, str.length());
       String frontDigit = str.substring(0, str.length() - 2);
-      System.out.println(digit);
       if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
           || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
           || digit.equals(".8") || digit.equals(".9")) {
@@ -75,5 +74,50 @@ public class CurrentOrderController {
     model.addAttribute("orders", orders);
     model.addAttribute("menuitems", menuItem);
     return "currentOrder";
+  }
+
+
+  /**
+   * This method shows a user their delivered orders.
+   *
+   * @param model A method to identify a menu item on one webpage
+   * @param session A method to identify a user and waiter across more than one page
+   */
+
+  @GetMapping("/deliveredOrder")
+  public String getDeliveredOrder(Model model, HttpSession session) {
+    Users user = (Users) session.getAttribute("user");
+    List<Orders> orders = orepo.findbyEqualState("delivered", user);
+    List<ItemsOrders> itemsOrdered;
+    try {
+      itemsOrdered = iorepo.findAllItemOrders(orders.get(0));
+    } catch (IndexOutOfBoundsException e) {
+      return "noDeliveredOrder";
+    }
+    List<String> priceList = new ArrayList<>();
+    for (Orders o : orders) {
+      String str = String.format("%.2f", o.getPrice()); // converting int to string
+      String digit = str.substring(str.length() - 2, str.length());
+      String frontDigit = str.substring(0, str.length() - 2);
+      if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
+          || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
+          || digit.equals(".8") || digit.equals(".9")) {
+        digit = digit + "0";
+        frontDigit = frontDigit + digit;
+        // basketTotal = Float.parseFloat(frontDigit);
+      } else {
+        frontDigit = str;
+      }
+      priceList.add(frontDigit);
+
+    }
+    List<MenuItems> menuItem = new ArrayList<>();
+    for (ItemsOrders item : itemsOrdered) {
+      menuItem.add(item.getItemid());
+    }
+    model.addAttribute("priceList", priceList);
+    model.addAttribute("orders", orders);
+    model.addAttribute("menuitems", menuItem);
+    return "deliveredOrder";
   }
 }

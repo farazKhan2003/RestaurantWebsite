@@ -19,6 +19,7 @@
         <div class="navbar-right">
             <a th:if="${session.user}==null" href="login">Login</a>
             <span th:if="${session.user}!=null">
+          <a href="#">Help</a>
           <div class="logoutb">
             <button class="logoutdrop" th:text="${session.user.getUsername}"></button>
             <div class="dropcontent">

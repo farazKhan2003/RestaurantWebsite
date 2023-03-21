@@ -24,7 +24,7 @@
     <a href="orderingmenu">Dishes</a>
     <a href="#">Contact us</a>
     <a href="basket">Basket/Orders</a>
-    <a href="deliveredOrder">Delivered Orders</a>
+    <a href="currentOrder">Current Orders</a>
     <div class="navbar-right">
       <a th:if="${session.user}==null" href="login">Login</a>
       <span th:if="${session.user}!=null">
@@ -42,23 +42,8 @@
   </nav>
 </header>
 
-<section class="helpblock">
-  <h2>Current Orders</h2>
-  <ul>
-    <th:block th:each="order,interStat: ${orders}">
-      <li>
-        <p th:text="'Table Number: '+${order.getTableNumber}"></p>
-        <p th:text="'Order ID: '+${order.getOrderId}"></p>
-        <p th:text="'Current State: '+${order.state}"></p>
-        <p th:text="'Price: £'+${priceList[interStat.index]}"></p>
-        <p th:text = "'Item Names: '"></p>
-        <th:block th:if="${menuitems} != null" th:each="menuitem : ${menuitems}">
-          <p style = "text-indent : 2em;" th:text = "${menuitem.getItemName}"></p>
-        </th:block>
-
-      </li>
-    </th:block>
-  </ul>
+<section class = "helpblock">
+  <h2>No Delivered Orders</h2>
 </section>
 </body>
 

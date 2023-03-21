@@ -297,7 +297,7 @@ div.content {
 /* The following CSS code for the basket table was inspired by a YouTube video by 'FollowAndrew' */
 .basket-table {
   border-collapse: collapse;
-  width: 30em;
+  width: 35em;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0px 10px 30px 5px rgba(0, 0, 0, 0.15);
@@ -531,6 +531,16 @@ div.content {
   border: none;
   cursor: pointer;
   position: fixed;
-  left: 43%;
+  left: 55%;
 }
 
+.seeDorder button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  left: 34%;
+}

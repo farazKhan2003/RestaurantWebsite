@@ -24,7 +24,7 @@
     <a href="orderingmenu">Dishes</a>
     <a href="#">Contact us</a>
     <a href="basket">Basket/Orders</a>
-    <a href="deliveredOrder">Delivered Orders</a>
+    <a href="currentOrder">Current Orders</a>
     <div class="navbar-right">
       <a th:if="${session.user}==null" href="login">Login</a>
       <span th:if="${session.user}!=null">
@@ -43,7 +43,7 @@
 </header>
 
 <section class="helpblock">
-  <h2>Current Orders</h2>
+  <h2>Delivered Orders</h2>
   <ul>
     <th:block th:each="order,interStat: ${orders}">
       <li>

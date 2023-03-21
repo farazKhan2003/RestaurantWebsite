@@ -39,6 +39,7 @@
     <section class="tables">
         <table class="ordersTable">
             <thead>
+            <tr><th>Waiting for confirming</th><tr>
             <tr>
                 <th>Order ID</th>
                 <th>Timeplaced</th>
@@ -69,6 +70,7 @@
         <section class="tables">
             <table class="ordersTable">
                 <thead>
+                <tr><th>Confirmed Orders</th><tr>
                 <tr>
                     <th>Order ID</th>
                     <th>Timeplaced</th>
@@ -89,6 +91,7 @@
         <section class="tables">
             <table class="ordersTable" id="readyForDelivery">
                 <thead>
+                <tr><th>Waiting for delivering</th><tr>
                 <tr>
                     <th>Order ID</th>
                     <th>Timeplaced</th>
@@ -121,7 +124,7 @@
         const table = document.getElementById("readyForDelivery");
 
         // Get the number of orders ready for delivery
-        const readyOrders = table.rows.length - 1;
+        const readyOrders = table.rows.length - 3;
 
         var message = " orders are ready for delivery!"
 

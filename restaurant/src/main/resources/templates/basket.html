@@ -85,11 +85,11 @@
   <section th:if="${session.user}!=null">
     <div class="centerBox">
       <form action="/Payment">
-        <button class="order-button" type="submit">Pay By Cash</button>
-      </form>
-      <form action="">
         <button class="order-button" type="submit">Pay By Card</button>
       </form>
+         <form th:action="@{/helpRequest}" th:method="post">
+            <button class="order-button" type="needhelp">Pay By Cash</button>
+        </form>
     </div>
    </section>
 

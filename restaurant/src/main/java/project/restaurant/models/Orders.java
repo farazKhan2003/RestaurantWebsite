@@ -26,7 +26,9 @@ public class Orders {
   @Column(name = "state", nullable = false)
   private String state;
 
-
+  @Column(name = "paystate", nullable = false)
+  private String paystate;
+  
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "waiterid")
   private Waiters waiterid;
@@ -194,5 +196,13 @@ public class Orders {
    */
   public Integer getTableNumber() {
     return tablenumber;
+  }
+
+  public String getPayState() {
+    return paystate;
+  }
+
+  public void setPayState(String paystate) {
+    this.paystate = paystate;
   }
 }

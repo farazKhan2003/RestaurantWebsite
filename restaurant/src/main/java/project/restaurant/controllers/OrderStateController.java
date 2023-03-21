@@ -37,6 +37,7 @@ public class OrderStateController {
     List<Orders> waiterOrder = orepo.findOrderByWaiterId(waiter.getWaiterid());
     List<Orders> deliveryStateOrder = new ArrayList<Orders>();
     List<Orders> otherStateOrder = new ArrayList<Orders>();
+    List<Orders> paidStateOrder = new ArrayList<Orders>();
 
     for (int i = 0; i < waiterOrder.size(); i++) {
       Orders order = waiterOrder.get(i);
@@ -46,9 +47,13 @@ public class OrderStateController {
         otherStateOrder.add(order);
       }
     }
+    
+    paidStateOrder = orepo.findByPayState();
+    
     List<Orders> allOrders = orepo.findByState();
     System.out.println(deliveryStateOrder.size());
     System.out.println(otherStateOrder.size());
+    model.addAttribute("paidStateOrder", paidStateOrder);
     model.addAttribute("allorders", allOrders);
     model.addAttribute("deliveryStateOrder", deliveryStateOrder);
     model.addAttribute("otherStateOrder", otherStateOrder);

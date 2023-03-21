@@ -108,6 +108,6 @@ public interface OrdersRepository extends JpaRepository<Orders, Integer> {
    * 
    * @return a list of orders where payment state is 'waitingtopay'.
    */
-  @Query("SELECT o FROM Orders o WHERE o.paystate = 'waitingtopay'")
+  @Query("SELECT o FROM Orders o WHERE o.paystate = 'unpaid'")
   List<Orders> findByPayState();
 }

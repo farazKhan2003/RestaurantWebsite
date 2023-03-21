@@ -508,6 +508,94 @@ public class OrderingController {
     model.addAttribute("priceList", priceList);
     return "confirmOrder";
   }
+  
+  @PostMapping("/submitCard")
+  public String submitCard(Model model, HttpSession session,
+      @RequestParam("tablenumber") Integer tablenumber) {
+    if (mlist.size() == 0) {
+      return "havent-add-anyitem";
+    }
 
+    List<MenuItems> item = new ArrayList<MenuItems>();
+    float price = 0;
+
+    for (Integer integer : mlist) {
+      MenuItems mi1 = mrepo.findByIntegerId(integer).get(0);
+      price += mi1.getPrice();
+      item.add(mi1);
+    }
+    if (session.getAttribute("user") == null) {
+      return "login";
+    }
+    Users u = (Users) session.getAttribute("user");
+    LocalDateTime curTime = LocalDateTime.now();
+    Orders order =
+        new Orders("not confirmed", "paid", null, u, curTime.toString(), tablenumber, null, price);
+    for (MenuItems i : item) {
+      irepo.save(new ItemsOrders(i, order));
+    }
+
+    mlist.clear();
+    Orders order1 = orepo.save(order);
+    System.out.println("******************************************");
+    List<ItemsOrders> items = irepo.findAllItemOrders(order1);
+
+    List<BasketTypeInterface> returnItems =
+        irepo.findSumAmountById(items.get(0).getOrderid().getOrderId());
+
+    System.out.println("******************************************");
+    System.out.println(returnItems.size());
+    System.out.println("******************************************");
+
+    List<BasketItem> basketOrder = new ArrayList<BasketItem>();
+    List<String> priceList = new ArrayList<>();
+    Float basketTotal = (float) 0;
+    for (int i = 0; i < returnItems.size(); i++) {
+      Integer itemId = returnItems.get(i).getItemId();
+      Integer itemQuantity = returnItems.get(i).getQuantity();
+      Float itemSumPrice = itemQuantity * returnItems.get(i).getPrice();
+
+
+      String str = itemSumPrice + ""; // connverting int to string
+      String digit = str.substring(str.length() - 2, str.length());
+      String frontDigit = str.substring(0, str.length() - 2);
+      System.out.println(digit);
+      if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
+          || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
+          || digit.equals(".8") || digit.equals(".9")) {
+        digit = digit + "0";
+        frontDigit = frontDigit + digit;
+        // basketTotal = Float.parseFloat(frontDigit);
+      } else {
+        frontDigit = str;
+      }
+      priceList.add(frontDigit);
+
+
+      String itemName = mrepo.findByIntegerId(itemId).get(0).getItemName();
+      basketTotal += itemSumPrice;
+      basketOrder.add(new BasketItem(itemName, itemQuantity, itemSumPrice));
+    }
+
+    String str = basketTotal + ""; // connverting int to string
+    String digit = str.substring(str.length() - 2, str.length());
+    String frontDigit = str.substring(0, str.length() - 2);
+    System.out.println(digit);
+    if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
+        || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
+        || digit.equals(".8") || digit.equals(".9")) {
+      digit = digit + "0";
+      frontDigit = frontDigit + digit;
+      // basketTotal = Float.parseFloat(frontDigit);
+    } else {
+      frontDigit = str;
+    }
+
+
+    model.addAttribute("priceList", priceList);
+    model.addAttribute("basketOrder", basketOrder);
+    model.addAttribute("basketTotal", frontDigit);
+    return "place-order-sucess";
+  }
 
 }

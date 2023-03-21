@@ -132,6 +132,7 @@
                 <tr th:each="item: ${paidStateOrder}">
                     <td th:text="${item.getOrderId()}"></td>
                     <td th:text="${item.timeplaced}"></td>
+                    <td th:text="${item.getState()}"></td>
                     <td th:text="${item.getTableNumber}"></td>
                     <td>
                     <!-- this is the Confirmed button on the orders web page -->

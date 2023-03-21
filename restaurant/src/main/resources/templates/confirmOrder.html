@@ -81,9 +81,8 @@
     <form action="/Payment">
       <button class="order-button" type="submit">Pay By Card</button>
     </form>
-    <form th:action="@{/changeToWaiting}" th:method="post">
-      <button class="order-button" type="needhelp">Pay By Cash</button>
-    </form>
+    <label>----OR PAY LATER----</label>
+    <a>‎ ‎ ‎ ‎ ‎ </a>
     <form th:action="@{/placeorder2}" th:method="post">
       <label>Please enter your table number</label>
       <input type="text" required name="tablenumber" />

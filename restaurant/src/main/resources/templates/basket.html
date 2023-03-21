@@ -82,14 +82,6 @@
 		</form>
 	</section>
 
-  <section th:if="${session.user}!=null">
-    <div class="centerBox">
-      <form action="/Payment">
-        <button class="order-button" type="submit">Pay By Card</button>
-      </form>
-    </div>
-   </section>
-
 	<script>
 		// Customisations for the toastr
 		toastr.options = {

@@ -85,11 +85,14 @@ public class HelpController {
    * @return "waiterhelp" The webpage for a waiter to see current help requests
    */
   @GetMapping("/accepthelp")
-  public String acceptHelp(@RequestParam("helpid") Integer helpid, Model model) {
+  public String acceptHelp(@RequestParam("helpid") Integer helpid, Model model, HttpSession session) {
+    Waiters waiter = (Waiters) session.getAttribute("waiter");
     Helps helpRequest = hrepo.getReferenceById(helpid);
     helpRequest.setState("helping");
     hrepo.save(helpRequest);
     List<Helps> lhelps = hrepo.findAll();
+    List<Orders> CancelStateOrder = orepo.findOrderInCancelingStateByWaiterId(waiter);
+    model.addAttribute("CancelStateOrder", CancelStateOrder);
     model.addAttribute("helps", lhelps);
     return "waiterhelp";
   }
@@ -102,10 +105,13 @@ public class HelpController {
    * @return "waiterhelp" The webpage for a waiter to see current help requests
    */
   @GetMapping("/closehelp")
-  public String closeHelp(@RequestParam("helpid") Integer helpid, Model model) {
+  public String closeHelp(@RequestParam("helpid") Integer helpid, Model model, HttpSession session) {
+    Waiters waiter = (Waiters) session.getAttribute("waiter");
     System.out.println(helpid);
     hrepo.deleteById(helpid);
     List<Helps> lhelps = hrepo.findAll();
+    List<Orders> CancelStateOrder = orepo.findOrderInCancelingStateByWaiterId(waiter);
+    model.addAttribute("CancelStateOrder", CancelStateOrder);
     model.addAttribute("helps", lhelps);
     return "waiterhelp";
   }

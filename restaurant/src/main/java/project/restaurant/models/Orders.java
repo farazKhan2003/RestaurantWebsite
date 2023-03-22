@@ -27,11 +27,11 @@ public class Orders {
   private String state;
 
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = CascadeType.MERGE)
   @JoinColumn(name = "waiterid")
   private Waiters waiterid;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = CascadeType.MERGE)
   @JoinColumn(name = "kitchenstaffid")
   private KitchenStaff kitchenstaffid;
 

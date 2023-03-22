@@ -23,6 +23,11 @@ import project.restaurant.repository.ItemsordersRepository;
 import project.restaurant.repository.MenuItemsRepository;
 import project.restaurant.repository.OrdersRepository;
 
+/**
+ * CancelOrderController manages front-end to back-end connection for customer cancel order feature.
+ *
+ * @author Pengyuan, Tanmeet, Wen
+ */
 @Controller
 public class CancelOrderController {
 

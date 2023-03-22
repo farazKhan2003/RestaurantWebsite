@@ -51,7 +51,8 @@ public class ChangeMenuController {
   /**
    * This method will add an item to the menu_items table in the database by taking user inputs.
    *
-   * @param session A method to identify a user and waiter across more than one page
+   * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
+   *        page
    * @param itemName The name of the dish entered by the user
    * @param description The description of the dish entered by the user
    * @param price The price of the dish entered by the user
@@ -183,7 +184,8 @@ public class ChangeMenuController {
    * This method actually updates an item when it is being edited.
    * 
    * @param itemid The ID of the menu item being updated
-   * @param session A method to identify a user and waiter across more than one page
+   * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
+   *        page
    * @param itemName The name of the dish entered by the waiter
    * @param description The description of the dish entered by the waiter
    * @param price The price of the dish entered by the waiter

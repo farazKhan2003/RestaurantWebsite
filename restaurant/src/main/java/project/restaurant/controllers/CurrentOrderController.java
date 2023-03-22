@@ -36,7 +36,8 @@ public class CurrentOrderController {
    * This method shows a user their current orders and what state it is in.
    *
    * @param model A method to identify a menu item on one webpage
-   * @param session A method to identify a user and waiter across more than one page
+   * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
+   *        page
    * @return "currentOrder" The link to the webpage that displays the information of a users orders
    */
   @GetMapping("/currentOrder")
@@ -81,7 +82,8 @@ public class CurrentOrderController {
    * This method shows a user their delivered orders.
    *
    * @param model A method to identify a menu item on one webpage
-   * @param session A method to identify a user and waiter across more than one page
+   * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
+   *        page
    */
 
   @GetMapping("/deliveredOrder")

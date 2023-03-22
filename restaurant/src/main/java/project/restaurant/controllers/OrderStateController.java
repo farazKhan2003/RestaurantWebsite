@@ -30,6 +30,8 @@ public class OrderStateController {
    *
    * @param model is the Model type parameter help the back-end code to add attribute for front-end
    *        web page
+   * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
+   *        page
    */
   @GetMapping("/waiterOrder")
   public String getOrders(Model model, HttpSession session) {
@@ -63,6 +65,8 @@ public class OrderStateController {
    * @param input is the id of order that waiter want to set its state to delivered.
    * @param model is the Model type parameter help the back-end code to add attribute for front-end
    *        web page
+   * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
+   *        page
    */
   @PostMapping("/changeToDelivered")
   public String changeStateToDelivered(@Param("input") Integer input, Model model,
@@ -80,7 +84,8 @@ public class OrderStateController {
    * @param input The ID of the order being confirmed
    * @param model is the Model type parameter help the back-end code to add attribute for front-end
    *        web page
-   * @param session A method to identify a user and waiter across more than one page
+   * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
+   *        page
    * @return "orders" The webpage that displays all current orders
    */
   @PostMapping("/changeToConfirmed")

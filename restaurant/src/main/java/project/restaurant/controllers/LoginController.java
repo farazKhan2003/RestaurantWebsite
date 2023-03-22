@@ -44,7 +44,8 @@ public class LoginController {
    * This method will either confirm or deny an attempt at logging in based on their details given
    * compared to their details on the system.
    *
-   * @param session A method to identify a user and waiter across more than one page
+   * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
+   *        page
    * @param userName The username for the user/waiter
    * @param password The password for the user/waiter
    * @return "loginFailed" The webpage denying a user/waiter access or "home" The webpage directing
@@ -75,7 +76,8 @@ public class LoginController {
   /**
    * This method logs out the user/waiter.
    * 
-   * @param session A method to identify a user and waiter across more than one page
+   * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
+   *        page
    * @return "home" The homepage
    */
   @PostMapping("/logout")
@@ -102,7 +104,8 @@ public class LoginController {
    * This method will allow the waiter to access the waiter's homepage if they have access otherwise
    * direct a normal user to the default homepage.
    * 
-   * @param session A method to identify a user and waiter across more than one page
+   * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
+   *        page
    * @return "home" The default homepage "waiterhome" The waiter's homepage
    */
   @GetMapping("/waiterhome")

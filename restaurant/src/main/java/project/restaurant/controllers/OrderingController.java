@@ -107,6 +107,8 @@ public class OrderingController {
    *
    * @param model is the Model type parameter help the back-end code to add attribute for front-end
    *        web page
+   * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
+   *        page
    */
   @PostMapping("/placeorder2")
   public String placeOrder2(Model model, HttpSession session,
@@ -337,6 +339,8 @@ public class OrderingController {
    *
    * @param model is the Model type parameter help the back-end code to add attribute for front-end
    *        web page
+   * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
+   *        page
    * @return "confirmOrder" The webpage that confirms to a user that their order has been placed
    */
   @GetMapping("/confirmOrders")

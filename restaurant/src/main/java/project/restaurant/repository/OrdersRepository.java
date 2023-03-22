@@ -53,16 +53,37 @@ public interface OrdersRepository extends JpaRepository<Orders, Integer> {
    */
   @Query("SELECT o FROM Orders o WHERE o.userid = ?1")
   List<Orders> findByuID(Optional<Users> user);
-
+  
+  /**
+   * get all orders in confirmed state from database.
+   * 
+   * @return returns a list of confirmed state orders in ascending order.
+   */
   @Query("SELECT o FROM Orders o WHERE o.state = 'Confirmed' Order by o.timeplaced ASC")
   public List<Orders> findConfirmedStateASC();
-
+  
+  /**
+   * get all orders in cooking state from database.
+   * 
+   * @return returns a list of cooking state orders in ascending order.
+   */
   @Query("SELECT o FROM Orders o WHERE o.state = 'Cooking' Order by o.timeplaced ASC")
   public List<Orders> findCookingStateASC();
-
+  
+  /**
+   * get all orders in ready state from database.
+   * 
+   * @return returns a list of ready state orders in ascending order.
+   */
   @Query("SELECT o FROM Orders o WHERE o.state = 'Ready' Order by o.timeplaced ASC")
   public List<Orders> findReadyStateASC();
-
+  
+  /**
+   * get orders in cooking state from database according to the kitchenstaff.
+   * 
+   * @param kstaff is the kitchenstaff we according to.
+   * @return returns a list of cooking state orders in ascending order.
+   */
   @Query("SELECT o FROM Orders o WHERE o.state = 'Cooking' and o.kitchenstaffid = ?1 Order by o.timeplaced ASC")
   public List<Orders> findCookingStateByKitchenStaffIdASC(KitchenStaff kstaff);
 
@@ -79,7 +100,7 @@ public interface OrdersRepository extends JpaRepository<Orders, Integer> {
    * selects all items from orders where orderId is the given parameter.
    * 
    * @param orderId an object of type Integer.
-   * @return a list of orders that satisfy the query.
+   * @return returns a list of orders that satisfy the query.
    */
   @Query("SELECT o FROM Orders o WHERE o.orderid = ?1")
   List<Orders> findByOrderId(Integer orderId);
@@ -94,12 +115,29 @@ public interface OrdersRepository extends JpaRepository<Orders, Integer> {
   @Query("SELECT o FROM Orders o WHERE o.state != ?1 AND o.userid = ?2")
   List<Orders> findbyStateAndID(String state, Users user);
   
+  /**
+   * get orders in confirmed or not confirmed state from database according to the user.
+   * 
+   * @param userid is the user we according to.
+   * @return returns a list of orders in confirmed or not confirmed state in ascending order.
+   */
   @Query("SELECT o FROM Orders o WHERE o.state = 'confirmed' OR o.state = 'not confirmed' AND o.userid=?1")
   List<Orders> findNotComfirmedAndComfirmedOrdersByUserId(Users userid);
   
+  /**
+   * get orders in cancelled state from database.
+   * 
+   * @return returns a list of orders in cancelled state.
+   */
   @Query("SELECT o FROM Orders o WHERE o.state = 'cancelled'")
   List<Orders> findCancelStateOrderState();
   
+  /**
+   * get orders in canceling state from database according to the waiter.
+   * 
+   * @param waiterid is the waiter we according to.
+   * @return returns a list of canceling state orders.
+   */
   @Query("SELECT o FROM Orders o WHERE o.state = 'canceling' AND o.waiterid=?1")
   List<Orders> findOrderInCancelingStateByWaiterId(Waiters waiterid);
 

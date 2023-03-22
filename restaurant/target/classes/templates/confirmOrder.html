@@ -15,7 +15,7 @@
 		<a href="#" class="logo">Oaxaca</a>
 		<nav class="navbar">
 			<a href="home">Home</a> <a href="orderingmenu">Dishes</a> <a href="#">Contact
-				us</a> <a href="basket">Orders</a>
+				us</a> <a href="basket">Basket/Orders</a>
 			<div class="navbar-right">
 				<a th:if="${session.user}==null" href="login">Login</a> <span
 					th:if="${session.user}!=null"> <a href="help">Help</a>
@@ -58,16 +58,19 @@
 			</tfoot>
 		</table>
 	</section>
-
-
+  
 	<div class="centerBox">
-		<form th:action="@{/placeorder2}" th:method="post">
-			<label>Please enter your table number</label> <input type="text"
-				required name="tablenumber" />
-			<button class="order-button" type="submit">Confirm your
-				Order</button>
-		</form>
-	</div>
+    <form th:action="@{/Payment}" th:method="get">
+      <button class="order-button" type="submit">Pay By Card</button>
+    </form>
+    <label>----OR PAY LATER----</label>
+    <a>‎ ‎ ‎ ‎ ‎ </a>
+    <form th:action="@{/placeorder2}" th:method="post">
+      <label>Please enter your table number</label>
+      <input type="text" required name="tablenumber" />
+      <button class="order-button" type="submit">Confirm your Order</button>
+    </form>
+  </div>
 </body>
 
 </html>

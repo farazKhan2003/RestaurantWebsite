@@ -284,14 +284,30 @@ div.content {
 /*Place the button in the center of the page ( absolutely )*/
 .centerBox {
   width: 180px;
-  height: 120px;
+  height: 250px;
   background: #eee;
   border: 1px solid #ccc;
   position: absolute;
-  left: 46%;
-  top: 50%;
+  left: 47%;
+  top: 45%;
   margin-left: -50px;
   margin-top: -50px;
+  border-radius: 6%;
+  padding: 1rem;
+}
+
+.centerBox2 {
+  width: 180px;
+  height: 150px;
+  background: #eee;
+  border: 1px solid #ccc;
+  position: absolute;
+  left: 47%;
+  top: 45%;
+  margin-left: -50px;
+  margin-top: -50px;
+  border-radius: 6%;
+  padding: 1rem;
 }
 
 /* The following CSS code for the basket table was inspired by a YouTube video by 'FollowAndrew' */
@@ -566,4 +582,43 @@ div.content {
   border: none;
   cursor: pointer;
   width: 100%;
+}
+
+.container form{
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 10px 15px rgba(0,0,0,.1);
+    width: 600px;
+    left: 34%;
+    top: 40%;
+    position: absolute;
+    padding-left: 1rem;
+    padding-right: 2rem;
+}
+
+.container form .inputBox{
+    margin-top: 20px;
+}
+
+.container form .inputBox span{
+    display: block;
+    padding-bottom: 5px;
+}
+
+.container form .inputBox input,
+.container form .inputBox select{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border:1px solid rgba(0,0,0,.3);
+    color:#444;
+}
+
+.container form .flexbox{
+    display: flex;
+    gap:15px;
+}
+
+.container form .flexbox .inputBox{
+    flex:1 1 150px;
 }

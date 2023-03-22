@@ -40,7 +40,8 @@ public class OrderStateController {
     List<Orders> waiterOrder = orepo.findOrderByWaiterId(waiter.getWaiterid());
     List<Orders> deliveryStateOrder = new ArrayList<Orders>();
     List<Orders> otherStateOrder = new ArrayList<Orders>();
-
+    List<Orders> paidStateOrder = new ArrayList<Orders>();
+    
     for (int i = 0; i < waiterOrder.size(); i++) {
       Orders order = waiterOrder.get(i);
       if (order.getState().equals("ready")) {
@@ -49,12 +50,16 @@ public class OrderStateController {
         otherStateOrder.add(order);
       }
     }
+    
+    paidStateOrder = orepo.findByPayState();
+    
     List<Orders> allOrders = orepo.findByState();
     System.out.println(deliveryStateOrder.size());
     System.out.println(otherStateOrder.size());
     model.addAttribute("allorders", allOrders);
     model.addAttribute("deliveryStateOrder", deliveryStateOrder);
     model.addAttribute("otherStateOrder", otherStateOrder);
+    model.addAttribute("paidStateOrder", paidStateOrder);
 
     return "orders";
   }
@@ -100,5 +105,44 @@ public class OrderStateController {
     orepo.save(order);
     getOrders(model, session);
     return "orders";
+  }
+  
+  /**
+   * This method will change the payment state of the order to 'waitingtopay' when the customer requests to pay by cash.
+   *
+   * @param input The ID of the order being confirmed
+   * @param model is the Model type parameter help the back-end code to add attribute for front-end
+   *        web page
+   * @param session A method to identify a user and waiter across more than one page
+   * @return "orders" The webpage that displays all current orders
+   */
+  @PostMapping("/changeToWaiting")
+  public String changeStateToWaiting(@Param("input") Integer input, Model model,
+      HttpSession session) {
+      Orders order = orepo.findOrderByOrderId(input);
+      System.out.println(input);
+      order.setPayState("waitingtopay");
+      orepo.save(order);
+      getOrders(model, session);
+      return "orders";
+  }
+  
+  /**
+   * This method will change the payment state of the order when it has been paid with cash or card.
+   *
+   * @param input The ID of the order being confirmed
+   * @param model is the Model type parameter help the back-end code to add attribute for front-end
+   *        web page
+   * @param session A method to identify a user and waiter across more than one page
+   * @return "orders" The webpage that displays all current orders
+   */
+  @PostMapping("/changeToPaid")
+  public String changeStateToPaid(@Param("input") Integer input, Model model,
+      HttpSession session) {
+      Orders order = orepo.findOrderByOrderId(input);
+      order.setPayState("paid");
+      orepo.save(order);
+      getOrders(model, session);
+      return "orders";
   }
 }

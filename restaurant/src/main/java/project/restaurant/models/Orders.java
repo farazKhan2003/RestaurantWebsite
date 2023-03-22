@@ -26,7 +26,9 @@ public class Orders {
   @Column(name = "state", nullable = false)
   private String state;
 
-
+  @Column(name = "paystate", nullable = false)
+  private String paystate;
+  
   @ManyToOne(cascade = CascadeType.MERGE)
   @JoinColumn(name = "waiterid")
   private Waiters waiterid;
@@ -58,8 +60,10 @@ public class Orders {
    * @param tablenumber The table number of the user
    * @param price The price of the order
    */
-  public Orders(String state, Waiters waiterid, Users userid, String timeplaced,Integer tablenumber, KitchenStaff kitchenStaffId, Float price) {
+  public Orders(String state, String paystate, Waiters waiterid, Users userid, String timeplaced,
+      Integer tablenumber, KitchenStaff kitchenStaffId, Float price) {
     this.state = state;
+    this.paystate = paystate;
     this.waiterid = waiterid;
     this.userid = userid;
     this.timeplaced = timeplaced;
@@ -193,5 +197,13 @@ public class Orders {
    */
   public Integer getTableNumber() {
     return tablenumber;
+  }
+
+  public String getPayState() {
+    return paystate;
+  }
+
+  public void setPayState(String paystate) {
+    this.paystate = paystate;
   }
 }

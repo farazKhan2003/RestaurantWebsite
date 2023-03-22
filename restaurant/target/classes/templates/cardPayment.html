@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Basket</title>
+  <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css">
+  </link>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+</head>
+
+<body>
+  <!-- The header -->
+  <header>
+    <a href="#" class="logo">ResturantNameHere</a>
+    <nav class="navbar">
+      <a href="home">Home</a> <a href="orderingmenu">Dishes</a> <a href="#">Contact
+        us</a> <a href="#">Orders</a>
+      <div class="navbar-right">
+        <a th:if="${session.user}==null" href="login">Login</a> <span th:if="${session.user}!=null">
+          <div class="logoutb">
+            <button class="logoutdrop" th:text="${session.user.getUsername}"></button>
+            <div class="dropcontent">
+              <form th:action="@{/logout}" th:method="post">
+                <button class="logout" type="submit">Logout</button>
+              </form>
+            </div>
+          </div>
+        </span>
+      </div>
+    </nav>
+  </header>
+
+  <section class="table">
+    <table class="basket-table">
+      <thead>
+        <tr>
+          <th align="left">PRODUCT</th>
+          <th align="left">QTY</th>
+          <th align="left">PRICE</th>
+          <th align="left">ADD</th>
+          <th align="right">REMOVE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="item, interStat: ${basketItems}">
+          <td class="qty" th:text="${item.name}"></td>
+          <td th:text="${item.quantity}"></td>
+          <td th:text="'£'+${priceList[interStat.index]}"></td>
+          <td>
+            <form th:action="@{/addRowItem}" th:method="get">
+              <button type="submit" onclick="added()">Add</button>
+              <input type="hidden" name="input" th:value="${item.id}" />
+            </form>
+          </td>
+          <td>
+            <form th:action="@{/deleteRowItem}" th:method="get">
+              <button type="submit" onclick="removed()">Remove</button>
+              <input type="hidden" name="input" th:value="${item.id}" />
+            </form>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2" align="right">Total To Be Paid</td>
+          <td th:text="'£'+${basketTotal}" align="center"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </section>
+
+
+  <div class="container">
+
+    <form th:action="@{/submitCard}" method="post">
+      <h3>Please Enter Table Number Below:</h3>
+      <div class="inputBox">
+      <span>Table Number:</span>
+      <input type="text" required name="tablenumber" />
+      </div>
+      <h3>Please Enter Card Details Below:</h3>
+      <div class="inputBox">
+        <span>Card Number</span>
+        <input type="text" maxlength="16" class="card-number-input">
+      </div>
+      <div class="inputBox">
+        <span>Card Holder</span>
+        <input type="text" class="card-holder-input">
+      </div>
+      <div class="flexbox">
+        <div class="inputBox">
+          <span>Expiration MM</span>
+          <select name="" id="" class="month-input">
+            <option value="month" selected disabled>Month</option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+        </div>
+        <div class="inputBox">
+          <span>Expiration YY</span>
+          <select name="" id="" class="year-input">
+            <option value="year" selected disabled>Year</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+            <option value="2029">2029</option>
+            <option value="2030">2030</option>
+            <option value="2030">2031</option>
+            <option value="2030">2032</option>
+            <option value="2030">2033</option>
+          </select>
+        </div>
+        <div class="inputBox">
+          <span>CVV</span>
+          <input type="text" maxlength="4" class="cvv-input">
+        </div>
+      </div>
+      <input type="submit" value="submit" class="order-button">
+    </form>
+
+  </div>
+
+</body>
+
+</html>

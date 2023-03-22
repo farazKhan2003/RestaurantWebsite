@@ -105,4 +105,21 @@ public interface OrdersRepository extends JpaRepository<Orders, Integer> {
 
   @Query("SELECT o FROM Orders o WHERE o.state = ?1 AND o.userid = ?2")
   List<Orders> findbyEqualState(String state, Users user);
+  
+  /**
+   * selects all items from Orders where the payment state matches the parameter.
+   * 
+   * @param payment state an object of type String.
+   * @return a list of orders with the given payment state.
+   */
+  @Query("SELECT o FROM Orders o WHERE o.paystate = '?1'")
+  List<Orders> findByPayState(String paystate);
+  
+  /**
+   * selects all items from Orders where the customer is waiting to pay.
+   * 
+   * @return a list of orders where payment state is 'waitingtopay'.
+   */
+  @Query("SELECT o FROM Orders o WHERE o.paystate = 'unpaid'")
+  List<Orders> findByPayState();
 }

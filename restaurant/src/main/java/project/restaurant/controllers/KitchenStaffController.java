@@ -263,10 +263,10 @@ public class KitchenStaffController {
    * @return "kitchenStaffOrders" The web page help kitchenstaff do cooking stuff
    */
   @PostMapping("/deleteOrder")
-  public String deleteOrder(@Param("input") Integer input, Model model) {
+  public String deleteOrder(@Param("input") Integer input, Model model, HttpSession session) {
     Orders order = oRepo.findOrderByOrderId(input);
     oRepo.delete(order);
-    getOrderDetail(input, model);
+    getKitchenOrders(model, session);
     return "kitchenStaffOrders";
   }
 }

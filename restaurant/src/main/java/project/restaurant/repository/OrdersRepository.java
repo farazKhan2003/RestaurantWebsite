@@ -102,4 +102,7 @@ public interface OrdersRepository extends JpaRepository<Orders, Integer> {
   
   @Query("SELECT o FROM Orders o WHERE o.state = 'canceling' AND o.waiterid=?1")
   List<Orders> findOrderInCancelingStateByWaiterId(Waiters waiterid);
+
+  @Query("SELECT o FROM Orders o WHERE o.state = ?1 AND o.userid = ?2")
+  List<Orders> findbyEqualState(String state, Users user);
 }

@@ -45,7 +45,7 @@ public class OrderStateController {
       Orders order = waiterOrder.get(i);
       if (order.getState().equals("ready")) {
         deliveryStateOrder.add(order);
-      } else {
+      } else if (order.getState().equals("confirmed")){
         otherStateOrder.add(order);
       }
     }

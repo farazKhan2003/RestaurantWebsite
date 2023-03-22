@@ -61,6 +61,7 @@ public class OrderingController {
    * @param amenuitem the Menuitem id of the item that customer want
    * @param model is the Model type parameter help the back-end code to add attribute for front-end
    *        web page
+   * @return "orderingmenu" The webpage for customer order dishes
    */
   @PostMapping("/orderitem2")
   public String addOrderItem(@RequestParam("aMenuItem") Integer amenuitem, Model model) {
@@ -109,6 +110,9 @@ public class OrderingController {
    *        web page
    * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
    *        page
+   * @param tablenumber is the number of table of customer
+   * @return "havent-add-anyitem" The web page show that order haven't been successfully placed
+   * @return "place-order-sucess" The web page show that order have been successfully placed
    */
   @PostMapping("/placeorder2")
   public String placeOrder2(Model model, HttpSession session,
@@ -203,6 +207,7 @@ public class OrderingController {
    *
    * @param model is the Model type parameter help the back-end code to add attribute for front-end
    *        web page
+   * @return "basket" The web page show customer what dishes are in the basket
    */
   @GetMapping("/basket")
   public String getItem2(Model model) {
@@ -295,6 +300,7 @@ public class OrderingController {
    * @param input is the menuitem id of the item that customer want to have more.
    * @param model is the Model type parameter help the back-end code to add attribute for front-end
    *        web page
+   * @return "basket" The web page show customer what dishes are in the basket
    */
   @GetMapping("/addRowItem")
   public String addRowItem(@Param("input") Integer input, Model model) {

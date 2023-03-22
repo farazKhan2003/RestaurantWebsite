@@ -32,6 +32,7 @@ public class OrderStateController {
    *        web page
    * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
    *        page
+   * @return "orders" The webpage that displays all current orders
    */
   @GetMapping("/waiterOrder")
   public String getOrders(Model model, HttpSession session) {
@@ -67,6 +68,7 @@ public class OrderStateController {
    *        web page
    * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
    *        page
+   * @return "orders" The webpage that displays all current orders
    */
   @PostMapping("/changeToDelivered")
   public String changeStateToDelivered(@Param("input") Integer input, Model model,

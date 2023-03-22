@@ -110,6 +110,16 @@ public class HelpController {
     return "waiterhelp";
   }
   
+  /**
+   * A postMapping method for cancel button on "waiterhelp" web page. This method will
+   * change state of order to cancelled after waiter confirmed it.
+   * 
+   * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
+   *        page
+   * @param model A method to identify a menu item and category on one webpage
+   * @param input is the order id of the row of the table
+   * @return "waiterhelp" The web page for waiter to handle current help requests
+   */
   @PostMapping("/confirmCancel")
   public String confirmCancel(HttpSession session, Model model, @Param("input") Integer input) {
     Orders order = orepo.findOrderByOrderId(input);

@@ -51,25 +51,28 @@ public class ChangeMenuController {
   /**
    * This method will add an item to the menu_items table in the database by taking user inputs.
    *
-   * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
-   *        page
-   * @param itemName The name of the dish entered by the user
+   * @param session     A method to identify a user, a kitchenstaff or a waiter across more than one
+   *                    page
+   * @param itemName    The name of the dish entered by the user
    * @param description The description of the dish entered by the user
-   * @param price The price of the dish entered by the user
-   * @param file The image of the dish entered by the user
+   * @param price       The price of the dish entered by the user
+   * @param file        The image of the dish entered by the user
    * @param stockAmount The amount of the dish currently stored
-   * @param category The category of the dish's type entered by the user
+   * @param category    The category of the dish's type entered by the user
    * @param ingredients The ingredients of the dish entered by the user
-   * @param calories The calories of the dish entered by the user
+   * @param calories    The calories of the dish entered by the user
    * @return "menuChanges" The webpage for menuChange
    * @throws IOException If a user inputs the wrong type for a parameter, throw an IOException
    */
   @PostMapping("/addItems")
   public String addItems(HttpSession session, @RequestParam("itemName") String itemName,
-      @RequestParam("description") String description, @RequestParam("price") Float price,
-      @RequestParam("file") MultipartFile file, @RequestParam("stockAmount") Integer stockAmount,
-      @RequestParam("category") String category, @RequestParam("ingredients") String ingredients,
-      @RequestParam("calories") Integer calories) throws IOException {
+                         @RequestParam("description") String description,
+                         @RequestParam("price") Float price,
+                         @RequestParam("file") MultipartFile file,
+                         @RequestParam("stockAmount") Integer stockAmount,
+                         @RequestParam("category") String category,
+                         @RequestParam("ingredients") String ingredients,
+                         @RequestParam("calories") Integer calories) throws IOException {
     byte[] thisArray = file.getBytes();
     String fle = Base64.encodeBase64String(thisArray);
     Waiters waiter = (Waiters) session.getAttribute("waiter");
@@ -93,7 +96,7 @@ public class ChangeMenuController {
    * This method allows a waiter to search for a specific menu item given a keyword.
    *
    * @param keyword given to menuItemsRepository as the item name and description
-   * @param model A method to identify a menu item on one webpage
+   * @param model   A method to identify a menu item on one webpage
    * @return "removeMenuChange" is the link to the page that allows a waiter to remove a dish
    */
   @GetMapping("/searchItems")
@@ -118,13 +121,12 @@ public class ChangeMenuController {
       String str = mi.getPrice() + ""; // connverting int to string
       String digit = str.substring(str.length() - 2, str.length());
       String frontDigit = str.substring(0, str.length() - 2);
-      System.out.println(digit);
+
       if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
           || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
           || digit.equals(".8") || digit.equals(".9")) {
         digit = digit + "0";
         frontDigit = frontDigit + digit;
-        // basketTotal = Float.parseFloat(frontDigit);
       } else {
         frontDigit = str;
       }
@@ -168,9 +170,9 @@ public class ChangeMenuController {
 
   /**
    * This method will allow a waiter to edit a menu items attributes.
-   * 
+   *
    * @param itemid The ID of the menu item being edited
-   * @param model A method to identify menu items and their ID on one webpage
+   * @param model  A method to identify menu items and their ID on one webpage
    * @return "editSpecificItem" The link to the webpage that allows an item to be changed
    */
   @PostMapping("/editItem")
@@ -182,27 +184,31 @@ public class ChangeMenuController {
 
   /**
    * This method actually updates an item when it is being edited.
-   * 
-   * @param itemid The ID of the menu item being updated
-   * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
-   *        page
-   * @param itemName The name of the dish entered by the waiter
+   *
+   * @param itemid      The ID of the menu item being updated
+   * @param session     A method to identify a user, a kitchenstaff or a waiter across more than one
+   *                    page
+   * @param itemName    The name of the dish entered by the waiter
    * @param description The description of the dish entered by the waiter
-   * @param price The price of the dish entered by the waiter
-   * @param file The image of the dish entered by the waiter
+   * @param price       The price of the dish entered by the waiter
+   * @param file        The image of the dish entered by the waiter
    * @param stockAmount The amount of the dish currently stored
-   * @param category The category of the dish's type entered by the waiter
+   * @param category    The category of the dish's type entered by the waiter
    * @param ingredients The ingredients of the dish entered by the waiter
-   * @param calories The calories of the dish entered by the waiter
+   * @param calories    The calories of the dish entered by the waiter
    * @return "menuChanges" The default page where a waiter can change the menu
    * @throws IOException If a user inputs the wrong type for a parameter, throw an IOException
    */
   @PostMapping("/updateItems")
   public String getUpdateItem(@RequestParam("aMenuItem") Integer itemid, HttpSession session,
-      @RequestParam("itemName") String itemName, @RequestParam("description") String description,
-      @RequestParam("price") Float price, @RequestParam("file") MultipartFile file,
-      @RequestParam("stockAmount") Integer stockAmount, @RequestParam("category") String category,
-      @RequestParam("ingredients") String ingredients, @RequestParam("calories") Integer calories)
+                              @RequestParam("itemName") String itemName,
+                              @RequestParam("description") String description,
+                              @RequestParam("price") Float price,
+                              @RequestParam("file") MultipartFile file,
+                              @RequestParam("stockAmount") Integer stockAmount,
+                              @RequestParam("category") String category,
+                              @RequestParam("ingredients") String ingredients,
+                              @RequestParam("calories") Integer calories)
       throws IOException {
     Waiters waiter = (Waiters) session.getAttribute("waiter");
     byte[] thisArray = file.getBytes();

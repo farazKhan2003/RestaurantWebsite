@@ -7,7 +7,7 @@ create table users(
     usertype text not null,
     username text not null,
     passwords text(64) not null,
-    email_address text not null,
+    emailaddress text not null,
     primary key(userid)
 )engine=MyISAM ;
 

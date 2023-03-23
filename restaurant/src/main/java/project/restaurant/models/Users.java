@@ -19,6 +19,20 @@ import java.util.Set;
 @Table(name = "Users")
 public class Users {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer userid;
+  @Column(name = "usertype", nullable = false)
+  private String usertype;
+  @Column(name = "username", nullable = false)
+  private String username;
+  @Column(name = "passwords", nullable = false, length = 64)
+  private String passwords;
+  @Column(name = "emailaddress", nullable = false)
+  private String emailaddress;
+  @OneToMany(cascade = CascadeType.MERGE)
+  private Set<Orders> orders;
+
   /**
    * This constructor builds an empty user.
    */
@@ -31,33 +45,14 @@ public class Users {
    * @param usertype     The type of user (waiter or user)
    * @param username     The username of the user
    * @param passwords    The password of the user
-   * @param email_address The email address of the user
+   * @param emailaddress The email address of the user
    */
-  public Users(String usertype, String username, String passwords, String email_address) {
+  public Users(String usertype, String username, String passwords, String emailaddress) {
     this.usertype = usertype;
     this.username = username;
     this.passwords = passwords;
-    this.email_address = email_address;
+    this.emailaddress = emailaddress;
   }
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer userid;
-
-  @Column(name = "usertype", nullable = false)
-  private String usertype;
-
-  @Column(name = "username", nullable = false)
-  private String username;
-
-  @Column(name = "passwords", nullable = false, length = 64)
-  private String passwords;
-
-  @Column(name = "email_address", nullable = false)
-  private String email_address;
-
-  @OneToMany(cascade = CascadeType.MERGE)
-  private Set<Orders> orders;
 
   /**
    * This method gets the ID of the user.

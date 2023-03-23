@@ -21,6 +21,31 @@ import java.util.Set;
 @Table(name = "MenuItems")
 public class MenuItems {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer itemid;
+  @Column(name = "descriptions", nullable = false)
+  private String descriptions;
+  @Column(name = "img", nullable = true)
+  private String img;
+  @Column(name = "itemName", nullable = false, unique = true)
+  private String itemName;
+  @Column(name = "price", nullable = false)
+  private Float price;
+  @Column(name = "stockAmount", nullable = true)
+  private Integer stockAmount;
+  @Column(name = "category", nullable = false)
+  private String category;
+  @Column(name = "ingredients", nullable = false)
+  private String ingredients;
+  @Column(name = "calories", nullable = false)
+  private Integer calories;
+  @ManyToOne(cascade = CascadeType.MERGE)
+  @JoinColumn(name = "waiterid")
+  private Waiters waiterid;
+  @OneToMany(cascade = CascadeType.MERGE)
+  private Set<ItemsOrders> itemsorders;
+
   /**
    * This constructor builds an empty menu item.
    */
@@ -53,42 +78,6 @@ public class MenuItems {
     this.ingredients = ingredients;
     this.calories = calories;
   }
-
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer itemid;
-
-  @Column(name = "descriptions", nullable = false)
-  private String descriptions;
-
-  @Column(name = "img", nullable = true)
-  private String img;
-
-  @Column(name = "itemName", nullable = false, unique = true)
-  private String itemName;
-
-  @Column(name = "price", nullable = false)
-  private Float price;
-
-  @Column(name = "stockAmount", nullable = true)
-  private Integer stockAmount;
-
-  @Column(name = "category", nullable = false)
-  private String category;
-
-  @Column(name = "ingredients", nullable = false)
-  private String ingredients;
-
-  @Column(name = "calories", nullable = false)
-  private Integer calories;
-
-  @ManyToOne(cascade = CascadeType.MERGE)
-  @JoinColumn(name = "waiterid")
-  private Waiters waiterid;
-
-  @OneToMany(cascade = CascadeType.MERGE)
-  private Set<ItemsOrders> itemsorders;
 
   /**
    * This method gets the name of the menu item.

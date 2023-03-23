@@ -16,8 +16,9 @@ import project.restaurant.models.Helps;
 public interface HelpRepository extends JpaRepository<Helps, Integer> {
   /**
    * 'searchHelpByUserId' selects a 'Helps' object where 'userid' is the given parameter 'userid'.
-   * @param userid  An integer that represents the user ID.
-   * @return  'Helps' object that satisfies the query.
+   *
+   * @param userid An integer that represents the user ID.
+   * @return 'Helps' object that satisfies the query.
    */
   @Query("SELECT h FROM Helps h WHERE h.userid =?1")
   Helps searchHelpByUserId(@Param("userid") Integer userid);

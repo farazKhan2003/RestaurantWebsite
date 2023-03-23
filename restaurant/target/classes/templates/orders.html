@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Orders</title>
-    <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css">
-    <link th:href="@{/styles/orders.css}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/styles/ordering-menu.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/styles/orders.css}" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
+    <script src="/webjars/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="" th:src="@{scripts/toastr.js}"></script>
@@ -14,11 +14,11 @@
 <body>
 <!-- The header -->
 <header>
-    <a href="#" class="logo">Oaxaca</a>
+    <a class="logo" href="#">Oaxaca</a>
     <nav class="navbar">
         <a href="waiterhome">Home</a>
         <a th:href="menuChange">Change Menu</a>
-        <a href="#">Contact us</a>
+        <a href="contactus">Contact us</a>
         <a href="waiterOrder">Keep Track of Orders</a>
         <a th:href="waiterhelps">Help</a>
         <div class="navbar-right">
@@ -32,14 +32,16 @@
             </div>
         </div>
     </nav>
-    <a class="refresh"><img src="/images/refresh.png" alt="Refresh" onclick="location.reload()"></a>
+    <a class="refresh"><img alt="Refresh" onclick="location.reload()" src="/images/refresh.png"></a>
 </header>
 
 <section>
     <section class="tables">
         <table class="ordersTable">
             <thead>
-            <tr><th>Waiting for Confirm</th><tr>
+            <tr>
+                <th>Waiting for Confirm</th>
+            <tr>
             <tr>
                 <th>Order ID</th>
                 <th>Timeplaced</th>
@@ -59,7 +61,7 @@
                     <form th:action="@{/changeToConfirmed}" th:method="post">
                         <button type="submit">Confirmed</button>
                         <!-- this input is set to the orderid of the row order -->
-                        <input type="hidden" name="input" th:value="${item.getOrderId()}"/>
+                        <input name="input" th:value="${item.getOrderId()}" type="hidden"/>
                     </form>
                 </td>
             </tr>
@@ -70,7 +72,9 @@
         <section class="tables">
             <table class="ordersTable">
                 <thead>
-                <tr><th>Confirmed Orders</th><tr>
+                <tr>
+                    <th>Confirmed Orders</th>
+                <tr>
                 <tr>
                     <th>Order ID</th>
                     <th>Timeplaced</th>
@@ -91,7 +95,9 @@
         <section class="tables">
             <table class="ordersTable" id="readyForDelivery">
                 <thead>
-                <tr><th>Ready for Delivery</th><tr>
+                <tr>
+                    <th>Ready for Delivery</th>
+                <tr>
                 <tr>
                     <th>Order ID</th>
                     <th>Timeplaced</th>
@@ -111,46 +117,46 @@
                         <form th:action="@{/changeToDelivered}" th:method="post">
                             <button type="submit">Delivered</button>
                             <!-- this input is set to the orderid of the row order -->
-                            <input type="hidden" name="input" th:value="${item.getOrderId()}"/>
+                            <input name="input" th:value="${item.getOrderId()}" type="hidden"/>
                         </form>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </section>
-        
+
         <section>
-        <section class="tables">
-            <table class="ordersTable">
-                <thead>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Timeplaced</th>
-                    <th>Status</th>
-                    <th>Table Number</th>
-                    <th>Paid?</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="item: ${paidStateOrder}">
-                    <td th:text="${item.getOrderId()}"></td>
-                    <td th:text="${item.timeplaced}"></td>
-                    <td th:text="${item.getState()}"></td>
-                    <td th:text="${item.getTableNumber}"></td>
-                    <td>
-                    <!-- this is the Confirmed button on the orders web page -->
-                    <form th:action="@{/changeToPaid}" th:method="post">
-                        <button type="submit">Paid</button>
-                        <!-- this input is set to the orderid of the row order -->
-                        <input type="hidden" name="input" th:value="${item.getOrderId()}"/>
-                    </form>
-                </td>
-                </tr>
-                </tbody>
-            </table>
+            <section class="tables">
+                <table class="ordersTable">
+                    <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Timeplaced</th>
+                        <th>Status</th>
+                        <th>Table Number</th>
+                        <th>Paid?</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item: ${paidStateOrder}">
+                        <td th:text="${item.getOrderId()}"></td>
+                        <td th:text="${item.timeplaced}"></td>
+                        <td th:text="${item.getState()}"></td>
+                        <td th:text="${item.getTableNumber}"></td>
+                        <td>
+                            <!-- this is the Confirmed button on the orders web page -->
+                            <form th:action="@{/changeToPaid}" th:method="post">
+                                <button type="submit">Paid</button>
+                                <!-- this input is set to the orderid of the row order -->
+                                <input name="input" th:value="${item.getOrderId()}" type="hidden"/>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
         </section>
-        </section>
-        
+
     </section>
     <script>
         // Get the ready order table element
@@ -175,6 +181,7 @@
 
         // Call notify function when the table loads
         window.addEventListener("load", notify);
+
     </script>
 </body>
 </html>

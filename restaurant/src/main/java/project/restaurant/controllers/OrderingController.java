@@ -59,17 +59,13 @@ public class OrderingController {
    * React to add button by adding an item into the basket.
    *
    * @param amenuitem the Menuitem id of the item that customer want
-   * @param model is the Model type parameter help the back-end code to add attribute for front-end
-   *        web page
+   * @param model     is the Model type parameter help the back-end code to add
+   *                  attributes for front-end web page
    * @return "orderingmenu" The webpage for customer order dishes
    */
   @PostMapping("/orderitem2")
   public String addOrderItem(@RequestParam("aMenuItem") Integer amenuitem, Model model) {
     mlist.add(amenuitem);
-    for (Integer m : mlist) {
-      System.out.println(m);
-    }
-
     List<MenuItems> menuItems = mrepo.findAll();
     List<String> priceList = new ArrayList<>();
 
@@ -77,7 +73,7 @@ public class OrderingController {
       String str = mi.getPrice() + ""; // connverting int to string
       String digit = str.substring(str.length() - 2, str.length());
       String frontDigit = str.substring(0, str.length() - 2);
-      System.out.println(digit);
+
       if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
           || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
           || digit.equals(".8") || digit.equals(".9")) {
@@ -106,17 +102,17 @@ public class OrderingController {
   /**
    * React to placeorder button by adding all item in the basket to database.
    *
-   * @param model is the Model type parameter help the back-end code to add attribute for front-end
-   *        web page
-   * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
-   *        page
+   * @param model       is the Model type parameter help the back-end code to add attributes
+   *                    for front-end web page
+   * @param session     A method to identify a user, a kitchenstaff or a waiter across more than one
+   *                    page
    * @param tablenumber is the number of table of customer
-   * @return "havent-add-anyitem" The web page show that order haven't been successfully placed
-   * @return "place-order-sucess" The web page show that order have been successfully placed
+   * @return "place-order-sucess" The webpage for a successful added item, otherwise redirect to
+             "place-order-fail" which will show the user their added item has failed
    */
   @PostMapping("/placeorder2")
   public String placeOrder2(Model model, HttpSession session,
-      @RequestParam("tablenumber") Integer tablenumber) {
+                            @RequestParam("tablenumber") Integer tablenumber) {
     if (mlist.size() == 0) {
       return "havent-add-anyitem";
     }
@@ -134,22 +130,20 @@ public class OrderingController {
     }
     Users u = (Users) session.getAttribute("user");
     LocalDateTime curTime = LocalDateTime.now();
-    Orders order = new Orders("not confirmed","unpaid", null, u, curTime.toString(), tablenumber, null, price);
+    Orders order =
+        new Orders("not confirmed", "unpaid", null, u, curTime.toString(), tablenumber, null,
+            price);
     for (MenuItems i : item) {
       irepo.save(new ItemsOrders(i, order));
     }
 
     mlist.clear();
     Orders order1 = orepo.save(order);
-    System.out.println("******************************************");
+
     List<ItemsOrders> items = irepo.findAllItemOrders(order1);
 
     List<BasketTypeInterface> returnItems =
         irepo.findSumAmountById(items.get(0).getOrderid().getOrderId());
-
-    System.out.println("******************************************");
-    System.out.println(returnItems.size());
-    System.out.println("******************************************");
 
     List<BasketItem> basketOrder = new ArrayList<BasketItem>();
     List<String> priceList = new ArrayList<>();
@@ -158,12 +152,9 @@ public class OrderingController {
       Integer itemId = returnItems.get(i).getItemId();
       Integer itemQuantity = returnItems.get(i).getQuantity();
       Float itemSumPrice = itemQuantity * returnItems.get(i).getPrice();
-
-
       String str = itemSumPrice + ""; // connverting int to string
       String digit = str.substring(str.length() - 2, str.length());
       String frontDigit = str.substring(0, str.length() - 2);
-      System.out.println(digit);
       if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
           || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
           || digit.equals(".8") || digit.equals(".9")) {
@@ -184,7 +175,6 @@ public class OrderingController {
     String str = basketTotal + ""; // connverting int to string
     String digit = str.substring(str.length() - 2, str.length());
     String frontDigit = str.substring(0, str.length() - 2);
-    System.out.println(digit);
     if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
         || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
         || digit.equals(".8") || digit.equals(".9")) {
@@ -206,7 +196,7 @@ public class OrderingController {
    * This function will help the web page to generate the list of ordered item.
    *
    * @param model is the Model type parameter help the back-end code to add attribute for front-end
-   *        web page
+   *              web page
    * @return "basket" The web page show customer what dishes are in the basket
    */
   @GetMapping("/basket")
@@ -234,7 +224,6 @@ public class OrderingController {
       }
     }
 
-    System.out.println(map);
 
     List<BasketItemWithId> basketItems = new ArrayList<>();
     Float basketTotal = (float) 0;
@@ -245,14 +234,96 @@ public class OrderingController {
     for (int i = 0; i < array.length; i++) {
       List<MenuItems> menuItem = mrepo.findByIntegerId(array[i]);
 
+
+      Float price = menuItem.get(0).getPrice();
+      Integer quantity = map.get(array[i]);
+      Float curPrice = price * quantity;
+      String strPrice = curPrice + ""; // converting int to string
+      String digit = strPrice.substring(strPrice.length() - 2, strPrice.length());
+      frontDigitPrice = strPrice.substring(0, strPrice.length() - 2);
+      if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
+          || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
+          || digit.equals(".8") || digit.equals(".9")) {
+        digit = digit + "0";
+        frontDigitPrice = frontDigitPrice + digit;
+      } else {
+        frontDigitPrice = strPrice;
+      }
+      priceList.add(frontDigitPrice);
       Integer menuItemId = menuItem.get(0).getItemid();
       String name = menuItem.get(0).getItemName();
+      BasketItemWithId item = new BasketItemWithId(name, quantity, curPrice, menuItemId);
+      basketTotal += (curPrice);
+      basketItems.add(item);
+    }
+
+    String str = String.format("%.2f", basketTotal); // connverting int to string
+    String digit = str.substring(str.length() - 2, str.length());
+    String frontDigit = str.substring(0, str.length() - 2);
+
+    if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
+        || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
+        || digit.equals(".8") || digit.equals(".9")) {
+      digit = digit + "0";
+      frontDigit = frontDigit + digit;
+      // basketTotal = Float.parseFloat(frontDigit);
+    } else {
+      frontDigit = str;
+    }
+
+
+    model.addAttribute("basketItems", basketItems);
+    model.addAttribute("basketTotal", frontDigit);
+    model.addAttribute("priceList", priceList);
+    return "basket";
+  }
+
+  /**
+   * This method will retrieve payment information from a user.
+   *
+   * @param model Models help the back-end code to add attributes for front-end web page
+   * @return "cardpayment" The webpage for a user to put their payment information
+   */
+  @GetMapping("/Payment")
+  public String getpayment(Model model) {
+
+
+    Set<Integer> set = new TreeSet<Integer>(mlist);
+
+    Integer[] array = new Integer[set.size()];
+
+    Iterator<Integer> iterator = set.iterator();
+
+    int j = 0;
+    while (iterator.hasNext()) {
+      array[j] = iterator.next();
+      j++;
+    }
+
+    Map<Integer, Integer> map = new HashMap<>();
+
+    for (int i = 0; i < mlist.size(); i++) {
+      if (map.containsKey(mlist.get(i)) == false) {
+        map.put(mlist.get(i), 1);
+      } else {
+        map.put(mlist.get(i), map.get(mlist.get(i)) + 1);
+      }
+    }
+
+
+    List<BasketItemWithId> basketItems = new ArrayList<>();
+    Float basketTotal = (float) 0;
+
+    List<String> priceList = new ArrayList<>();
+    String frontDigitPrice = "";
+
+    for (int i = 0; i < array.length; i++) {
+      List<MenuItems> menuItem = mrepo.findByIntegerId(array[i]);
+
+
       Float price = menuItem.get(0).getPrice();
-
       Integer quantity = map.get(array[i]);
-
       Float curPrice = price * quantity;
-      System.out.println(quantity);
       String strPrice = curPrice + ""; // connverting int to string
       String digit = strPrice.substring(strPrice.length() - 2, strPrice.length());
       frontDigitPrice = strPrice.substring(0, strPrice.length() - 2);
@@ -265,7 +336,8 @@ public class OrderingController {
         frontDigitPrice = strPrice;
       }
       priceList.add(frontDigitPrice);
-
+      Integer menuItemId = menuItem.get(0).getItemid();
+      String name = menuItem.get(0).getItemName();
       BasketItemWithId item = new BasketItemWithId(name, quantity, curPrice, menuItemId);
       basketTotal += (curPrice);
       basketItems.add(item);
@@ -274,7 +346,7 @@ public class OrderingController {
     String str = String.format("%.2f", basketTotal); // connverting int to string
     String digit = str.substring(str.length() - 2, str.length());
     String frontDigit = str.substring(0, str.length() - 2);
-    System.out.println(digit);
+
     if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
         || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
         || digit.equals(".8") || digit.equals(".9")) {
@@ -285,107 +357,21 @@ public class OrderingController {
       frontDigit = str;
     }
 
-    System.out.println(frontDigitPrice + " here");
 
     model.addAttribute("basketItems", basketItems);
     model.addAttribute("basketTotal", frontDigit);
     model.addAttribute("priceList", priceList);
-    return "basket";
-  }
-  
-  @GetMapping("/Payment")
-  public String getpayment(Model model) {
 
-
-      Set<Integer> set = new TreeSet<Integer>(mlist);
-
-      Integer[] array = new Integer[set.size()];
-
-      Iterator<Integer> iterator = set.iterator();
-
-      int j = 0;
-      while (iterator.hasNext()) {
-        array[j] = iterator.next();
-        j++;
-      }
-
-      Map<Integer, Integer> map = new HashMap<>();
-
-      for (int i = 0; i < mlist.size(); i++) {
-        if (map.containsKey(mlist.get(i)) == false) {
-          map.put(mlist.get(i), 1);
-        } else {
-          map.put(mlist.get(i), map.get(mlist.get(i)) + 1);
-        }
-      }
-
-      System.out.println(map);
-
-      List<BasketItemWithId> basketItems = new ArrayList<>();
-      Float basketTotal = (float) 0;
-
-      List<String> priceList = new ArrayList<>();
-      String frontDigitPrice = "";
-
-      for (int i = 0; i < array.length; i++) {
-        List<MenuItems> menuItem = mrepo.findByIntegerId(array[i]);
-
-        Integer menuItemId = menuItem.get(0).getItemid();
-        String name = menuItem.get(0).getItemName();
-        Float price = menuItem.get(0).getPrice();
-
-        Integer quantity = map.get(array[i]);
-
-        Float curPrice = price * quantity;
-        System.out.println(quantity);
-        String strPrice = curPrice + ""; // connverting int to string
-        String digit = strPrice.substring(strPrice.length() - 2, strPrice.length());
-        frontDigitPrice = strPrice.substring(0, strPrice.length() - 2);
-        if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
-            || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
-            || digit.equals(".8") || digit.equals(".9")) {
-          digit = digit + "0";
-          frontDigitPrice = frontDigitPrice + digit;
-        } else {
-          frontDigitPrice = strPrice;
-        }
-        priceList.add(frontDigitPrice);
-
-        BasketItemWithId item = new BasketItemWithId(name, quantity, curPrice, menuItemId);
-        basketTotal += (curPrice);
-        basketItems.add(item);
-      }
-
-      String str = String.format("%.2f", basketTotal); // connverting int to string
-      String digit = str.substring(str.length() - 2, str.length());
-      String frontDigit = str.substring(0, str.length() - 2);
-      System.out.println(digit);
-      if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
-          || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
-          || digit.equals(".8") || digit.equals(".9")) {
-        digit = digit + "0";
-        frontDigit = frontDigit + digit;
-        // basketTotal = Float.parseFloat(frontDigit);
-      } else {
-        frontDigit = str;
-      }
-
-      System.out.println(frontDigitPrice + " here");
-
-      model.addAttribute("basketItems", basketItems);
-      model.addAttribute("basketTotal", frontDigit);
-      model.addAttribute("priceList", priceList);
-      
     return "cardPayment";
   }
-  
+
   /**
    * This function react to the add button of the item list. It will increase one when the button
    * have been clicked.
    *
    * @param input is the menuitem id of the item that customer want to have more.
    * @param model is the Model type parameter help the back-end code to add attribute for front-end
-   *        web page
+   *              web page
    * @return "basket" The web page show customer what dishes are in the basket
    */
   @GetMapping("/addRowItem")
@@ -405,7 +391,7 @@ public class OrderingController {
    *
    * @param input The quantity of the item the user wants to purchase
    * @param model is the Model type parameter help the back-end code to add attribute for front-end
-   *        web page
+   *              web page
    * @return "basket" The webpage to view what is currently in your basket
    */
   @GetMapping("/deleteRowItem")
@@ -429,10 +415,9 @@ public class OrderingController {
   /**
    * This method will confirm an order and adds it to the menu_items database.
    *
-   * @param model is the Model type parameter help the back-end code to add attribute for front-end
-   *        web page
+   * @param model   Models help the back-end code to add attributes for front-end web page
    * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
-   *        page
+   *                page
    * @return "confirmOrder" The webpage that confirms to a user that their order has been placed
    */
   @GetMapping("/confirmOrders")
@@ -459,7 +444,6 @@ public class OrderingController {
       }
     }
 
-    System.out.println(map);
 
     List<BasketItemWithId> basketItems = new ArrayList<>();
     Float basketTotal = (float) 0;
@@ -469,16 +453,10 @@ public class OrderingController {
 
     for (int i = 0; i < array.length; i++) {
       List<MenuItems> menuItem = mrepo.findByIntegerId(array[i]);
-
-      Integer menuItemId = menuItem.get(0).getItemid();
-      String name = menuItem.get(0).getItemName();
       Float price = menuItem.get(0).getPrice();
-
       Integer quantity = map.get(array[i]);
-
       Float curPrice = price * quantity;
-      System.out.println(quantity);
-      String strPrice = curPrice + ""; // connverting int to string
+      String strPrice = curPrice + ""; // converting int to string
       String digit = strPrice.substring(strPrice.length() - 2, strPrice.length());
       frontDigitPrice = strPrice.substring(0, strPrice.length() - 2);
       if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
@@ -490,7 +468,8 @@ public class OrderingController {
         frontDigitPrice = strPrice;
       }
       priceList.add(frontDigitPrice);
-
+      Integer menuItemId = menuItem.get(0).getItemid();
+      String name = menuItem.get(0).getItemName();
       BasketItemWithId item = new BasketItemWithId(name, quantity, curPrice, menuItemId);
       basketTotal += (curPrice);
       basketItems.add(item);
@@ -499,7 +478,7 @@ public class OrderingController {
     String str = String.format("%.2f", basketTotal); // connverting int to string
     String digit = str.substring(str.length() - 2, str.length());
     String frontDigit = str.substring(0, str.length() - 2);
-    System.out.println(digit);
+
     if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
         || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
         || digit.equals(".8") || digit.equals(".9")) {
@@ -510,17 +489,25 @@ public class OrderingController {
       frontDigit = str;
     }
 
-    System.out.println(frontDigitPrice + " here");
 
     model.addAttribute("basketItems", basketItems);
     model.addAttribute("basketTotal", frontDigit);
     model.addAttribute("priceList", priceList);
     return "confirmOrder";
   }
-  
+
+  /**
+   * This method will allow a user to securely send their card information to the payment team.
+   *
+   * @param model       Models help the back-end code to add attributes for front-end web page
+   * @param session     A method to identify a user, a kitchenstaff or a waiter across more than one
+   *                    page
+   * @param tablenumber The customers table number
+   * @return "place-order-sucess" The webpage confirming to an order their payment has been accepted
+   */
   @PostMapping("/submitCard")
   public String submitCard(Model model, HttpSession session,
-      @RequestParam("tablenumber") Integer tablenumber) {
+                           @RequestParam("tablenumber") Integer tablenumber) {
     if (mlist.size() == 0) {
       return "havent-add-anyitem";
     }
@@ -546,21 +533,16 @@ public class OrderingController {
 
     mlist.clear();
     Orders order1 = orepo.save(order);
-    System.out.println("******************************************");
     List<ItemsOrders> items = irepo.findAllItemOrders(order1);
 
     List<BasketTypeInterface> returnItems =
         irepo.findSumAmountById(items.get(0).getOrderid().getOrderId());
 
-    System.out.println("******************************************");
-    System.out.println(returnItems.size());
-    System.out.println("******************************************");
-
     List<BasketItem> basketOrder = new ArrayList<BasketItem>();
     List<String> priceList = new ArrayList<>();
     Float basketTotal = (float) 0;
     for (int i = 0; i < returnItems.size(); i++) {
-      Integer itemId = returnItems.get(i).getItemId();
+
       Integer itemQuantity = returnItems.get(i).getQuantity();
       Float itemSumPrice = itemQuantity * returnItems.get(i).getPrice();
 
@@ -568,7 +550,7 @@ public class OrderingController {
       String str = itemSumPrice + ""; // connverting int to string
       String digit = str.substring(str.length() - 2, str.length());
       String frontDigit = str.substring(0, str.length() - 2);
-      System.out.println(digit);
+
       if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
           || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
           || digit.equals(".8") || digit.equals(".9")) {
@@ -580,7 +562,7 @@ public class OrderingController {
       }
       priceList.add(frontDigit);
 
-
+      Integer itemId = returnItems.get(i).getItemId();
       String itemName = mrepo.findByIntegerId(itemId).get(0).getItemName();
       basketTotal += itemSumPrice;
       basketOrder.add(new BasketItem(itemName, itemQuantity, itemSumPrice));
@@ -589,7 +571,7 @@ public class OrderingController {
     String str = basketTotal + ""; // connverting int to string
     String digit = str.substring(str.length() - 2, str.length());
     String frontDigit = str.substring(0, str.length() - 2);
-    System.out.println(digit);
+
     if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
         || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
         || digit.equals(".8") || digit.equals(".9")) {

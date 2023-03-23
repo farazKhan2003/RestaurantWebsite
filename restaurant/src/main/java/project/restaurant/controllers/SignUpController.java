@@ -1,6 +1,7 @@
 package project.restaurant.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,11 +33,11 @@ public class SignUpController {
    * This method will check if their details are already on the users database
    * and if not then confirm the signup and redirect them to the homepage.
    *
-   * @param userName The username entered by the user
+   * @param userName     The username entered by the user
    * @param emailAddress The email address entered by the user
-   * @param passWord The password entered by the user
+   * @param passWord     The password entered by the user
    * @return "home" The default homepage
-   *         "signupFailed" The webpage to deny a sign-up attempt
+             "signupFailed" The webpage to deny a sign-up attempt
    */
   @PostMapping("/signingup")
   public String getSearchUsers(@RequestParam("username") String userName,
@@ -45,7 +46,9 @@ public class SignUpController {
     String msg;
     if (urepo.searchUsersByUser(userName) == null
         && urepo.searchUsersByEmail(emailAddress) == null) {
-      Users user = new Users("0", userName, passWord, emailAddress);
+      BCryptPasswordEncoder bcpe = new BCryptPasswordEncoder();
+      String epassword = bcpe.encode(passWord);
+      Users user = new Users("0", userName, epassword, emailAddress);
       urepo.save(user);
       msg = "home";
     } else {

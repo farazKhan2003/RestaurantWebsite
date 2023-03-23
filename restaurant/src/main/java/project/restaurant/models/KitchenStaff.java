@@ -1,54 +1,104 @@
 package project.restaurant.models;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import java.util.Set;
-import jakarta.persistence.*;
 
+/**
+ * This class represents an order.
+ *
+ * @author Tanmeet Wen Kenny
+ */
 @Entity
-@Table(name="KitchenStaff")
+@Table(name = "KitchenStaff")
 public class KitchenStaff {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer kitchenstaffid;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer kitchenstaffid;
 
-    @Column(name = "permissions", nullable = false)
-    private Integer permissions;
+  @Column(name = "permissions", nullable = false)
+  private Integer permissions;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userid")
-    private Users userid;
-    
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Orders> orders;
-    
-    public KitchenStaff() {}
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "userid")
+  private Users userid;
 
-    public KitchenStaff(Integer permissions, Users userid) {
-        this.userid = userid;
-        this.permissions = permissions;
-    }
+  @OneToMany(cascade = CascadeType.ALL)
+  private Set<Orders> orders;
 
-    public Integer getKitchenStaffId() {
-        return kitchenstaffid;
-    }
+  /**
+   * This constructor will build an empty order.
+   */
+  public KitchenStaff() {
+  }
 
-    public void setKitchenStaffId(Integer kitchenstaffid) {
-        this.kitchenstaffid = kitchenstaffid;
-    }
+  /**
+   * This constructor will build a Kitchen Staff member and attach their ID and special permissions.
+   */
+  public KitchenStaff(Integer permissions, Users userid) {
+    this.userid = userid;
+    this.permissions = permissions;
+  }
 
-    public Integer getPermission() {
-        return permissions;
-    }
+  /**
+   * This method gets the ID of the Kitchen Staff member.
+   *
+   * @return the ID of the order
+   */
+  public Integer getKitchenStaffId() {
+    return kitchenstaffid;
+  }
 
-    public void setPermissions(Integer permissions) {
-        this.permissions = permissions;
-    }
+  /**
+   * This method sets the ID of the order.
+   */
 
-    public Users getUserid() {
-        return userid;
-    }
+  public void setKitchenStaffId(Integer kitchenstaffid) {
+    this.kitchenstaffid = kitchenstaffid;
+  }
 
-    public void setUserid(Users userid) {
-        this.userid = userid;
-    }
+  /**
+   * This method gets the permissions of the Kitchen Staff member.
+   *
+   * @return the ID of the order
+   */
+
+  public Integer getPermission() {
+    return permissions;
+  }
+
+  /**
+   * This method sets the permissions of the Kitchen Staff member.
+   */
+
+  public void setPermissions(Integer permissions) {
+    this.permissions = permissions;
+  }
+
+  /**
+   * This method gets the ID of the User.
+   *
+   * @return the ID of the User
+   */
+
+  public Users getUserid() {
+    return userid;
+  }
+
+  /**
+   * This method sets the ID of the User.
+   */
+  public void setUserid(Users userid) {
+    this.userid = userid;
+  }
 }

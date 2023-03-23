@@ -30,6 +30,14 @@ public class Helps {
   }
 
   /**
+   * This constructor will build a help request and attach it to the user's ID who requested it.
+   */
+  public Helps(String state, Integer userid) {
+    this.state = state;
+    this.userid = userid;
+  }
+
+  /**
    * This method gets the id of the help request.
    *
    * @return the id of the help request
@@ -58,14 +66,6 @@ public class Helps {
    * This method sets the id of the user.
    */
   public void setUserid(Integer userid) {
-    this.userid = userid;
-  }
-
-  /**
-   * This constructor will build a help request and attach it to the user's ID who requested it.
-   */
-  public Helps(String state, Integer userid) {
-    this.state = state;
     this.userid = userid;
   }
 

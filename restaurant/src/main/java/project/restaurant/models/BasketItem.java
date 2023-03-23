@@ -2,7 +2,7 @@ package project.restaurant.models;
 
 /**
  * This class represents an item from the menu in the customer's basket.
- * 
+ *
  * @author Tanmeet Pengyuan Wen
  */
 public class BasketItem {
@@ -13,7 +13,7 @@ public class BasketItem {
   /**
    * Constructs a BasketItem from the menu.
    *
-   * @param name the name of the item
+   * @param name     the name of the item
    * @param quantity the number of this item the customer has added to the basket
    * @param priceSum the total value of this item according to the quantity (price * quantity)
    */
@@ -42,7 +42,7 @@ public class BasketItem {
   }
 
   /**
-   * This method gets the sum price of the item
+   * This method gets the sum price of the item.
    *
    * @return the total price according to the quantity
    */

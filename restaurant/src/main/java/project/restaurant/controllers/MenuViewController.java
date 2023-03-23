@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import project.restaurant.models.KitchenStaff;
 import project.restaurant.models.MenuItems;
 import project.restaurant.models.Users;
 import project.restaurant.models.Waiters;
+import project.restaurant.repository.KitchenStaffRepository;
 import project.restaurant.repository.MenuItemsRepository;
 import project.restaurant.repository.UsersRepository;
 import project.restaurant.repository.WaitersRepository;
@@ -35,6 +37,9 @@ public class MenuViewController {
   @Autowired
   private WaitersRepository wrepo;
 
+  @Autowired
+  private KitchenStaffRepository krepo;
+
   /**
    * This method will display the menu.
    *
@@ -51,13 +56,12 @@ public class MenuViewController {
       String str = mi.getPrice() + ""; // connverting int to string
       String digit = str.substring(str.length() - 2, str.length());
       String frontDigit = str.substring(0, str.length() - 2);
-      System.out.println(digit);
+
       if (digit.equals(".0") || digit.equals(".1") || digit.equals(".2") || digit.equals(".3")
           || digit.equals(".4") || digit.equals(".5") || digit.equals(".6") || digit.equals(".7")
           || digit.equals(".8") || digit.equals(".9")) {
         digit = digit + "0";
         frontDigit = frontDigit + digit;
-        // basketTotal = Float.parseFloat(frontDigit);
       } else {
         frontDigit = str;
       }
@@ -78,7 +82,7 @@ public class MenuViewController {
    * @param file The image of the menu item
    * @return "insert" The webpage for inserting a menu item
    * @throws IOException If the image provided is not in the correct format then it will throw an
-   *         IOExcception
+   *                     IOExcception
    */
   @PostMapping("/addItem2")
   public String postAddItem(@RequestParam("file") MultipartFile file) throws IOException {
@@ -86,15 +90,16 @@ public class MenuViewController {
     urepo.save(u);
     Waiters waiter = new Waiters(1, u);
     wrepo.save(waiter);
-    Float f = 1.25f;
+    Users u2 = new Users("qwe3", "kitchenstaff", "password123", "KS@Oaxaca.com");
+    urepo.save(u2);
+    KitchenStaff ks = new KitchenStaff(1, u2);
+    krepo.save(ks);
+
+    Float f = 1.00f;
     byte[] thisArray = file.getBytes();
     String fle = Base64.encodeBase64String(thisArray);
-    MenuItems m = new MenuItems("ItemName1", "this is a description this is a description "
-        + "this is a description this is a descriptionthis is a description "
-        + "this is a description this is a descriptionthis is a descriptionthis is a description "
-        + "this is a description this is a description this is a description "
-        + "this is a descriptionthis is a descriptionthis is a description this is a description",
-        f, fle, 1, waiter, "drinks", "Paprika, Curry Sauce", 450);
+    MenuItems m = new MenuItems("Water", "Still Spring Water from local sources",
+        f, fle, 1, waiter, "drinks", "Water", 0);
     mrepo.save(m);
     return "insert";
   }

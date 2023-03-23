@@ -28,10 +28,9 @@ public class OrderStateController {
    * This function will offer the data the need to generate ready state list and other state list
    * for orders web page.
    *
-   * @param model is the Model type parameter help the back-end code to add attribute for front-end
-   *        web page
+   * @param model   Models help the back-end code to add attributes for front-end web page
    * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
-   *        page
+   *                page
    * @return "orders" The webpage that displays all current orders
    */
   @GetMapping("/waiterOrder")
@@ -41,21 +40,19 @@ public class OrderStateController {
     List<Orders> deliveryStateOrder = new ArrayList<Orders>();
     List<Orders> otherStateOrder = new ArrayList<Orders>();
     List<Orders> paidStateOrder = new ArrayList<Orders>();
-    
+
     for (int i = 0; i < waiterOrder.size(); i++) {
       Orders order = waiterOrder.get(i);
       if (order.getState().equals("ready")) {
         deliveryStateOrder.add(order);
-      } else if (order.getState().equals("confirmed")){
+      } else if (order.getState().equals("confirmed")) {
         otherStateOrder.add(order);
       }
     }
-    
+
     paidStateOrder = orepo.findByPayState();
-    
+
     List<Orders> allOrders = orepo.findByState();
-    System.out.println(deliveryStateOrder.size());
-    System.out.println(otherStateOrder.size());
     model.addAttribute("allorders", allOrders);
     model.addAttribute("deliveryStateOrder", deliveryStateOrder);
     model.addAttribute("otherStateOrder", otherStateOrder);
@@ -68,16 +65,15 @@ public class OrderStateController {
    * This function will react to the delivered button of ready state order list to set the order
    * state to delivered.
    *
-   * @param input is the id of order that waiter want to set its state to delivered.
-   * @param model is the Model type parameter help the back-end code to add attribute for front-end
-   *        web page
+   * @param input   is the id of order that waiter want to set its state to delivered.
+   * @param model   Models help the back-end code to add attributes for front-end web page
    * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
-   *        page
+   *                page
    * @return "orders" The webpage that displays all current orders
    */
   @PostMapping("/changeToDelivered")
   public String changeStateToDelivered(@Param("input") Integer input, Model model,
-      HttpSession session) {
+                                       HttpSession session) {
     Orders order = orepo.findOrderByOrderId(input);
     order.setState("delivered");
     orepo.save(order);
@@ -88,16 +84,15 @@ public class OrderStateController {
   /**
    * This method will change the state of the order to be confirmed.
    *
-   * @param input The ID of the order being confirmed
-   * @param model is the Model type parameter help the back-end code to add attribute for front-end
-   *        web page
+   * @param input   The ID of the order being confirmed
+   * @param model   Models help the back-end code to add attributes for front-end web page
    * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
-   *        page
+   *                page
    * @return "orders" The webpage that displays all current orders
    */
   @PostMapping("/changeToConfirmed")
   public String changeStateToConfirmed(@Param("input") Integer input, Model model,
-      HttpSession session) {
+                                       HttpSession session) {
     Orders order = orepo.findOrderByOrderId(input);
     order.setState("confirmed");
     Waiters waiter = (Waiters) session.getAttribute("waiter");
@@ -106,43 +101,43 @@ public class OrderStateController {
     getOrders(model, session);
     return "orders";
   }
-  
+
   /**
-   * This method will change the payment state of the order to 'waitingtopay' when the customer requests to pay by cash.
+   * This method will change the payment state of the order to
+   * 'waitingtopay' when the customer requests to pay by cash.
    *
-   * @param input The ID of the order being confirmed
-   * @param model is the Model type parameter help the back-end code to add attribute for front-end
-   *        web page
-   * @param session A method to identify a user and waiter across more than one page
+   * @param input   The ID of the order being confirmed
+   * @param model   Models help the back-end code to add attributes for front-end web page
+   * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
+   *                page
    * @return "orders" The webpage that displays all current orders
    */
   @PostMapping("/changeToWaiting")
   public String changeStateToWaiting(@Param("input") Integer input, Model model,
-      HttpSession session) {
-      Orders order = orepo.findOrderByOrderId(input);
-      System.out.println(input);
-      order.setPayState("waitingtopay");
-      orepo.save(order);
-      getOrders(model, session);
-      return "orders";
+                                     HttpSession session) {
+    Orders order = orepo.findOrderByOrderId(input);
+    order.setPayState("waitingtopay");
+    orepo.save(order);
+    getOrders(model, session);
+    return "orders";
   }
-  
+
   /**
    * This method will change the payment state of the order when it has been paid with cash or card.
    *
-   * @param input The ID of the order being confirmed
-   * @param model is the Model type parameter help the back-end code to add attribute for front-end
-   *        web page
-   * @param session A method to identify a user and waiter across more than one page
+   * @param input   The ID of the order being confirmed
+   * @param model   Models help the back-end code to add attributes for front-end web page
+   * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
+   *                page
    * @return "orders" The webpage that displays all current orders
    */
   @PostMapping("/changeToPaid")
   public String changeStateToPaid(@Param("input") Integer input, Model model,
-      HttpSession session) {
-      Orders order = orepo.findOrderByOrderId(input);
-      order.setPayState("paid");
-      orepo.save(order);
-      getOrders(model, session);
-      return "orders";
+                                  HttpSession session) {
+    Orders order = orepo.findOrderByOrderId(input);
+    order.setPayState("paid");
+    orepo.save(order);
+    getOrders(model, session);
+    return "orders";
   }
 }

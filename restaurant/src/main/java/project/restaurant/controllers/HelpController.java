@@ -25,7 +25,7 @@ import project.restaurant.repository.OrdersRepository;
 public class HelpController {
   @Autowired
   private HelpRepository hrepo;
-  
+
   @Autowired
   private OrdersRepository orepo;
 
@@ -51,18 +51,18 @@ public class HelpController {
    * @return "waiterhelp" The webpage that allows a waiter to accept the users help request
    */
   @GetMapping("/waiterhelps")
-  public String getWaiterHelps(Model model,HttpSession session) {
+  public String getWaiterHelps(Model model, HttpSession session) {
     Waiters waiter = (Waiters) session.getAttribute("waiter");
     List<Helps> lhelps = hrepo.findAll();
-    List<Orders> CancelStateOrder = orepo.findOrderInCancelingStateByWaiterId(waiter);
+    List<Orders> cancelStateOrder = orepo.findOrderInCancelingStateByWaiterId(waiter);
     model.addAttribute("helps", lhelps);
-    model.addAttribute("CancelStateOrder", CancelStateOrder);
+    model.addAttribute("CancelStateOrder", cancelStateOrder);
     return "waiterhelp";
   }
 
   /**
    * This method will store a users request for help if they have not already requested help.
-   * 
+   *
    * @param session A method to identify a user and waiter across more than one page
    * @return "helpRequested" The webpage confirming to the user that their request has gone through
    */
@@ -79,51 +79,52 @@ public class HelpController {
 
   /**
    * This method will allow a waiter to accept help and set the help request to 'helping'.
-   * 
+   *
    * @param helpid The ID of the help request
-   * @param model A method to identify a help request on one webpage
+   * @param model  A method to identify a help request on one webpage
    * @return "waiterhelp" The webpage for a waiter to see current help requests
    */
   @GetMapping("/accepthelp")
-  public String acceptHelp(@RequestParam("helpid") Integer helpid, Model model, HttpSession session) {
+  public String acceptHelp(@RequestParam("helpid") Integer helpid, Model model,
+                           HttpSession session) {
     Waiters waiter = (Waiters) session.getAttribute("waiter");
     Helps helpRequest = hrepo.getReferenceById(helpid);
     helpRequest.setState("helping");
     hrepo.save(helpRequest);
     List<Helps> lhelps = hrepo.findAll();
-    List<Orders> CancelStateOrder = orepo.findOrderInCancelingStateByWaiterId(waiter);
-    model.addAttribute("CancelStateOrder", CancelStateOrder);
+    List<Orders> cancelStateOrder = orepo.findOrderInCancelingStateByWaiterId(waiter);
+    model.addAttribute("CancelStateOrder", cancelStateOrder);
     model.addAttribute("helps", lhelps);
     return "waiterhelp";
   }
 
   /**
    * This method allows a waiter to close a help request if they have completed the help request.
-   * 
+   *
    * @param helpid The ID of the help request
-   * @param model A method to identify a help request on one webpage
+   * @param model  A method to identify a help request on one webpage
    * @return "waiterhelp" The webpage for a waiter to see current help requests
    */
   @GetMapping("/closehelp")
-  public String closeHelp(@RequestParam("helpid") Integer helpid, Model model, HttpSession session) {
+  public String closeHelp(@RequestParam("helpid") Integer helpid, Model model,
+                          HttpSession session) {
     Waiters waiter = (Waiters) session.getAttribute("waiter");
-    System.out.println(helpid);
     hrepo.deleteById(helpid);
     List<Helps> lhelps = hrepo.findAll();
-    List<Orders> CancelStateOrder = orepo.findOrderInCancelingStateByWaiterId(waiter);
-    model.addAttribute("CancelStateOrder", CancelStateOrder);
+    List<Orders> cancelStateOrder = orepo.findOrderInCancelingStateByWaiterId(waiter);
+    model.addAttribute("CancelStateOrder", cancelStateOrder);
     model.addAttribute("helps", lhelps);
     return "waiterhelp";
   }
-  
+
   /**
    * A postMapping method for cancel button on "waiterhelp" web page. This method will
    * change state of order to cancelled after waiter confirmed it.
-   * 
+   *
    * @param session A method to identify a user, a kitchenstaff or a waiter across more than one
-   *        page
-   * @param model A method to identify a menu item and category on one webpage
-   * @param input is the order id of the row of the table
+   *                page
+   * @param model   A method to identify a menu item and category on one webpage
+   * @param input   is the order id of the row of the table
    * @return "waiterhelp" The web page for waiter to handle current help requests
    */
   @PostMapping("/confirmCancel")

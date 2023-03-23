@@ -5,11 +5,85 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a778246a-5c6b-4d2b-8a6a-5bddebce8ca2" name="Changes" comment="Adding required dependencies for kitchen staff homepage">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/bin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/bin/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/bin/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/bin/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/bin/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/bin/src/main/resources/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/bin/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/bin/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/restaurant.iml" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/restaurant.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/RestaurantApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/RestaurantApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/CancelOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/CancelOrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/ChangeMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/ChangeMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/CurrentOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/CurrentOrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/HelpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/HelpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/KitchenStaffController.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/KitchenStaffController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/MenuViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/MenuViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/OrderStateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/OrderStateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/OrderingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/OrderingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/controllers/SignUpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/models/BasketItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/models/BasketItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/models/Helps.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/models/Helps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/models/KitchenStaff.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/models/KitchenStaff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/models/MenuItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/models/MenuItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/models/Orders.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/models/Orders.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/models/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/models/Users.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/repository/HelpRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/repository/HelpRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/repository/ItemsordersRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/repository/ItemsordersRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/repository/KitchenStaffRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/repository/KitchenStaffRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/repository/MenuItemsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/repository/MenuItemsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/repository/NewDatabaseSQL.txt" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/repository/NewDatabaseSQL.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/repository/OrdersRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/repository/OrdersRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/repository/UsersRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/repository/UsersRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/repository/WaitersRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/java/project/restaurant/repository/WaitersRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/addItem.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/addItem.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/basket.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/basket.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/cardPayment.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/cardPayment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/confirmOrder.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/confirmOrder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/currentOrder.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/currentOrder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/customerCancelOrders.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/customerCancelOrders.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/deliveredOrder.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/deliveredOrder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/editRemoveMenu.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/editRemoveMenu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/editSpecificItem.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/editSpecificItem.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/havent-add-anyitem.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/havent-add-anyitem.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/help.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/help.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/helpRequested.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/helpRequested.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/insert.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/insert.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/kitchenStaffHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/kitchenStaffHome.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/kitchenStaffOrders.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/kitchenStaffOrders.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/loginFailed.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/loginFailed.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/menuChange.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/menuChange.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/menuChanges.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/menuChanges.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/noCurrentOrder.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/noCurrentOrder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/noDeliveredOrder.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/noDeliveredOrder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/orderdetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/orderdetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/orderingmenu.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/orderingmenu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/orders.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/place-order-fail.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/place-order-fail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/place-order-sucess.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/place-order-sucess.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/removeMenuChange.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/removeMenuChange.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/signupFailed.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/signupFailed.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/viewCOrderDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/viewCOrderDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/viewDetailsForReady.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/viewDetailsForReady.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/viewMenu.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/viewMenu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/waiterhelp.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/waiterhelp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/main/resources/templates/waiterhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/main/resources/templates/waiterhome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/src/test/java/project/restaurant/RestaurantApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/src/test/java/project/restaurant/RestaurantApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/.idea/jpa-buddy.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/RestaurantApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/RestaurantApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/CancelOrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/CancelOrderController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/ChangeMenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/ChangeMenuController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/CurrentOrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/CurrentOrderController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/HelpController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/HelpController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/KitchenStaffController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/KitchenStaffController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/LoginController.class" afterDir="false" />
@@ -18,6 +92,7 @@
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/OrderingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/OrderingController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/RestaurantController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/RestaurantController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/SignUpController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/controllers/SignUpController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/.gitkeep" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/BasketItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/BasketItem.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/BasketItemWithId.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/BasketItemWithId.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/Helps.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/Helps.class" afterDir="false" />
@@ -27,14 +102,18 @@
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/Orders.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/Orders.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/Users.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/Users.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/Waiters.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/models/Waiters.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/.gitkeep" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/HelpRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/HelpRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/ItemsordersRepository$BasketTypeInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/ItemsordersRepository$BasketTypeInterface.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/ItemsordersRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/ItemsordersRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/KitchenStaffRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/KitchenStaffRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/MenuItemsRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/MenuItemsRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/NewDatabaseSQL.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/OrdersRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/OrdersRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/UsersRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/UsersRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/WaitersRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/repository/WaitersRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/project/restaurant/restaurant.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurant/target/classes/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/classes/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurant/target/test-classes/project/restaurant/RestaurantApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant/target/test-classes/project/restaurant/RestaurantApplicationTests.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,6 +125,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -57,8 +137,22 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="InvalidFacetManager">
+    <ignored-facets>
+      <facet id="restaurant/invalid/JPA" />
+      <facet id="restaurant/invalid/Spring" />
+      <facet id="restaurant/invalid/Web" />
+    </ignored-facets>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectId" id="2L8pX2e5wLDr07Pv4ZTyHLwEqJM" />
   <component name="ProjectViewState">
@@ -66,16 +160,14 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Asus/OneDrive - Royal Holloway University of London/Desktop/University Work/Software Engineering/cw2/CS2800/src/main/resources/googlePlus.xml",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java"
+  }
+}]]></component>
   <component name="RunManager" selected="Application.RestaurantApplication">
     <configuration name="RestaurantApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="project.restaurant.RestaurantApplication" />
@@ -192,7 +284,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="create a html file for success placing order" />

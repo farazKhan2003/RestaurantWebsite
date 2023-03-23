@@ -28,7 +28,7 @@ public class Orders {
 
   @Column(name = "paystate", nullable = false)
   private String paystate;
-  
+
   @ManyToOne(cascade = CascadeType.MERGE)
   @JoinColumn(name = "waiterid")
   private Waiters waiterid;
@@ -52,16 +52,16 @@ public class Orders {
 
   /**
    * This constructor builds an order with all its characteristics.
-   * 
-   * @param state The state the order is in
-   * @param waiterid The ID of the waiter that the order is assigned to
-   * @param userid The ID of the user that placed the order
-   * @param timeplaced The time the user placed the order
+   *
+   * @param state       The state the order is in
+   * @param waiterid    The ID of the waiter that the order is assigned to
+   * @param userid      The ID of the user that placed the order
+   * @param timeplaced  The time the user placed the order
    * @param tablenumber The table number of the user
-   * @param price The price of the order
+   * @param price       The price of the order
    */
   public Orders(String state, String paystate, Waiters waiterid, Users userid, String timeplaced,
-      Integer tablenumber, KitchenStaff kitchenStaffId, Float price) {
+                Integer tablenumber, KitchenStaff kitchenStaffId, Float price) {
     this.state = state;
     this.paystate = paystate;
     this.waiterid = waiterid;
@@ -128,15 +128,17 @@ public class Orders {
   }
 
   /**
-   * This method sets the table number of the user.
+   * This method gets the ID of the Kitchen Staff member.
+   *
+   * @return the ID of the kitchen staff member
    */
-  public void setTableNumber(Integer tablenumber) {
-    this.tablenumber = tablenumber;
-  }
-
   public KitchenStaff getOkitchenStaffId() {
     return kitchenstaffid;
   }
+
+  /**
+   * This method sets the ID of the Kitchen Staff member.
+   */
 
   public void setOkitchenStaffId(KitchenStaff kitchenstaffid) {
     this.kitchenstaffid = kitchenstaffid;
@@ -199,9 +201,26 @@ public class Orders {
     return tablenumber;
   }
 
+  /**
+   * This method sets the table number of the user.
+   */
+  public void setTableNumber(Integer tablenumber) {
+    this.tablenumber = tablenumber;
+  }
+
+  /**
+   * This method gets the state of the payment.
+   *
+   * @return the state of the payment
+   */
+
   public String getPayState() {
     return paystate;
   }
+
+  /**
+   * This method sets the state of the payment.
+   */
 
   public void setPayState(String paystate) {
     this.paystate = paystate;

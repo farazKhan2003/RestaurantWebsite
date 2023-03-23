@@ -3,14 +3,15 @@
 
 <head>
     <title>Home</title>
-    <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" th:href="@{/styles/ordering-menu.css}" type="text/css">
     </link>
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/webjars/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <style>
     body {
       background-image: url("images/HomePageImage.jpg");
     }
+
 
     </style>
 </head>
@@ -19,11 +20,11 @@
 
 <!-- The header -->
 <header>
-    <a href="#" class="logo">Oaxaca</a>
+    <a class="logo" href="#">Oaxaca</a>
     <nav class="navbar">
         <a href="waiterhome">Home</a>
         <a th:href="menuChange">Change Menu</a>
-        <a href="#">Contact us</a>
+        <a href="contactus">Contact us</a>
         <a href="waiterOrder">Keep Track of Orders</a>
         <a th:href="waiterhelps">Help</a>
         <div class="navbar-right">
@@ -41,32 +42,32 @@
 
 <div class="addItems">
     <h3 style="padding-left:1rem;">Enter Dish Details Below:</h3>
-    <form th:action="@{/addItems}" method="post" enctype="multipart/form-data">
+    <form enctype="multipart/form-data" method="post" th:action="@{/addItems}">
         <ul>
             <label>Dish Name</label>
-            <li><input type="text" required name="itemName"></li>
+            <li><input name="itemName" required type="text"></li>
             <br>
             <label>Description</label>
-            <li><textarea style="height:150px;width:400px;text-align:left;" type="text" required
-                          name="description"></textarea></li>
+            <li><textarea name="description" required style="height:150px;width:400px;text-align:left;"
+                          type="text"></textarea></li>
             <br>
             <label>Price (£)</label>
-            <li><input style="text-align:center;" type="number" step="0.01" required name="price"></li>
+            <li><input name="price" required step="0.01" style="text-align:center;" type="number"></li>
             <br>
             <label>Image</label>
-            <li><input style="padding-left:5rem" type="file" name="file" accept=".jpg,.png"/></li>
+            <li><input accept=".jpg,.png" name="file" style="padding-left:5rem" type="file"/></li>
             <br>
             <label>Stock Amount</label>
-            <li><input type="number" required name="stockAmount"></li>
+            <li><input name="stockAmount" required type="number"></li>
             <br>
             <label>Category</label>
-            <li><input type="text" required name="category"></li>
+            <li><input name="category" required type="text"></li>
             <br>
             <label>Ingredients</label>
-            <li><input type="text" required name="ingredients"></li>
+            <li><input name="ingredients" required type="text"></li>
             <br>
             <label>Calories (Kcal)</label>
-            <li><input type="number" required name="calories"></li>
+            <li><input name="calories" required type="number"></li>
         </ul>
         <button type="submit">Add Dish</button>
     </form>

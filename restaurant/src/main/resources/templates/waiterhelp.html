@@ -3,21 +3,21 @@
 
 <head>
     <title>Home</title>
-    <link th:href="@{/styles/ordering-menu.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" th:href="@{/styles/ordering-menu.css}" type="text/css">
     </link>
-    <link th:href="@{/styles/orders.css}" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/styles/orders.css}" type="text/css">
+    <script src="/webjars/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 </head>
 
 <body>
 <!-- The header -->
 <header>
-    <a href="#" class="logo">Oaxaca</a>
+    <a class="logo" href="#">Oaxaca</a>
     <nav class="navbar">
         <a href="waiterhome">Home</a>
         <a th:href="menuChange">Change Menu</a>
-        <a href="#">Contact us</a>
+        <a href="contactus">Contact us</a>
         <a href="waiterOrder">Keep Track of Orders</a>
         <a th:href="waiterhelps">Help</a>
         <div class="navbar-right">
@@ -36,24 +36,26 @@
 <div class="tables">
     <table class="ordersTable">
         <thead>
-        <tr><th>Help Requests</th><tr>
-        <th th:if="${helps!=null}" scope="row">Help State</th>
-        <th th:if="${helps!=null}" scope="row">User Id</th>
-        <th th:if="${helps!=null}" scope="row">Update help</th>
+        <tr>
+            <th>Help Requests</th>
+        <tr>
+            <th scope="row" th:if="${helps!=null}">Help State</th>
+            <th scope="row" th:if="${helps!=null}">User Id</th>
+            <th scope="row" th:if="${helps!=null}">Update help</th>
         </thead>
         <tr th:each="help: ${helps}">
             <td th:text="${help.state}"></td>
             <td th:text="${help.userid}"></td>
             <td th:if="${help.state=='needs help'}">
-                <form th:action="@{/accepthelp}" method="get">
+                <form method="get" th:action="@{/accepthelp}">
                     <button type="submit">Accept Help</button>
-                    <input type="hidden" name="helpid" th:value="${help.helpid}"/>
+                    <input name="helpid" th:value="${help.helpid}" type="hidden"/>
                 </form>
             </td>
             <td th:if="${help.state=='helping'}">
-                <form th:action="@{/closehelp}" method="get">
+                <form method="get" th:action="@{/closehelp}">
                     <button type="submit">Close Help</button>
-                    <input type="hidden" name="helpid" th:value="${help.helpid}"/>
+                    <input name="helpid" th:value="${help.helpid}" type="hidden"/>
                 </form>
             </td>
         </tr>
@@ -63,7 +65,9 @@
 <section class="tables">
     <table class="ordersTable">
         <thead>
-        <tr><th>Cancellation Requests</th><tr>
+        <tr>
+            <th>Cancellation Requests</th>
+        <tr>
         <tr>
             <th>Order ID</th>
             <th>Time placed</th>
@@ -77,9 +81,9 @@
             <td th:text="${item.getTimeplaced()}"></td>
             <td th:text="${item.getState()}"></td>
             <td>
-                <form th:action="@{/confirmCancel}" method="post">
+                <form method="post" th:action="@{/confirmCancel}">
                     <button type="submit">Confirm Cancel</button>
-                    <input type="hidden" name="input" th:value="${item.getOrderId()}"/>
+                    <input name="input" th:value="${item.getOrderId()}" type="hidden"/>
                 </form>
             </td>
         </tr>

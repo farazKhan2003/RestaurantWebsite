@@ -89,7 +89,7 @@ the waiter to promptly assist the customer.
 6. Access the site on "localhost:8080/home".
 
 Here is a setup video for further clarity:
-INSERT VIDEO LINK HERE
+https://www.youtube.com/watch?v=G48L8MUZLP4
 
 ## Screenshots
 

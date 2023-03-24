@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -86,11 +87,11 @@ public class MenuViewController {
    */
   @PostMapping("/addItem2")
   public String postAddItem(@RequestParam("file") MultipartFile file) throws IOException {
-    Users u = new Users("qwe2", "waiter", "password123", "qwe5");
+    Users u = new Users("qwe2", "waiter", "$2a$10$gnNTzlVEi0/y3iwj8NE9Pe5q.C9lIBCuDU.IPvojXSxAgYD4G2Bcy", "qwe5");
     urepo.save(u);
     Waiters waiter = new Waiters(1, u);
     wrepo.save(waiter);
-    Users u2 = new Users("qwe3", "kitchenstaff", "password123", "KS@Oaxaca.com");
+    Users u2 = new Users("qwe3", "kitchenstaff", "$2a$10$gnNTzlVEi0/y3iwj8NE9Pe5q.C9lIBCuDU.IPvojXSxAgYD4G2Bcy", "KS@Oaxaca.com");
     urepo.save(u2);
     KitchenStaff ks = new KitchenStaff(1, u2);
     krepo.save(ks);
